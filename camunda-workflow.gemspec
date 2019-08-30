@@ -11,6 +11,5 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://rubygems.org/gems/camunda-workflow'
   spec.license       = 'MIT'
   spec.required_ruby_version = ">= 2.6"
-  spec.add_dependency 'activejob', '> 4.2'
   spec.add_dependency 'her', '~> 1.1'
 end
