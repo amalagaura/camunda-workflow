@@ -1,3 +1,2 @@
 class Camunda::Workflow
-
 end
