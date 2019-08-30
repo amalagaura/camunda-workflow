@@ -1,4 +1,14 @@
 module Camunda
+  class << self
+    attr_writer :logger
+
+    def logger
+      @logger ||= Logger.new($stdout).tap do |log|
+        log.progname = name
+      end
+    end
+  end
+
   class Her::Middleware::SnakeCase < Faraday::Response::Middleware
     def on_complete(env)
       return if env[:body].blank?

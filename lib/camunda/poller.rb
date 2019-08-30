@@ -8,8 +8,8 @@ class Camunda::Poller
         task.queue_task
       rescue StandardError => e
         Camunda::ExternalTask.report_failure task.id, e
-        Rails.logger.error e.full_message
-        Rails.logger.error "Could not queue task #{task.id} with Activity ID: #{task.activity_id} from "\
+        Camunda.logger.error e.full_message
+        Camunda.logger.error "Could not queue task #{task.id} with Activity ID: #{task.activity_id} from "\
           "Process Definition: #{task.process_definition_key}\n"\
           "We are exiting because we do not want this task executor to take tasks from the queue\n"\
           "And be unable to run them. We have marked the task as a failure."
