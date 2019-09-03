@@ -1,0 +1,10 @@
+Description:
+    One time install of ActiveJob integrations for Camunda jobs
+
+Example:
+    rails generate camunda:install
+
+    This will create:
+        app/jobs/camunda_job.rb
+
+    which includes Camunda::ExternalTaskJob. It can be further customized

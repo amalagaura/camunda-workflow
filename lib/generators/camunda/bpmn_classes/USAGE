@@ -1,0 +1,10 @@
+Description:
+    Generates BPMN classes for a BPMN XML in the current Rails app. They will be under app/bpmn. It will first validate the
+    bpmn xml to make sure the class names are all populated as expected.
+
+Example:
+    rails generate camunda:bpmn_classes bpmn_file
+
+    This will create:
+        app/bpmn/#{process_key}/class1
+        app/bpmn/#{process_key}/class2

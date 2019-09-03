@@ -1,3 +1,5 @@
 require_relative '../camunda.rb'
-require_relative './model.rb'
-Dir[File.join(__dir__, '*.rb')].each(&method(:require))
+%w[../camunda.rb model.rb external_task.rb external_task_job.rb poller.rb process_definition.rb process_instance.rb bpmn_xml.rb]
+  .each do |file|
+  require File.join(__dir__, file)
+end
