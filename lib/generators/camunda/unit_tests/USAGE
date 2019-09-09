@@ -1,0 +1,12 @@
+Description:
+    One time install of Java Camunda application to do unit testing of your BPMN process
+
+Example:
+    rails generate camunda:unit_tests
+
+    This will create a Java app in:
+        bpmn/java_app
+
+    with a sample BPMN file and Unit Test.
+
+    The suggested location for your BPMN file is in `bpmn/diagrams`. `bpmn/java_app/src/main/resources` is a symlink to that.
