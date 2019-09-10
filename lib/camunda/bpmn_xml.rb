@@ -1,4 +1,5 @@
 class Camunda::BpmnXML
+  attr_reader :doc
   def initialize(io_or_string)
     @doc = Nokogiri::XML(io_or_string)
   end

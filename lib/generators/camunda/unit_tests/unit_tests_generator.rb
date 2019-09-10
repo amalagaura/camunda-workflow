@@ -30,11 +30,31 @@ module Camunda
         end
       end
 
-
       def output_instructions
-        unit_test_path = File.join(bpmn_app_path, 'src/test/java/unittest/')
-        puts set_color("\nCreate your tests in #{unit_test_path} and run `mvn clean test` in #{bpmn_app_path}", :red)
-        puts set_color("You can delete the sample tests and sample bpmn resource if you don't require the examples", :green)
+        puts <<~DOC
+          If you get an error when starting your Rails app
+
+          ** ERROR: directory is already being watched! **
+
+          Directory: bpmn/java_app/src/main/resources
+          is already being watched through: bpmn/diagrams
+
+          MORE INFO: https://github.com/guard/listen/wiki/Duplicate-directory-errors
+
+          It is because ActionMailer preview causes test/mailers/previews to get added to the Rails EventedFileChecker
+          by default. RSpec is supposed to override it, but it is not
+          overridden properly for EventedFileChecker and/or you don't have spec/mailers/preview existing. If that
+          directory does not exist it goes to the first common directory that exists which is your Rails root folder.
+          So EventedFileChecker is listening to your entire Rails folder. Not a big problem, but it causes a problem
+          for our created symlink.
+
+          So add:
+
+             config.action_mailer.show_previews = false
+
+          to your `development.rb` file to solve Listen errors about a symlink. Unless you are using ActionMailer
+          previews in which case you should have the directory created already.
+        DOC
       end
 
       private

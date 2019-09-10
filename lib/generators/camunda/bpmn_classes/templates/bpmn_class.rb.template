@@ -2,9 +2,9 @@ module <%= module_name %>
   class <%= config[:class_name] %> < CamundaJob
     include <%= module_name %>
 
-    def bpmn_perform(variables)
+    def bpmn_perform(_variables)
       raise NotImplementedError,
-            "Please define this method to perform your task which takes a hash of variables and returns a hash of variables"
+        "Please define this method to perform your task which takes a hash of variables and returns a hash of variables"
     end
   end
 end

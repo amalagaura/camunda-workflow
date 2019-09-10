@@ -1,31 +1,20 @@
-RSpec::Matchers.define :have_module do
-  module_name = nil
-  match do |bpmn_path|
-    bpmn_path = Rails.root.join(bpmn_path)
-    doc = Nokogiri::XML(File.open(bpmn_path))
-    module_name = doc.xpath('/bpmn:definitions/bpmn:process').first['id']
-    module_ = module_name.safe_constantize
-    module_&.is_a?(Module)
-  end
-  failure_message do |bpmn_path|
-    "#{module_name} is not defined as a module. It is the process ID in #{bpmn_path}"
-  end
+RSpec::Matchers.define :have_topics do |topic_names|
+  match { |bpmn_xml| topic_names.sort == bpmn_xml.topics.sort }
+  failure_message { |_bpmn_path| "ID of the BPMN process is #{bpmn_xml.module_name}" }
 end
 
-RSpec::Matchers.define :have_classes do
+RSpec::Matchers.define :have_module do |module_name_expected|
+  match { |bpmn_xml| module_name_expected == bpmn_xml.module_name }
+  failure_message { |bpmn_xml| "ID of the BPMN process is #{bpmn_xml.module_name}. Expected #{module_name_expected}" }
+end
+
+RSpec::Matchers.define :have_defined_classes do
   missing_classes = []
-  match do |bpmn_path|
-    bpmn_path = Rails.root.join(bpmn_path)
-    doc = Nokogiri::XML(File.open(bpmn_path))
-    module_name = doc.xpath('/bpmn:definitions/bpmn:process').first['id']
-    doc.xpath('//*[@camunda:type="external"]').each do |task|
-      class_name = task.attribute('id').value
-      full_class_name = "#{module_name}::#{class_name}"
-      missing_classes << full_class_name unless full_class_name.safe_constantize
-    end
+  match do |bpmn_xml|
+    missing_classes = bpmn_xml.modularized_class_names.reject(&:safe_constantize)
     missing_classes.empty?
   end
-  failure_message do |bpmn_path|
-    "#{missing_classes} are not defined. They are the expected classes to implement the workers from #{bpmn_path}."
+  failure_message do |_bpmn_xml|
+    "#{missing_classes} are not defined. They are the expected classes in your Rails app to implement the workers."
   end
 end
