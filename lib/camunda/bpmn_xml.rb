@@ -4,6 +4,10 @@ class Camunda::BpmnXML
     @doc = Nokogiri::XML(io_or_string)
   end
 
+  def to_s
+    module_name
+  end
+
   def module_name
     @doc.xpath('/bpmn:definitions/bpmn:process').first['id']
   end

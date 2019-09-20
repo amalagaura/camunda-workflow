@@ -1,13 +1,17 @@
 class Camunda::ExternalTask < Camunda::Model
-  collection_path '/engine-rest/external-task'
+  collection_path 'external-task'
   custom_post :fetchAndLock, :unlock, :complete, :failure
 
-  def self.max_tasks
-    5
+  def self.long_polling_duration
+    Camunda::Workflow.configuration.long_polling_duration.in_milliseconds
+  end
+
+  def self.max_polling_tasks
+    Camunda::Workflow.configuration.max_polling_tasks
   end
 
   def self.lock_duration
-    1.hour.in_milliseconds
+    Camunda::Workflow.configuration.lock_duration.in_milliseconds
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -63,7 +67,8 @@ class Camunda::ExternalTask < Camunda::Model
     topic_details = Array(topics).map do |topic|
       { topicName: topic, lockDuration: lock_duration }
     end
-    fetchAndLock workerId: worker_id, maxTasks: max_tasks, asyncResponseTimeout: long_polling_duration, topics: topic_details
+    fetchAndLock workerId: worker_id, maxTasks: max_polling_tasks, asyncResponseTimeout: long_polling_duration,
+                 topics: topic_details
   end
 
   def task_class_name

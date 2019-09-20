@@ -1,3 +1,3 @@
 class Camunda::ProcessInstance < Camunda::Model
-  collection_path '/engine-rest/process-instance'
+  collection_path 'process-instance'
 end

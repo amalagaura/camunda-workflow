@@ -3,7 +3,7 @@ module <%= module_name %>
     include <%= module_name %>
 
     def bpmn_perform(_variables)
-      raise NotImplementedError,
+      raise StandardError,
         "Please define this method to perform your task which takes a hash of variables and returns a hash of variables"
     end
   end

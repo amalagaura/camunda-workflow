@@ -20,6 +20,6 @@ module Camunda::ExternalTaskJob
   end
 
   def bpmn_perform(_variables)
-    raise NotImplementedError, "Please define this method which takes a hash of variables and returns a hash of variables"
+    raise StandardError, "Please define this method which takes a hash of variables and returns a hash of variables"
   end
 end

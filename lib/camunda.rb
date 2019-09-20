@@ -26,4 +26,7 @@ module Camunda
       hash.deep_transform_keys!(&:underscore)
     end
   end
+
+  class ProcessEngineException < StandardError
+  end
 end

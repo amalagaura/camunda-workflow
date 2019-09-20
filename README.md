@@ -24,6 +24,11 @@ Creates `app/jobs/camunda_job.rb`. A class which inherits from ApplicationJob an
 
 All of the BPMN worker classes will inherit from this class
 
+### Java Sprint Boot App install
+`rails generate camunda:spring_boot`
+Generates a skeleton Java Spring Boot app which also contains the minimal files to run unit tests on a BPMN file. This can be used to
+start a Camunda instance with a REST api. This can also be deployed to PCF by generating a Spring Boot jar and pushing it.
+
 ### BPMN Classes
 `rails generate camunda:bpmn_classes`
 
@@ -31,9 +36,21 @@ Parses the BPMN file and creates task classes according to the ID of the process
 each task. It checks each task and only creates it if the topic name is the same as the process ID. This 
 allows one to have some tasks be handled outside the Rails app. It confirms that the ID's are valid Ruby constant names. 
 
-### Java Unit Test install
-`rails generate camunda:unit_tests`
-Generates a skeleton Java app which contains the minimal files to run unit tests on a BPMN file.
+#### Starting the Camunda server for development
+Create a postgres database on localhost called `camunda`. Start the application: `mvn spring-boot:run`
+
+#### Generating a jar for deployment
+`mvn package spring-boot:repackage`
+
+The jar is in `target/camunda-bpm-springboot.jar`
+
+#### Deploying to PCF
+`cf push app_name -p target/camunda-bpm-springboot.jar`
+
+It will fail to start. Create a postgres database  as a service in PCF and bind it to the application. The Springboot application is configured for Postgres and will then be able to start.
+
+#### Running java unit tests
+`mvn clean test`
 
 #### Note: 
 

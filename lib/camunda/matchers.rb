@@ -1,6 +1,6 @@
 RSpec::Matchers.define :have_topics do |topic_names|
   match { |bpmn_xml| topic_names.sort == bpmn_xml.topics.sort }
-  failure_message { |_bpmn_path| "ID of the BPMN process is #{bpmn_xml.module_name}" }
+  failure_message { |bpmn_xml| "Expected #{topic_names}. Found #{bpmn_xml.topics.sort}" }
 end
 
 RSpec::Matchers.define :have_module do |module_name_expected|
