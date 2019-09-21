@@ -11,7 +11,10 @@ class Camunda::Model
       # Response
       c.use Faraday::Response::Logger, ActiveSupport::Logger.new(STDOUT), bodies: true if Rails.env.development?
       c.use Her::Middleware::FirstLevelParseJSON
-      c.use Her::Middleware::SnakeCase
+
+      # camelCase variables for Camunda
+      # snake_case for Ruby
+      c.use Her::Middleware::SnakeCamelCase
       # Adapter
       c.use Faraday::Adapter::NetHttp
     end

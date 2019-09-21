@@ -7,7 +7,8 @@ class Camunda::Poller
 
         task.queue_task
       rescue StandardError => e
-        Camunda::ExternalTask.report_failure task.id, e
+        # This is only for errors in queuing tasks. An error in a task is handled by the Job itself.
+        task.report_failure e
         Camunda.logger.error e.full_message
         Camunda.logger.error "Could not queue task #{task.id} with Activity ID: #{task.activity_id} from "\
           "Process Definition: #{task.process_definition_key}\n"\

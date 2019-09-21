@@ -4,7 +4,7 @@ module Camunda::ExternalTaskJob
 
     report_completion id, output_variables
   rescue StandardError => e
-    report_failure id, e
+    report_failure id, e, input_variables
   end
 
   def report_completion(id, variables)
@@ -13,10 +13,10 @@ module Camunda::ExternalTaskJob
     Camunda::ExternalTask.complete_task(id, variables)
   end
 
-  def report_failure(id, exception)
+  def report_failure(id, exception, input_variables)
     # Submit error state to Camunda using
     # POST /external-task/{id}/failure
-    Camunda::ExternalTask.report_failure(id, exception)
+    Camunda::ExternalTask.report_failure(id, exception, input_variables)
   end
 
   def bpmn_perform(_variables)

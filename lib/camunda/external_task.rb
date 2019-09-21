@@ -1,3 +1,5 @@
+require 'active_support/core_ext/string/inflections.rb'
+
 class Camunda::ExternalTask < Camunda::Model
   collection_path 'external-task'
   custom_post :fetchAndLock, :unlock, :complete, :failure
@@ -39,8 +41,14 @@ class Camunda::ExternalTask < Camunda::Model
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/CyclomaticComplexity
 
-  def self.report_failure(id, exception)
-    failure workerId: worker_id, id: id, errorMessage: exception.message, errorDetails: exception.full_message
+  def self.report_failure(id, exception, input_variables)
+    variables_information = "Input variables are #{input_variables.inspect}\n\n"
+    failure workerId: worker_id, id: id, errorMessage: exception.message,
+            errorDetails: variables_information + exception.full_message
+  end
+
+  def report_failure(exception)
+    self.class.report_failure id, exception, variables
   end
 
   def self.complete_task(id, variables = {})
@@ -49,7 +57,7 @@ class Camunda::ExternalTask < Camunda::Model
 
   def variables
     super.transform_values do |details|
-      if details['value_info'] == 'Json'
+      if details['type'] == 'Json'
         JSON.parse(details['value'])
       else
         details['value']
