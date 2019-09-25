@@ -17,16 +17,13 @@ class Camunda::ExternalTask < Camunda::Model
   end
 
   # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/CyclomaticComplexity
   def self.serialize_variables(variables)
-    variables.transform_values do |value|
+    hash = variables.transform_values do |value|
       case value
       when String
         { value: value, type: 'String' }
-      when Array
-        { value: value.to_json, type: 'Json' }
-      when Hash
-        { value: value.to_json, type: 'Json' }
+      when Array, Hash
+        { value: transform_json(value).to_json, type: 'Json' }
       when TrueClass, FalseClass
         { value: value, type: 'Boolean' }
       when Integer
@@ -37,9 +34,22 @@ class Camunda::ExternalTask < Camunda::Model
         raise ArgumentError, "Not supporting complex types yet"
       end
     end
+    camelcase_keys(hash)
   end
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/CyclomaticComplexity
+
+  def self.transform_json(json)
+    if json.is_a?(Array)
+      json.map { |hash| camelcase_keys(hash) }
+    elsif json.is_a?(Hash)
+      camelcase_keys(json)
+    end
+  end
+
+  def self.camelcase_keys(hash)
+    hash.deep_transform_keys { |key| key.to_s.camelcase(:lower) }
+  end
 
   def self.report_failure(id, exception, input_variables)
     variables_information = "Input variables are #{input_variables.inspect}\n\n"

@@ -8,7 +8,7 @@ module Camunda
       def copy_java_app_files
         copy_file 'pom.xml', File.join(bpmn_app_path, 'pom.xml')
         copy_file 'camunda.cfg.xml', File.join(bpmn_app_path, 'src/test/resources/camunda.cfg.xml')
-        copy_file 'SampleBPMNTest.java', File.join(bpmn_app_path, 'src/test/java/unittest/SampleBPMNTest.java')
+        copy_file 'ProcessScenarioTest.java', File.join(bpmn_app_path, 'src/test/java/unittest/ProcessScenarioTest.java')
       end
 
       def link_resources_folder
@@ -26,7 +26,7 @@ module Camunda
         end
       end
 
-      def output_instructions
+      def output_error_instructions
         puts <<~DOC
           If you get an error when starting your Rails app
 

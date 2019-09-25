@@ -1,6 +1,8 @@
 module Camunda::ExternalTaskJob
   def perform(id, input_variables)
     output_variables = bpmn_perform(input_variables)
+    output_variables = {} if output_variables.nil?
+    raise ArgumentError, "Expected a hash, got #{output_variables}" unless output_variables.is_a?(Hash)
 
     report_completion id, output_variables
   rescue StandardError => e
