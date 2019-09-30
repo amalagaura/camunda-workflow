@@ -41,9 +41,11 @@ class Camunda::ExternalTask < Camunda::Model
 
   def self.transform_json(json)
     if json.is_a?(Array)
-      json.map { |hash| camelcase_keys(hash) }
+      json.map { |element| transform_json(element) }
     elsif json.is_a?(Hash)
       camelcase_keys(json)
+    else
+      json
     end
   end
 
