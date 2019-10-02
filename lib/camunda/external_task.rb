@@ -1,6 +1,7 @@
 require 'active_support/core_ext/string/inflections.rb'
 
 class Camunda::ExternalTask < Camunda::Model
+  include Camunda::VariableSerialization
   collection_path 'external-task'
   custom_post :fetchAndLock, :unlock, :complete, :failure
 
@@ -14,43 +15,6 @@ class Camunda::ExternalTask < Camunda::Model
 
   def self.lock_duration
     Camunda::Workflow.configuration.lock_duration.in_milliseconds
-  end
-
-  # rubocop:disable Metrics/MethodLength
-  def self.serialize_variables(variables)
-    hash = variables.transform_values do |value|
-      case value
-      when String
-        { value: value, type: 'String' }
-      when Array, Hash
-        { value: transform_json(value).to_json, type: 'Json' }
-      when TrueClass, FalseClass
-        { value: value, type: 'Boolean' }
-      when Integer
-        { value: value, type: 'Integer' }
-      when Float
-        { value: value, type: 'Double' }
-      else
-        raise ArgumentError, "Not supporting complex types yet"
-      end
-    end
-    camelcase_keys(hash)
-  end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/CyclomaticComplexity
-
-  def self.transform_json(json)
-    if json.is_a?(Array)
-      json.map { |element| transform_json(element) }
-    elsif json.is_a?(Hash)
-      camelcase_keys(json)
-    else
-      json
-    end
-  end
-
-  def self.camelcase_keys(hash)
-    hash.deep_transform_keys { |key| key.to_s.camelcase(:lower) }
   end
 
   def self.report_failure(id, exception, input_variables)

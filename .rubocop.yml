@@ -13,6 +13,8 @@ Documentation:
   Enabled: false
 Metrics/ClassLength:
   Max: 200 # 100 is the default
+Metrics/BlockLength:
+  Max: 50
 Metrics/LineLength:
   Max: 130 # default is 80
 Metrics/MethodLength:

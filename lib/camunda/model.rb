@@ -14,7 +14,7 @@ class Camunda::Model
 
       c.use Her::Middleware::SnakeCase
       # Adapter
-      c.use Faraday::Adapter::NetHttp
+      c.adapter Faraday::Adapter::NetHttp
     end
   end
 
