@@ -1,6 +1,6 @@
 require 'active_support/core_ext/string/inflections.rb'
 require 'active_support/core_ext/object/blank.rb'
-
+require 'her'
 module Camunda
   class << self
     attr_writer :logger
