@@ -8,6 +8,7 @@ module Camunda
       def copy_java_app_files
         copy_file 'pom.xml', File.join(bpmn_app_path, 'pom.xml')
         copy_file 'camunda.cfg.xml', File.join(bpmn_app_path, 'src/test/resources/camunda.cfg.xml')
+        copy_file 'application.properties', File.join(bpmn_app_path, 'src/main/resources/application.properties')
         copy_file 'ProcessScenarioTest.java', File.join(bpmn_app_path, 'src/test/java/unittest/ProcessScenarioTest.java')
         copy_file 'Camunda.java', File.join(bpmn_app_path, 'src/main/java/camunda/Camunda.java')
       end
