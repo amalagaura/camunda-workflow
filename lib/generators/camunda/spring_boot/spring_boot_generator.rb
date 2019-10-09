@@ -9,6 +9,7 @@ module Camunda
         copy_file 'pom.xml', File.join(bpmn_app_path, 'pom.xml')
         copy_file 'camunda.cfg.xml', File.join(bpmn_app_path, 'src/test/resources/camunda.cfg.xml')
         copy_file 'ProcessScenarioTest.java', File.join(bpmn_app_path, 'src/test/java/unittest/ProcessScenarioTest.java')
+        copy_file 'Camunda.java', File.join(bpmn_app_path, 'src/main/java/camunda/Camunda.java')
       end
 
       def link_resources_folder
