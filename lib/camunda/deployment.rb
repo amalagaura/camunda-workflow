@@ -8,7 +8,7 @@ class Camunda::Deployment < Camunda::Model
              data: UploadIO.new(file_name, 'text/plain') }
     args.merge!(tenant_id: tenant_id) if tenant_id
     post_raw('deployment/create', args).tap do |response|
-      raise Camunda::ProcessEngineException, response[:parsed_data][:data][:message] if response[:response] != 200
+      raise Camunda::ProcessEngineException, response[:parsed_data][:data][:message] if response[:response].status != 200
     end
   end
 end
