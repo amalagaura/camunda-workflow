@@ -12,7 +12,7 @@ class Camunda::Task < Camunda::Model
     end
   end
 
-  def self.mark_task_reviewed!(instance_business_key, task_key, variables)
+  def self.mark_task_completed!(instance_business_key, task_key, variables)
     find_by_business_key_and_task_definition_key!(instance_business_key, task_key).tap do |ct|
       complete id: ct.id, variables: serialize_variables(variables)
     end

@@ -52,6 +52,51 @@ It will fail to start. Create a postgres database  as a service in PCF and bind 
 #### Running java unit tests
 `mvn clean test`
 
+### Methods
+#### Processes
+Deploying a model. Uses a default name, tenant id, etc
+```
+  Camunda::Deployment.create file_name: 'process.bpmn'
+```
+
+Starting a process
+```
+  start_response = Camunda::ProcessDefinition.start id: 'ProcessDefinitionKey'
+```
+or
+```
+  start_response = Camunda::ProcessDefinition.start_with_variables id: 'ProcessDefinitionKey', variables: { x: 'abcd' }
+```
+
+Destroy a process
+```
+  Camunda::ProcessInstance.destroy_existing start_response.id
+```
+
+#### Tasks
+Fetch tasks and queue with ActiveJob
+
+This runs as an infinite loop with long polling to fetch tasks and queue them.
+```
+  Camunda::Poller.fetch_and_execute %w[Topic]
+```
+
+Fetch tasks (one time for testing from the console)
+```
+  tasks = Camunda::ExternalTask.fetch_and_lock(%w[topic])
+``` 
+
+Run a task
+```
+  task.task_class_name.safe_constantize.perform_now task.id, task.variables
+```
+
+#### User Tasks
+Mark a user task complete
+```
+  Camunda::Task.mark_task_completed!(business_key, task_key, {})
+```
+
 #### Note: 
 
 If you get an error

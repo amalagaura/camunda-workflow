@@ -45,6 +45,10 @@ class Camunda::ExternalTask < Camunda::Model
     task_class.perform_later(id, variables)
   end
 
+  def run_now
+    task_class_name.safe_constantize.perform_now id, variables
+  end
+
   def self.fetch_and_lock(topics, lock_duration: nil, long_polling_duration: nil)
     long_polling_duration ||= long_polling_duration()
     lock_duration ||= lock_duration()
