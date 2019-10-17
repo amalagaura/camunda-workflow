@@ -15,15 +15,12 @@ describe Camunda::Generators::SpringBootGenerator do
   end
 
   it "start a new spring boot" do
-    thread = Thread.new do
       system("mvn spring-boot:run", chdir: File.expand_path('../spec/dummy/bpmn/java_app', __dir__))
-    end
-
   end
 
   after do
 
-   remove_dir File.expand_path('../spec/dummy/bpmn', __dir__)
+   #remove_dir File.expand_path('../spec/dummy/bpmn', __dir__)
  end
 
   it 'has camunda_job.rb' do
