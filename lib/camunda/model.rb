@@ -1,7 +1,4 @@
 require 'her/model'
-require 'faraday'
-require 'faraday_middleware'
-
 class Camunda::Model
   include Her::Model
 

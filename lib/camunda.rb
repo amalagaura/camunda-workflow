@@ -1,6 +1,9 @@
 require 'active_support/core_ext/string/inflections.rb'
 require 'active_support/core_ext/object/blank.rb'
 require 'her'
+require 'faraday'
+require 'faraday_middleware'
+
 module Camunda
   class << self
     attr_writer :logger
