@@ -18,12 +18,12 @@ describe Camunda::Generators::SpringBootGenerator do
     thread = Thread.new do
       system("mvn spring-boot:run", chdir: File.expand_path('../spec/dummy/bpmn/java_app', __dir__))
     end
-    allow(thread).to receive(:new).and_yield
+
   end
 
   after do
 
-   #remove_dir File.expand_path('../spec/dummy/bpmn', __dir__)
+   remove_dir File.expand_path('../spec/dummy/bpmn', __dir__)
  end
 
   it 'has camunda_job.rb' do
