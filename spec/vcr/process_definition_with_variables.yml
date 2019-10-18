@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/process-definition/key/CamundaWorkflow/start
+    body:
+      encoding: UTF-8
+      string: '{"id":"CamundaWorkflow","variables":{"x":{"value":"abcd","type":"String"}},"businessKey":"WorkflowBusinessKey"}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '353'
+      date:
+      - Fri, 18 Oct 2019 20:04:58 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/8ff52077-f1e2-11e9-a3df-defdfa23af57","rel":"self"}],"id":"8ff52077-f1e2-11e9-a3df-defdfa23af57","definitionId":"CamundaWorkflow:4:8fd5ffb0-f1e2-11e9-a3df-defdfa23af57","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":null}'
+    http_version: 
+  recorded_at: Fri, 18 Oct 2019 20:04:59 GMT
+recorded_with: VCR 5.0.0

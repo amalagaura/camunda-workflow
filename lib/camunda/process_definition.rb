@@ -6,7 +6,7 @@ class Camunda::ProcessDefinition < Camunda::Model
   primary_key :id
   custom_post :start
 
-  def start_with_variables(hash)
+  def self.start_with_variables(hash)
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
     start hash
   end

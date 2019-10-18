@@ -35,6 +35,7 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    vcr (5.0.0)
     zeitwerk (2.1.10)
 
 PLATFORMS
@@ -42,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   camunda-workflow!
+  vcr
 
 BUNDLED WITH
    2.0.2

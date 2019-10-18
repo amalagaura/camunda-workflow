@@ -15,7 +15,7 @@ module Camunda
 
       def link_resources_folder
         copy_file 'sample.bpmn', File.join(diagram_path, 'sample.bpmn'), ''
-        #create_link File.join(bpmn_app_path, 'src/main/resources/'), File.join('../../../..', diagram_path)
+        # create_link File.join(bpmn_app_path, 'src/main/resources/'), File.join('../../../..', diagram_path)
       end
 
       def add_to_ignores
