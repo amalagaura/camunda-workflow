@@ -5,8 +5,9 @@ require 'camunda/external_task'
 RSpec.describe Camunda::ExternalTask do
 
     it 'fetch tasks' do
-      tasks = Camunda::ExternalTask.fetch_and_lock(%w[CamundWorkflow])
+      tasks = Camunda::ExternalTask.fetch_and_lock(%w[CamundaWorkflow])
       expect(tasks).not_to be_empty
+      p tasks
       expect(tasks[:response].status).to eq(200)
   end
 
