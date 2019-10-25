@@ -21,12 +21,12 @@ http_interactions:
       content-length:
       - '353'
       date:
-      - Fri, 18 Oct 2019 20:04:58 GMT
+      - Fri, 18 Oct 2019 22:42:53 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/8ff52077-f1e2-11e9-a3df-defdfa23af57","rel":"self"}],"id":"8ff52077-f1e2-11e9-a3df-defdfa23af57","definitionId":"CamundaWorkflow:4:8fd5ffb0-f1e2-11e9-a3df-defdfa23af57","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":null}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/9f17ef2a-f1f8-11e9-a0f7-0ed837c9a26a","rel":"self"}],"id":"9f17ef2a-f1f8-11e9-a0f7-0ed837c9a26a","definitionId":"CamundaWorkflow:1:9696d0ae-f1ed-11e9-a0f7-0ed837c9a26a","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":null}'
     http_version: 
-  recorded_at: Fri, 18 Oct 2019 20:04:59 GMT
+  recorded_at: Fri, 18 Oct 2019 22:42:53 GMT
 recorded_with: VCR 5.0.0

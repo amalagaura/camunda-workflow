@@ -1,5 +1,3 @@
-require_relative '../camunda.rb'
-
 module Camunda
   module Workflow
     class << self

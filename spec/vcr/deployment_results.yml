@@ -5,9 +5,9 @@ http_interactions:
     uri: http://localhost:8080/rest/deployment/create
     body:
       encoding: UTF-8
-      string: "-------------RubyMultipartPost-875cc07f22157d4b90709e0be3a2e707\r\nContent-Disposition:
-        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-875cc07f22157d4b90709e0be3a2e707\r\nContent-Disposition:
-        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-875cc07f22157d4b90709e0be3a2e707\r\nContent-Disposition:
+      string: "-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7\r\nContent-Disposition:
+        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7\r\nContent-Disposition:
+        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7\r\nContent-Disposition:
         form-data; name=\"data\"; filename=\"sample.bpmn\"\r\nContent-Length: 3319\r\nContent-Type:
         text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\n<?xml version=\"1.0\"
         encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\"
@@ -49,12 +49,12 @@ http_interactions:
         \       <di:waypoint x=\"600\" y=\"120\" />\n        <di:waypoint x=\"692\"
         y=\"120\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape id=\"UserTask_1w736wx_di\"
         bpmnElement=\"UserTask\">\n        <dc:Bounds x=\"500\" y=\"80\" width=\"100\"
-        height=\"80\" />\n      </bpmndi:BPMNShape>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-875cc07f22157d4b90709e0be3a2e707--\r\n"
+        height=\"80\" />\n      </bpmndi:BPMNShape>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7--\r\n"
     headers:
       User-Agent:
       - Faraday v0.17.0
       Content-Type:
-      - multipart/form-data; boundary=-----------RubyMultipartPost-875cc07f22157d4b90709e0be3a2e707
+      - multipart/form-data; boundary=-----------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7
       Content-Length:
       - '3890'
   response:
@@ -67,13 +67,13 @@ http_interactions:
       content-length:
       - '881'
       date:
-      - Fri, 18 Oct 2019 20:04:58 GMT
+      - Mon, 21 Oct 2019 18:35:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/8fced3be-f1e2-11e9-a3df-defdfa23af57","rel":"self"}],"id":"8fced3be-f1e2-11e9-a3df-defdfa23af57","name":"sample.bpmn","source":"Camunda
-        Workflow Gem","deploymentTime":"2019-10-18T15:04:58.911-0500","tenantId":null,"deployedProcessDefinitions":{"CamundaWorkflow:4:8fd5ffb0-f1e2-11e9-a3df-defdfa23af57":{"id":"CamundaWorkflow:4:8fd5ffb0-f1e2-11e9-a3df-defdfa23af57","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"camunda-bpm-servlet-project","version":4,"resource":"sample.bpmn","deploymentId":"8fced3be-f1e2-11e9-a3df-defdfa23af57","diagram":null,"suspended":false,"tenantId":null,"versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/8f5a1129-f431-11e9-b928-0eab743e29fd","rel":"self"}],"id":"8f5a1129-f431-11e9-b928-0eab743e29fd","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-10-21T13:35:30.713-0500","tenantId":null,"deployedProcessDefinitions":{"CamundaWorkflow:1:8f65a9eb-f431-11e9-b928-0eab743e29fd":{"id":"CamundaWorkflow:1:8f65a9eb-f431-11e9-b928-0eab743e29fd","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"camunda-bpm-servlet-project","version":1,"resource":"sample.bpmn","deploymentId":"8f5a1129-f431-11e9-b928-0eab743e29fd","diagram":null,"suspended":false,"tenantId":null,"versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
     http_version: 
-  recorded_at: Fri, 18 Oct 2019 20:04:58 GMT
+  recorded_at: Mon, 21 Oct 2019 18:35:30 GMT
 recorded_with: VCR 5.0.0

@@ -6,7 +6,7 @@ describe Camunda::Generators::SpringBootGenerator do
 
   let(:dummy_app) { Dummy::Application }
   let(:generator) { Camunda::Generators::SpringBootGenerator }
-  let(:dummy_app_root) { File.expand_path('../spec/dummy', __dir__) }
+  let(:dummy_app_root) { File.expand_path('../dummy', __dir__) }
 
   before do
     generator.start([], destination_root: dummy_app_root)
@@ -16,9 +16,6 @@ describe Camunda::Generators::SpringBootGenerator do
   end
 
   after do
-    remove_dir File.expand_path('../spec/dummy/bpmn', __dir__)
-  end
-
-  it 'has camunda_job.rb' do
+    # remove_dir File.expand_path('../dummy/bpmn', __dir__)
   end
 end

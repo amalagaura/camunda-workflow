@@ -6,7 +6,7 @@ RSpec.describe Camunda::ProcessDefinition do
   it 'starts a process' do
     VCR.use_cassette('process_definition') do
       definition = Camunda::ProcessDefinition.start id: 'CamundaWorkflow'
-      # expect(definition[:response].status).to eq(200)
+       expect(definition[:response].status).to eq(200)
     end
   end
 
