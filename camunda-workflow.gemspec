@@ -16,9 +16,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday_middleware'
   spec.add_dependency 'her', '~> 1.1'
 
+  spec.add_development_dependency 'rails'
+  spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'vcr'
-  # spec.add_development_dependency 'rspec'
-  # spec.add_development_dependency 'rspec-rails'
 
   # We use .camelcase, .underscore and ActiveSupport::Concern
   spec.add_dependency 'activesupport', '>= 3.2.0'

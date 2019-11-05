@@ -2,8 +2,10 @@
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
 
-We use [Her](https://github.com/remiprev/her) to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). We use the process definition key as the topic name. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
+[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). Topic names are defined by the process definition key. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
     
+![Screenshot] (http://imagur.com/3ALVUMh)
+
 We will have scripts to run unit tests on the BPMN definitions. This expects Java and Maven.
 
 We also have rspec helpers which will validate your application to make sure it has a class for every External task in a given BPMN file.
@@ -17,27 +19,38 @@ But right now we are using `perform_later` on worker classes. If we want to make
 ## Generators
 
 ### BPMN ActiveJob install
-`rails generate camunda:install`
+```bash
+rails generate camunda:install
+```
 
 Creates `app/jobs/camunda_job.rb`. A class which inherits from ApplicationJob and includes `ExternalTaskJob`. It can be changed to include
  Sidekiq::Worker instead.  
 
 All of the BPMN worker classes will inherit from this class
 
-### Java Sprint Boot App install
-`rails generate camunda:spring_boot`
+### Java Spring Boot App install
+```bash
+rails generate camunda:spring_boot
+```
 Generates a skeleton Java Spring Boot app which also contains the minimal files to run unit tests on a BPMN file. This can be used to
 start a Camunda instance with a REST api. This can also be deployed to PCF by generating a Spring Boot jar and pushing it.
 
 ### BPMN Classes
-`rails generate camunda:bpmn_classes`
+```bash
+rails generate camunda:bpmn_classes
+```
 
 Parses the BPMN file and creates task classes according to the ID of the process file and the ID of 
 each task. It checks each task and only creates it if the topic name is the same as the process ID. This 
 allows one to have some tasks be handled outside the Rails app. It confirms that the ID's are valid Ruby constant names. 
 
 #### Starting the Camunda server for development
-Create a postgres database on localhost called `camunda`. Start the application: `mvn spring-boot:run`
+
+Start the application: `mvn spring-boot:run`
+
+Camunda-workflow defaults to an in-memory, h2 database engine. Data is not persisted. If you would rather use postgres database engine, comment out the 
+h2 database engine settings in the  `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 
+You will need to create a postgres database on localhost called `camunda`. 
 
 #### Generating a jar for deployment
 `mvn package spring-boot:repackage`
@@ -54,46 +67,61 @@ It will fail to start. Create a postgres database  as a service in PCF and bind 
 
 ### Methods
 #### Processes
-Deploying a model. Uses a default name, tenant id, etc
-```
-  Camunda::Deployment.create file_name: 'process.bpmn'
+Deploying a model. Uses a default name, tenant id, etc. Below outlines how to deploy a process using the included sample.bpmn
+file created by the generator.
+
+```ruby
+  Camunda::Deployment.create file_name: 'bpmn/diagrams/sample.bpmn'
 ```
 
 Starting a process
-```
-  start_response = Camunda::ProcessDefinition.start id: 'ProcessDefinitionKey'
+```ruby
+  start_response = Camunda::ProcessDefinition.start id: 'CamundaWorkflow'
 ```
 or
-```
-  start_response = Camunda::ProcessDefinition.start_with_variables id: 'ProcessDefinitionKey', variables: { x: 'abcd' }
+```ruby
+  start_response = Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
 ```
 
 Destroy a process
-```
+```ruby
   Camunda::ProcessInstance.destroy_existing start_response.id
 ```
 
 #### Tasks
 Fetch tasks and queue with ActiveJob
 
-This runs as an infinite loop with long polling to fetch tasks and queue them.
-```
+This runs as an infinite loop with long polling to fetch tasks, queue, and run them. Topic is the process definition key 
+as show in the screenshot example from the Camunda Modeler.
+```ruby
   Camunda::Poller.fetch_and_execute %w[Topic]
+```
+Below will run the poller to fetch, lock and run a task for the example process definition located in 
+the `starting a process` documentation.
+
+```ruby
+  Camunda::Poller.fetch_and_execute %w[CamundaWorkflow]
 ```
 
 Fetch tasks (one time for testing from the console)
-```
-  tasks = Camunda::ExternalTask.fetch_and_lock(%w[topic])
-``` 
 
-Run a task
+```ruby
+  tasks = Camunda::ExternalTask.fetch_and_lock %w[topic]
+``` 
+Example to fetch and lock using `sample.bpmn` example.
+
+```ruby
+ tasks = Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
 ```
-  task.task_class_name.safe_constantize.perform_now task.id, task.variables
+Run a task
+
+```ruby
+  tasks.each(&:run_now)
 ```
 
 #### User Tasks
 Mark a user task complete
-```
+```ruby
   Camunda::Task.mark_task_completed!(business_key, task_key, {})
 ```
 

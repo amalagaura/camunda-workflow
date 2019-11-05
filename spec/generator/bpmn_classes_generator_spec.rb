@@ -9,8 +9,6 @@ describe Camunda::Generators::BpmnClassesGenerator do
 
   before do
     puts "running generator"
-    generator.start([], destination_root: dummy_app_root)
+    generator.start(['camunda:bpmn_classes'], destination_root: dummy_app_root)
   end
-
-
 end

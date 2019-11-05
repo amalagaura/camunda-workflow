@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/external-task/fetchAndLock
+    body:
+      encoding: UTF-8
+      string: '{"workerId":0,"maxTasks":2,"asyncResponseTimeout":30000,"topics":[{"topicName":"CamundaWorkflow","lockDuration":1209600000}]}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '1317'
+      date:
+      - Tue, 29 Oct 2019 23:59:29 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:b7e70c84-fa9e-11e9-9347-5a3958292e65","errorMessage":null,"errorDetails":null,"executionId":"b7e70c83-fa9e-11e9-9347-5a3958292e65","id":"b7e70c85-fa9e-11e9-9347-5a3958292e65","lockExpirationTime":"2019-11-12T17:59:29.323-0600","processDefinitionId":"CamundaWorkflow:1:21ee4f0b-f9c5-11e9-9347-5a3958292e65","processDefinitionKey":"CamundaWorkflow","processInstanceId":"b7e70c7a-fa9e-11e9-9347-5a3958292e65","retries":null,"suspended":false,"workerId":"0","topicName":"CamundaWorkflow","tenantId":null,"variables":{"x":{"type":"String","value":"y","valueInfo":{}}},"priority":0,"businessKey":null},{"activityId":"DoSomething","activityInstanceId":"DoSomething:b7e8ba41-fa9e-11e9-9347-5a3958292e65","errorMessage":null,"errorDetails":null,"executionId":"b7e8ba40-fa9e-11e9-9347-5a3958292e65","id":"b7e8ba42-fa9e-11e9-9347-5a3958292e65","lockExpirationTime":"2019-11-12T17:59:29.324-0600","processDefinitionId":"CamundaWorkflow:1:21ee4f0b-f9c5-11e9-9347-5a3958292e65","processDefinitionKey":"CamundaWorkflow","processInstanceId":"b7e89327-fa9e-11e9-9347-5a3958292e65","retries":null,"suspended":false,"workerId":"0","topicName":"CamundaWorkflow","tenantId":null,"variables":{"x":{"type":"String","value":"y","valueInfo":{}}},"priority":0,"businessKey":null}]'
+    http_version: 
+  recorded_at: Tue, 29 Oct 2019 23:59:29 GMT
+recorded_with: VCR 5.0.0

@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8080/rest/task
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      vary:
+      - Accept
+      content-type:
+      - application/json
+      content-length:
+      - '579'
+      date:
+      - Wed, 30 Oct 2019 20:27:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"b30a3a5c-fb53-11e9-9347-5a3958292e65","name":"User Task","assignee":null,"created":"2019-10-30T15:27:31.616-0500","due":null,"followUp":null,"delegationState":null,"description":null,"executionId":"b30a1349-fb53-11e9-9347-5a3958292e65","owner":null,"parentTaskId":null,"priority":50,"processDefinitionId":"CamundaWorkflow:1:21ee4f0b-f9c5-11e9-9347-5a3958292e65","processInstanceId":"b309ec34-fb53-11e9-9347-5a3958292e65","taskDefinitionKey":"UserTask","caseExecutionId":null,"caseInstanceId":null,"caseDefinitionId":null,"suspended":false,"formKey":null,"tenantId":null}]'
+    http_version: 
+  recorded_at: Wed, 30 Oct 2019 20:27:31 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/task?instanceBusinessKey=WorkflowBusinessTask&taskDefinitionKey=UserTask
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      vary:
+      - Accept
+      content-type:
+      - application/json
+      content-length:
+      - '579'
+      date:
+      - Wed, 30 Oct 2019 20:27:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"b30a3a5c-fb53-11e9-9347-5a3958292e65","name":"User Task","assignee":null,"created":"2019-10-30T15:27:31.616-0500","due":null,"followUp":null,"delegationState":null,"description":null,"executionId":"b30a1349-fb53-11e9-9347-5a3958292e65","owner":null,"parentTaskId":null,"priority":50,"processDefinitionId":"CamundaWorkflow:1:21ee4f0b-f9c5-11e9-9347-5a3958292e65","processInstanceId":"b309ec34-fb53-11e9-9347-5a3958292e65","taskDefinitionKey":"UserTask","caseExecutionId":null,"caseInstanceId":null,"caseDefinitionId":null,"suspended":false,"formKey":null,"tenantId":null}]'
+    http_version: 
+  recorded_at: Wed, 30 Oct 2019 20:27:31 GMT
+recorded_with: VCR 5.0.0

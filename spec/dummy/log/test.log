@@ -1,0 +1,192 @@
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (16.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [bd84fb90-70bf-42c8-a1b9-3ac4df0e2454] Performing CamundaWorkflow::DoSomething (Job ID: bd84fb90-70bf-42c8-a1b9-3ac4df0e2454) from Test(default) enqueued at  with arguments: "49142ff3-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [bd84fb90-70bf-42c8-a1b9-3ac4df0e2454] Performed CamundaWorkflow::DoSomething (Job ID: bd84fb90-70bf-42c8-a1b9-3ac4df0e2454) from Test(default) in 44.16ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [e0562093-a3a9-4d90-99dd-67a0a0404175] Performing CamundaWorkflow::DoSomething (Job ID: e0562093-a3a9-4d90-99dd-67a0a0404175) from Test(default) enqueued at  with arguments: "4916a100-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [e0562093-a3a9-4d90-99dd-67a0a0404175] Performed CamundaWorkflow::DoSomething (Job ID: e0562093-a3a9-4d90-99dd-67a0a0404175) from Test(default) in 16.68ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [db42bef7-3407-4775-a45d-c336344b41da] Performing CamundaWorkflow::DoSomething (Job ID: db42bef7-3407-4775-a45d-c336344b41da) from Test(default) enqueued at  with arguments: "49201707-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [db42bef7-3407-4775-a45d-c336344b41da] Performed CamundaWorkflow::DoSomething (Job ID: db42bef7-3407-4775-a45d-c336344b41da) from Test(default) in 48.04ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [e6474626-38a2-489e-b41e-0b6a4685fd4b] Performing CamundaWorkflow::DoSomething (Job ID: e6474626-38a2-489e-b41e-0b6a4685fd4b) from Test(default) enqueued at  with arguments: "4923e7a4-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [e6474626-38a2-489e-b41e-0b6a4685fd4b] Performed CamundaWorkflow::DoSomething (Job ID: e6474626-38a2-489e-b41e-0b6a4685fd4b) from Test(default) in 34.23ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [d3685991-53a6-4113-ab1e-3ef3f46e31a5] Performing CamundaWorkflow::DoSomething (Job ID: d3685991-53a6-4113-ab1e-3ef3f46e31a5) from Test(default) enqueued at  with arguments: "492d84bb-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [d3685991-53a6-4113-ab1e-3ef3f46e31a5] Performed CamundaWorkflow::DoSomething (Job ID: d3685991-53a6-4113-ab1e-3ef3f46e31a5) from Test(default) in 12.71ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [c941412f-02af-4cdd-8cdc-971a73af9a38] Performing CamundaWorkflow::DoSomething (Job ID: c941412f-02af-4cdd-8cdc-971a73af9a38) from Test(default) enqueued at  with arguments: "49301cd8-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [c941412f-02af-4cdd-8cdc-971a73af9a38] Performed CamundaWorkflow::DoSomething (Job ID: c941412f-02af-4cdd-8cdc-971a73af9a38) from Test(default) in 13.06ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [7e95f19b-eca8-49a6-85ab-9538c5b33b87] Performing CamundaWorkflow::DoSomething (Job ID: 7e95f19b-eca8-49a6-85ab-9538c5b33b87) from Test(default) enqueued at  with arguments: "493747ef-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [7e95f19b-eca8-49a6-85ab-9538c5b33b87] Performed CamundaWorkflow::DoSomething (Job ID: 7e95f19b-eca8-49a6-85ab-9538c5b33b87) from Test(default) in 25.35ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [549f7966-5364-4888-af23-ac5f5abdbc73] Performing CamundaWorkflow::DoSomething (Job ID: 549f7966-5364-4888-af23-ac5f5abdbc73) from Test(default) enqueued at  with arguments: "493a2e2c-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [549f7966-5364-4888-af23-ac5f5abdbc73] Performed CamundaWorkflow::DoSomething (Job ID: 549f7966-5364-4888-af23-ac5f5abdbc73) from Test(default) in 9.19ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [8b7556fd-d5c6-4b01-bc4d-0128656ed757] Performing CamundaWorkflow::DoSomething (Job ID: 8b7556fd-d5c6-4b01-bc4d-0128656ed757) from Test(default) enqueued at  with arguments: "494244a3-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [8b7556fd-d5c6-4b01-bc4d-0128656ed757] Performed CamundaWorkflow::DoSomething (Job ID: 8b7556fd-d5c6-4b01-bc4d-0128656ed757) from Test(default) in 12.5ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [6bfb52de-e4bc-47f4-9798-65657e5d09de] Performing CamundaWorkflow::DoSomething (Job ID: 6bfb52de-e4bc-47f4-9798-65657e5d09de) from Test(default) enqueued at  with arguments: "49448ea0-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [6bfb52de-e4bc-47f4-9798-65657e5d09de] Performed CamundaWorkflow::DoSomething (Job ID: 6bfb52de-e4bc-47f4-9798-65657e5d09de) from Test(default) in 12.05ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [e779f701-de02-449f-8ca2-4493dd77fa18] Performing CamundaWorkflow::DoSomething (Job ID: e779f701-de02-449f-8ca2-4493dd77fa18) from Test(default) enqueued at  with arguments: "494c2fe7-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [e779f701-de02-449f-8ca2-4493dd77fa18] Performed CamundaWorkflow::DoSomething (Job ID: e779f701-de02-449f-8ca2-4493dd77fa18) from Test(default) in 63.37ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [347c768c-f8d1-46ba-ad88-569ae5fe384e] Performing CamundaWorkflow::DoSomething (Job ID: 347c768c-f8d1-46ba-ad88-569ae5fe384e) from Test(default) enqueued at  with arguments: "494e79e4-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [347c768c-f8d1-46ba-ad88-569ae5fe384e] Performed CamundaWorkflow::DoSomething (Job ID: 347c768c-f8d1-46ba-ad88-569ae5fe384e) from Test(default) in 30.06ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [0b25524a-8f8d-4a90-b905-58d42c840967] Performing CamundaWorkflow::DoSomething (Job ID: 0b25524a-8f8d-4a90-b905-58d42c840967) from Test(default) enqueued at  with arguments: "495ad61b-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [0b25524a-8f8d-4a90-b905-58d42c840967] Performed CamundaWorkflow::DoSomething (Job ID: 0b25524a-8f8d-4a90-b905-58d42c840967) from Test(default) in 16.95ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [1aea3510-7738-41e1-88a3-e83798ee9f48] Performing CamundaWorkflow::DoSomething (Job ID: 1aea3510-7738-41e1-88a3-e83798ee9f48) from Test(default) enqueued at  with arguments: "495dbc58-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [1aea3510-7738-41e1-88a3-e83798ee9f48] Performed CamundaWorkflow::DoSomething (Job ID: 1aea3510-7738-41e1-88a3-e83798ee9f48) from Test(default) in 24.02ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [a7ce7da0-bc49-4050-a64b-27231f4f2212] Performing CamundaWorkflow::DoSomething (Job ID: a7ce7da0-bc49-4050-a64b-27231f4f2212) from Test(default) enqueued at  with arguments: "4967596f-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [a7ce7da0-bc49-4050-a64b-27231f4f2212] Performed CamundaWorkflow::DoSomething (Job ID: a7ce7da0-bc49-4050-a64b-27231f4f2212) from Test(default) in 33.62ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [d4a692d2-7f0b-472a-8e44-8dd5f555b662] Performing CamundaWorkflow::DoSomething (Job ID: d4a692d2-7f0b-472a-8e44-8dd5f555b662) from Test(default) enqueued at  with arguments: "496a3fac-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [d4a692d2-7f0b-472a-8e44-8dd5f555b662] Performed CamundaWorkflow::DoSomething (Job ID: d4a692d2-7f0b-472a-8e44-8dd5f555b662) from Test(default) in 18.93ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [89ec7772-fff9-4fe8-82e1-07370d717d3e] Performing CamundaWorkflow::DoSomething (Job ID: 89ec7772-fff9-4fe8-82e1-07370d717d3e) from Test(default) enqueued at  with arguments: "4972ca53-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [89ec7772-fff9-4fe8-82e1-07370d717d3e] Performed CamundaWorkflow::DoSomething (Job ID: 89ec7772-fff9-4fe8-82e1-07370d717d3e) from Test(default) in 11.39ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [bce9172d-c489-4a7c-9e48-774ed1fdf7b3] Performing CamundaWorkflow::DoSomething (Job ID: bce9172d-c489-4a7c-9e48-774ed1fdf7b3) from Test(default) enqueued at  with arguments: "497673e0-fa53-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [bce9172d-c489-4a7c-9e48-774ed1fdf7b3] Performed CamundaWorkflow::DoSomething (Job ID: bce9172d-c489-4a7c-9e48-774ed1fdf7b3) from Test(default) in 12.78ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [cfc3679d-9c3b-4be4-9e29-b48db5b27580] Performing CamundaWorkflow::DoSomething (Job ID: cfc3679d-9c3b-4be4-9e29-b48db5b27580) from Test(default) enqueued at  with arguments: "07172247-fa68-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [cfc3679d-9c3b-4be4-9e29-b48db5b27580] Performed CamundaWorkflow::DoSomething (Job ID: cfc3679d-9c3b-4be4-9e29-b48db5b27580) from Test(default) in 16.04ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [f8602e42-bf8a-4353-9e08-c5ed595e504d] Performing CamundaWorkflow::DoSomething (Job ID: f8602e42-bf8a-4353-9e08-c5ed595e504d) from Test(default) enqueued at  with arguments: "071b4104-fa68-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [f8602e42-bf8a-4353-9e08-c5ed595e504d] Performed CamundaWorkflow::DoSomething (Job ID: f8602e42-bf8a-4353-9e08-c5ed595e504d) from Test(default) in 12.28ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [85370f61-109b-45b0-a774-ff78f989e001] Performing CamundaWorkflow::DoSomething (Job ID: 85370f61-109b-45b0-a774-ff78f989e001) from Test(default) enqueued at  with arguments: "07215bab-fa68-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [85370f61-109b-45b0-a774-ff78f989e001] Performed CamundaWorkflow::DoSomething (Job ID: 85370f61-109b-45b0-a774-ff78f989e001) from Test(default) in 9.33ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [87c4a035-c4f2-4de4-b968-acf2ef2e352d] Performing CamundaWorkflow::DoSomething (Job ID: 87c4a035-c4f2-4de4-b968-acf2ef2e352d) from Test(default) enqueued at  with arguments: "07233078-fa68-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [87c4a035-c4f2-4de4-b968-acf2ef2e352d] Performed CamundaWorkflow::DoSomething (Job ID: 87c4a035-c4f2-4de4-b968-acf2ef2e352d) from Test(default) in 9.25ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [CamundaWorkflow::DoSomething] [42d67c48-d1fb-40ca-99bb-ad6efc278866] Performing CamundaWorkflow::DoSomething (Job ID: 42d67c48-d1fb-40ca-99bb-ad6efc278866) from Test(default) enqueued at  with arguments: "0729712f-fa68-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [42d67c48-d1fb-40ca-99bb-ad6efc278866] Performed CamundaWorkflow::DoSomething (Job ID: 42d67c48-d1fb-40ca-99bb-ad6efc278866) from Test(default) in 28.72ms
+[ActiveJob] [CamundaWorkflow::DoSomething] [867c04dd-9699-4dcc-9d7c-d753c3c42325] Performing CamundaWorkflow::DoSomething (Job ID: 867c04dd-9699-4dcc-9d7c-d753c3c42325) from Test(default) enqueued at  with arguments: "072b1eec-fa68-11e9-9347-5a3958292e65", {"x"=>"y"}
+[ActiveJob] [CamundaWorkflow::DoSomething] [867c04dd-9699-4dcc-9d7c-d753c3c42325] Performed CamundaWorkflow::DoSomething (Job ID: 867c04dd-9699-4dcc-9d7c-d753c3c42325) from Test(default) in 21.2ms
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
