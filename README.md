@@ -52,6 +52,18 @@ Camunda-workflow defaults to an in-memory, h2 database engine. Data is not persi
 h2 database engine settings in the  `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 
 You will need to create a postgres database on localhost called `camunda`. 
 
+#### Engine Route Prefix using Spring Camunda Server
+The default engine route prefix for using the Spring Camunda Server is `/rest`. If you prefer to download and use the Camunda distribution,
+the engine prefix is `/engine-rest`. camunda-workflow is configured to use `engine-rest`. To override the default engine route prefix to use `rest` in your
+rails application, you need to add a initializer file in your rails app with the below code.
+
+```ruby
+# filename initializers/camunda.rb
+Camunda::Workflow.configure do |config|
+  config.engine_route_prefix = 'rest'
+end
+```
+
 #### Generating a jar for deployment
 `mvn package spring-boot:repackage`
 
@@ -82,6 +94,13 @@ or
 ```ruby
   start_response = Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
 ```
+**Camunda cannot handle snake case variables, all snake_case variables are converted to camelCase before request is sent to the rest API.**
+
+`{ my_variable: "xyz" }`
+
+will be converted to:
+
+`{ myVariable: "xyz" }`
 
 Destroy a process
 ```ruby
