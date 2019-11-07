@@ -23,5 +23,10 @@ RSpec.describe Camunda::Task do
         expect(find_tasks).to be_an(Array)
       end
     end
+    it 'fails user task by business key and task definition' do
+      VCR.use_cassette('fail_user_task_by_business_key') do
+        expect { Camunda::Task.find_by_business_key_and_task_definition_key! "UnknownBusinessKey", "UnknownTask" }.to raise_error
+      end
+    end
   end
 end

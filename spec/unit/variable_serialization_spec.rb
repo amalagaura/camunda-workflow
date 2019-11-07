@@ -2,13 +2,13 @@ require 'camunda/variable_serialization'
 
 RSpec.describe Camunda::VariableSerialization do
   let(:helper) { Class.new { include Camunda::VariableSerialization } }
-  context 'should transform snake_case to camelCase' do
+  context 'is expected_to transform snake_case to camelCase' do
     it '#camelcase_keys' do
       hash = { camel_case: "test" }
       expect(helper.camelcase_keys(hash)).to eq("camelCase" => "test")
     end
   end
-  context 'should transform hash snake_case to camelCase and assign type' do
+  context 'is expected_to transform hash snake_case to camelCase and assign type' do
     it '#serialize variable as type string' do
       hash = { business_workflow: "test" }
       result = helper.serialize_variables(hash)
@@ -36,6 +36,23 @@ RSpec.describe Camunda::VariableSerialization do
       variable = { test_double: 0.03451 }
       result = helper.serialize_variables(variable)
       expect(result["testDouble"]["type"]).to eq("Double")
+    end
+
+    it '#serialize variable as unknown' do
+      variable = { hello: Class.new }
+      expect { helper.serialize_variables(variable) }.to raise_error("Not supporting complex types yet")
+    end
+  end
+  context '#transform_json' do
+    it 'is expected to transform Array to Json' do
+      array = [hello: "test", foo: "bar"]
+      result = helper.transform_json(array)
+      expect(result).to eq([{"foo"=>"bar", "hello"=>"test"}])
+    end
+    it 'is expected to return json if json' do
+      json = { "foo" => "bar" }.to_json
+      result = helper.transform_json(json)
+      expect(result).to eq("{\"foo\":\"bar\"}")
     end
   end
 end
