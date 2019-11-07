@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'rails'
   spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'simplecov', '~>0.17.1'
   spec.add_development_dependency 'vcr'
 
   # We use .camelcase, .underscore and ActiveSupport::Concern

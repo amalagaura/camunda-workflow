@@ -1,7 +1,6 @@
 require 'camunda/variable_serialization'
 
 RSpec.describe Camunda::VariableSerialization do
-
   let(:helper) { Class.new { include Camunda::VariableSerialization } }
   context 'should transform snake_case to camelCase' do
     it '#camelcase_keys' do
@@ -15,7 +14,6 @@ RSpec.describe Camunda::VariableSerialization do
       result = helper.serialize_variables(hash)
       expect(result["businessWorkflow"]["type"]).to eq("String")
     end
-    
     it '#serialze variable as type Boolean ' do
       hash = { boolean_type: true }
       result = helper.serialize_variables(hash)
