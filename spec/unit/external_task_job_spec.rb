@@ -17,7 +17,7 @@ RSpec.describe Camunda::ExternalTaskJob do
       @task =  Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
     end
   end
-  context 'process active job' do
+  context 'process external task' do
     it 'performs jobs with success' do
       VCR.use_cassette('perform_external_task_job') do
         results = helper.perform(@task[0][:id], @task[0][:variables])
@@ -29,7 +29,7 @@ end
 
 RSpec.describe Camunda::ExternalTaskJob do
   let(:helper) { Class.new { include Camunda::ExternalTaskJob } }
-  context 'process active job' do
+  context 'process external task' do
     it 'performs job with failure' do
       VCR.use_cassette('fails_external_task_job') do
         results = helper.new.perform("Fail", {})
