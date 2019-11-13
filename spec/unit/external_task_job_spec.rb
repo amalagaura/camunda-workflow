@@ -9,6 +9,12 @@ RSpec.describe Camunda::ExternalTaskJob do
       { year: '2019', month: 'October' }
     end
   end
+  class CamundaJobWithFailure
+    include Camunda::ExternalTaskJob
+    def bpmn_perform(_variables)
+      raise "This broke"
+    end
+  end
 
   let(:helper) { CamundaJob.new }
   before(:each) do
@@ -17,12 +23,14 @@ RSpec.describe Camunda::ExternalTaskJob do
       @task =  Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
     end
   end
+  let (:task) { Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
+                                          variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
   context 'process external task' do
     it 'performs jobs with success' do
-      VCR.use_cassette('perform_external_task_job') do
-        results = helper.perform(@task[0][:id], @task[0][:variables])
+      #VCR.use_cassette('perform_external_task_job') do
+        results = helper.perform(task[:id], task[:variables])
         expect(results).to be_a Camunda::ExternalTask
-      end
+      #end
     end
   end
 end
@@ -31,10 +39,10 @@ RSpec.describe Camunda::ExternalTaskJob do
   let(:helper) { Class.new { include Camunda::ExternalTaskJob } }
   context 'process external task' do
     it 'performs job with failure' do
-      VCR.use_cassette('fails_external_task_job') do
-        results = helper.new.perform("Fail", {})
+      #VCR.use_cassette('fails_external_task_job') do
+        results = task.new.perform("Fail", {})
         expect(results[:message]).to eq("External task with id Fail does not exist")
-      end
+      #end
     end
   end
 end

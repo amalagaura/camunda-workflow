@@ -3,8 +3,8 @@ require 'camunda/model'
 require 'camunda/poller'
 
 RSpec.describe Camunda::Poller do
-  class CamundaWorkflow
-    module DoSomething
+  module CamundaWorkflow
+    class DoSomething
       # Method has been commented out to prevent the loop from continuing.
        #def self.perform_later(id,variables)
          #puts "Passed through perform now"

@@ -1,50 +1,42 @@
-#require 'camunda/workflow'
-#require 'camunda/model'
+require 'camunda/workflow'
+require 'camunda/model'
 require 'camunda/variable_serialization'
 require 'camunda/external_task'
 
 RSpec.describe Camunda::ExternalTask do
-  class CamundaWorkflow
-    module DoSomething
-      def bpmn_perform(id,variables)
-        "Perform Active Job"
+  module CamundaWorkflow
+    class DoSomething
+      def self.perform_now(_id, variables)
+        variables
       end
     end
   end
 
+  let (:task) { Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
+                                   variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
   let(:tasks) { Camunda::ExternalTask.fetch_and_lock(%w[CamundaWorkflow]) }
   let(:fail_task) { Camunda::ExternalTask.fetch_and_lock(%[]) }
-  let(:run_tasks) { instance_double(Camunda::ExternalTask) }
   context 'fetch and run external tasks from Camunda' do
     it 'fetch tasks' do
-      VCR.use_cassette('external_task_fetch_and_lock') do
-        expect(tasks).not_to be_empty
-        expect(tasks.size).to eq(2)
-      end
+      #VCR.use_cassette('external_task_fetch_and_lock') do
+        expect(task).not_to be_empty
+        p task
+      #end
     end
 
-
     it 'should run fetched tasks' do
-      VCR.use_cassette('run_fetched_tasks') do
-        #TODO
-        expect(tasks.each(&:run_now)).to be_a(Her::Collection)
-      end
-      #results = run_tasks.run_now
-      #expect(results).to eq("Array of objects")
+      expect(task.run_now).to eq("foo" => "bar")
     end
 
     it 'should queue task' do
-      allow(run_tasks).to receive(:queue_task).and_return("Queue task to perform later")
-      task = run_tasks.queue_task
-      expect(task).to eq("Queue task to perform later")
     end
 
     it 'creates task class name for perform' do
-      VCR.use_cassette('get_external_tasks_check_class_name') do
-        task = Camunda::ExternalTask.all.first
+      #VCR.use_cassette('get_external_tasks_check_class_name') do
+        #task = Camunda::ExternalTask.all.first
         class_name = task.task_class_name
         expect(class_name).to eq("CamundaWorkflow::DoSomething")
-      end
+      #end
     end
   end
 
@@ -62,12 +54,6 @@ RSpec.describe Camunda::ExternalTask do
     it 'has a default lock_duration' do
       lock_duration = Camunda::ExternalTask.lock_duration
       expect(lock_duration).to eq(1_209_600_000)
-    end
-  end
-  context 'reports on failure' do
-    it 'if a failure occurs report throw exception' do
-      #raise excetption when running external task
-      allow(run_tasks).to receive(:report_failure).with(error: "Exception").and_return("Exception from Camunda")
     end
   end
 end
