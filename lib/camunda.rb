@@ -32,4 +32,10 @@ module Camunda
 
   class ProcessEngineException < StandardError
   end
+
+  class MissingImplementationClass < StandardError
+    def initialize(class_name)
+      super "Class to run a Camunda activity does not exist. Ensure there is a class with name: #{class_name} available."
+    end
+  end
 end

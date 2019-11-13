@@ -27,7 +27,7 @@ class Camunda::ExternalTask < Camunda::Model
     self.class.report_failure id, exception, variables
   end
 
-  def self.complete_task(id, variables = {})
+  def self.complete_task(id, variables={})
     complete workerId: worker_id, id: id, variables: serialize_variables(variables)
   end
 
@@ -64,6 +64,8 @@ class Camunda::ExternalTask < Camunda::Model
   end
 
   def task_class
-    task_class_name.safe_constantize
+    task_class_name.safe_constantize.tap do |klass|
+      raise MissingImplementationClass, task_class_name unless klass
+    end
   end
 end
