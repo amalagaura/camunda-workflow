@@ -12,7 +12,7 @@ RSpec.describe Camunda::Workflow do
 
     it 'should have an engine_route_prefix of rest-engine' do
       allow(Camunda::Workflow::Configuration).to receive(:new).and_return("rest-engine")
-      expect(workflow.configuration.engine_route_prefix).to eq("rest-engine")
+      expect(workflow.configuration.engine_route_prefix).to eq("rest")
     end
 
     it 'should have a default lock duration of 14 days' do
@@ -23,11 +23,5 @@ RSpec.describe Camunda::Workflow do
       expect(workflow.configuration.long_polling_duration).to eq(30.seconds)
     end
 
-    it 'should be able to pass a new engine_url' do
-      workflow.configure do |config|
-        config.engine_url = 'test.com'
-      end
-      p workflow.configuration.engine_url
-    end
   end
 end

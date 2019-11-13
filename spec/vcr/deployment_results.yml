@@ -5,10 +5,10 @@ http_interactions:
     uri: http://localhost:8080/rest/deployment/create
     body:
       encoding: UTF-8
-      string: "-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7\r\nContent-Disposition:
-        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7\r\nContent-Disposition:
-        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7\r\nContent-Disposition:
-        form-data; name=\"data\"; filename=\"sample.bpmn\"\r\nContent-Length: 3319\r\nContent-Type:
+      string: "-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
+        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
+        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
+        form-data; name=\"data\"; filename=\"sample.bpmn\"\r\nContent-Length: 5439\r\nContent-Type:
         text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\n<?xml version=\"1.0\"
         encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\"
         xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\"
@@ -19,44 +19,70 @@ http_interactions:
         isExecutable=\"true\">\n    <bpmn:startEvent id=\"StartEventProcessStarted\"
         name=\"Process&#10;started\">\n      <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>\n
         \   </bpmn:startEvent>\n    <bpmn:endEvent id=\"EndEventProcessEnded\" name=\"Process&#10;ended\">\n
-        \     <bpmn:incoming>SequenceFlow_17eprda</bpmn:incoming>\n    </bpmn:endEvent>\n
+        \     <bpmn:incoming>SequenceFlow_1o8pywg</bpmn:incoming>\n    </bpmn:endEvent>\n
         \   <bpmn:sequenceFlow id=\"SequenceFlow1\" sourceRef=\"StartEventProcessStarted\"
-        targetRef=\"DoSomething\" />\n    <bpmn:sequenceFlow id=\"SequenceFlow_07flmy9\"
-        sourceRef=\"DoSomething\" targetRef=\"UserTask\" />\n    <bpmn:serviceTask
+        targetRef=\"ExclusiveGateway_0si3l52\" />\n    <bpmn:sequenceFlow id=\"SequenceFlow_07flmy9\"
+        sourceRef=\"ExclusiveGateway_0si3l52\" targetRef=\"UserTask\" />\n    <bpmn:serviceTask
         id=\"DoSomething\" name=\"Do Something\" camunda:type=\"external\" camunda:topic=\"CamundaWorkflow\">\n
-        \     <bpmn:incoming>SequenceFlow1</bpmn:incoming>\n      <bpmn:outgoing>SequenceFlow_07flmy9</bpmn:outgoing>\n
+        \     <bpmn:incoming>SequenceFlow_1jruu78</bpmn:incoming>\n      <bpmn:outgoing>SequenceFlow_1cuiwcp</bpmn:outgoing>\n
         \   </bpmn:serviceTask>\n    <bpmn:sequenceFlow id=\"SequenceFlow_17eprda\"
-        sourceRef=\"UserTask\" targetRef=\"EndEventProcessEnded\" />\n    <bpmn:userTask
+        sourceRef=\"UserTask\" targetRef=\"ExclusiveGateway_0zchwar\" />\n    <bpmn:userTask
         id=\"UserTask\" name=\"User Task\">\n      <bpmn:incoming>SequenceFlow_07flmy9</bpmn:incoming>\n
         \     <bpmn:outgoing>SequenceFlow_17eprda</bpmn:outgoing>\n    </bpmn:userTask>\n
-        \ </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"BPMNDiagram_1\">\n    <bpmndi:BPMNPlane
+        \   <bpmn:parallelGateway id=\"ExclusiveGateway_0si3l52\">\n      <bpmn:incoming>SequenceFlow1</bpmn:incoming>\n
+        \     <bpmn:outgoing>SequenceFlow_07flmy9</bpmn:outgoing>\n      <bpmn:outgoing>SequenceFlow_1jruu78</bpmn:outgoing>\n
+        \   </bpmn:parallelGateway>\n    <bpmn:sequenceFlow id=\"SequenceFlow_1o8pywg\"
+        sourceRef=\"ExclusiveGateway_0zchwar\" targetRef=\"EndEventProcessEnded\"
+        />\n    <bpmn:parallelGateway id=\"ExclusiveGateway_0zchwar\">\n      <bpmn:incoming>SequenceFlow_17eprda</bpmn:incoming>\n
+        \     <bpmn:incoming>SequenceFlow_1cuiwcp</bpmn:incoming>\n      <bpmn:outgoing>SequenceFlow_1o8pywg</bpmn:outgoing>\n
+        \   </bpmn:parallelGateway>\n    <bpmn:sequenceFlow id=\"SequenceFlow_1jruu78\"
+        sourceRef=\"ExclusiveGateway_0si3l52\" targetRef=\"DoSomething\" />\n    <bpmn:sequenceFlow
+        id=\"SequenceFlow_1cuiwcp\" sourceRef=\"DoSomething\" targetRef=\"ExclusiveGateway_0zchwar\"
+        />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"BPMNDiagram_1\">\n    <bpmndi:BPMNPlane
         id=\"BPMNPlane_1\" bpmnElement=\"CamundaWorkflow\">\n      <bpmndi:BPMNShape
         id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEventProcessStarted\">\n
-        \       <dc:Bounds x=\"173\" y=\"102\" width=\"36\" height=\"36\" />\n      </bpmndi:BPMNShape>\n
-        \     <bpmndi:BPMNShape id=\"EndEvent_0fkea3f_di\" bpmnElement=\"EndEventProcessEnded\">\n
-        \       <dc:Bounds x=\"692\" y=\"102\" width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n
-        \         <dc:Bounds x=\"690\" y=\"138\" width=\"40\" height=\"27\" />\n        </bpmndi:BPMNLabel>\n
+        \       <dc:Bounds x=\"173\" y=\"212\" width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n
+        \         <dc:Bounds x=\"171\" y=\"248\" width=\"40\" height=\"27\" />\n        </bpmndi:BPMNLabel>\n
+        \     </bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"EndEvent_0fkea3f_di\"
+        bpmnElement=\"EndEventProcessEnded\">\n        <dc:Bounds x=\"752\" y=\"212\"
+        width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n          <dc:Bounds
+        x=\"750\" y=\"248\" width=\"40\" height=\"27\" />\n        </bpmndi:BPMNLabel>\n
         \     </bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_08va5r8_di\"
-        bpmnElement=\"SequenceFlow1\">\n        <di:waypoint x=\"209\" y=\"120\" />\n
-        \       <di:waypoint x=\"320\" y=\"120\" />\n        <bpmndi:BPMNLabel>\n
+        bpmnElement=\"SequenceFlow1\">\n        <di:waypoint x=\"209\" y=\"230\" />\n
+        \       <di:waypoint x=\"265\" y=\"230\" />\n        <bpmndi:BPMNLabel>\n
         \         <dc:Bounds x=\"337.5\" y=\"110\" width=\"90\" height=\"20\" />\n
         \       </bpmndi:BPMNLabel>\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge
         id=\"SequenceFlow_07flmy9_di\" bpmnElement=\"SequenceFlow_07flmy9\">\n        <di:waypoint
-        x=\"420\" y=\"120\" />\n        <di:waypoint x=\"500\" y=\"120\" />\n      </bpmndi:BPMNEdge>\n
-        \     <bpmndi:BPMNShape id=\"ServiceTask_0vzc2vr_di\" bpmnElement=\"DoSomething\">\n
-        \       <dc:Bounds x=\"320\" y=\"80\" width=\"100\" height=\"80\" />\n      </bpmndi:BPMNShape>\n
+        x=\"290\" y=\"205\" />\n        <di:waypoint x=\"290\" y=\"120\" />\n        <di:waypoint
+        x=\"410\" y=\"120\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape
+        id=\"ServiceTask_0vzc2vr_di\" bpmnElement=\"DoSomething\">\n        <dc:Bounds
+        x=\"400\" y=\"300\" width=\"100\" height=\"80\" />\n      </bpmndi:BPMNShape>\n
         \     <bpmndi:BPMNEdge id=\"SequenceFlow_17eprda_di\" bpmnElement=\"SequenceFlow_17eprda\">\n
-        \       <di:waypoint x=\"600\" y=\"120\" />\n        <di:waypoint x=\"692\"
-        y=\"120\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape id=\"UserTask_1w736wx_di\"
-        bpmnElement=\"UserTask\">\n        <dc:Bounds x=\"500\" y=\"80\" width=\"100\"
-        height=\"80\" />\n      </bpmndi:BPMNShape>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7--\r\n"
+        \       <di:waypoint x=\"510\" y=\"120\" />\n        <di:waypoint x=\"630\"
+        y=\"120\" />\n        <di:waypoint x=\"630\" y=\"205\" />\n      </bpmndi:BPMNEdge>\n
+        \     <bpmndi:BPMNShape id=\"UserTask_1w736wx_di\" bpmnElement=\"UserTask\">\n
+        \       <dc:Bounds x=\"410\" y=\"80\" width=\"100\" height=\"80\" />\n      </bpmndi:BPMNShape>\n
+        \     <bpmndi:BPMNShape id=\"ParallelGateway_0afz9x3_di\" bpmnElement=\"ExclusiveGateway_0si3l52\">\n
+        \       <dc:Bounds x=\"265\" y=\"205\" width=\"50\" height=\"50\" />\n      </bpmndi:BPMNShape>\n
+        \     <bpmndi:BPMNEdge id=\"SequenceFlow_1o8pywg_di\" bpmnElement=\"SequenceFlow_1o8pywg\">\n
+        \       <di:waypoint x=\"655\" y=\"230\" />\n        <di:waypoint x=\"752\"
+        y=\"230\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape id=\"ParallelGateway_0rz1ckz_di\"
+        bpmnElement=\"ExclusiveGateway_0zchwar\">\n        <dc:Bounds x=\"605\" y=\"205\"
+        width=\"50\" height=\"50\" />\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge
+        id=\"SequenceFlow_1jruu78_di\" bpmnElement=\"SequenceFlow_1jruu78\">\n        <di:waypoint
+        x=\"290\" y=\"255\" />\n        <di:waypoint x=\"290\" y=\"340\" />\n        <di:waypoint
+        x=\"400\" y=\"340\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_1cuiwcp_di\"
+        bpmnElement=\"SequenceFlow_1cuiwcp\">\n        <di:waypoint x=\"500\" y=\"340\"
+        />\n        <di:waypoint x=\"630\" y=\"340\" />\n        <di:waypoint x=\"630\"
+        y=\"255\" />\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
+        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9--\r\n"
     headers:
       User-Agent:
       - Faraday v0.17.0
       Content-Type:
-      - multipart/form-data; boundary=-----------RubyMultipartPost-75ae0fdc752cd25bc2f6f308553129f7
+      - multipart/form-data; boundary=-----------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9
       Content-Length:
-      - '3890'
+      - '6145'
   response:
     status:
       code: 200
@@ -65,15 +91,15 @@ http_interactions:
       content-type:
       - application/json
       content-length:
-      - '881'
+      - '909'
       date:
-      - Mon, 21 Oct 2019 18:35:30 GMT
+      - Wed, 13 Nov 2019 19:24:09 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/8f5a1129-f431-11e9-b928-0eab743e29fd","rel":"self"}],"id":"8f5a1129-f431-11e9-b928-0eab743e29fd","name":"sample.bpmn","source":"Camunda
-        Workflow Gem","deploymentTime":"2019-10-21T13:35:30.713-0500","tenantId":null,"deployedProcessDefinitions":{"CamundaWorkflow:1:8f65a9eb-f431-11e9-b928-0eab743e29fd":{"id":"CamundaWorkflow:1:8f65a9eb-f431-11e9-b928-0eab743e29fd","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"camunda-bpm-servlet-project","version":1,"resource":"sample.bpmn","deploymentId":"8f5a1129-f431-11e9-b928-0eab743e29fd","diagram":null,"suspended":false,"tenantId":null,"versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/2a4e4dc5-064b-11ea-bd07-06aa6ba49f76","rel":"self"}],"id":"2a4e4dc5-064b-11ea-bd07-06aa6ba49f76","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-13T13:24:09.031-0600","tenantId":"test-environment","deployedProcessDefinitions":{"CamundaWorkflow:1:2a733ae7-064b-11ea-bd07-06aa6ba49f76":{"id":"CamundaWorkflow:1:2a733ae7-064b-11ea-bd07-06aa6ba49f76","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"camunda-bpm-servlet-project","version":1,"resource":"sample.bpmn","deploymentId":"2a4e4dc5-064b-11ea-bd07-06aa6ba49f76","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 18:35:30 GMT
+  recorded_at: Wed, 13 Nov 2019 19:24:09 GMT
 recorded_with: VCR 5.0.0

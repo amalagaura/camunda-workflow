@@ -57,6 +57,10 @@ describe Camunda::Generators::SpringBootGenerator do
       expect(Pathname.new(spring_app + "/java_app/pom.xml")).to be_file
     end
   end
+  it "expects to show output error" do
+    expect{generator.new.output_error_instructions}.to output(/If you get an error when starting your Rails app/).to_stdout
+
+  end
 
   after do
     remove_dir File.expand_path('../dummy/bpmn', __dir__)

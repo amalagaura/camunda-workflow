@@ -64,6 +64,8 @@ class Camunda::ExternalTask < Camunda::Model
   end
 
   def task_class
-    task_class_name.safe_constantize
+    task_class_name.safe_constantize.tap do |klass|
+      raise MissingImplementationClass, task_class_name unless klass
+    end
   end
 end

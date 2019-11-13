@@ -19,99 +19,14 @@ http_interactions:
       content-type:
       - application/json
       content-length:
-      - '679'
+      - '678'
       date:
-      - Thu, 07 Nov 2019 17:35:52 GMT
+      - Fri, 08 Nov 2019 18:27:15 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:0712283b-0185-11ea-833d-ca12e5983940","errorMessage":null,"errorDetails":null,"executionId":"0712283a-0185-11ea-833d-ca12e5983940","id":"0712283c-0185-11ea-833d-ca12e5983940","lockExpirationTime":"2019-11-21T11:35:52.644-0600","processDefinitionId":"CamundaWorkflow:1:cd576c1a-0163-11ea-833d-ca12e5983940","processDefinitionKey":"CamundaWorkflow","processInstanceId":"0711da11-0185-11ea-833d-ca12e5983940","retries":null,"suspended":false,"workerId":"0","topicName":"CamundaWorkflow","tenantId":null,"variables":{"x":{"type":"String","value":"abcd","valueInfo":{}}},"priority":0,"businessKey":"WorkflowBusinessKey"}]'
+      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:63ad5179-0255-11ea-833d-ca12e5983940","errorMessage":null,"errorDetails":null,"executionId":"63ad5178-0255-11ea-833d-ca12e5983940","id":"63ad788a-0255-11ea-833d-ca12e5983940","lockExpirationTime":"2019-11-22T12:27:15.617-0600","processDefinitionId":"CamundaWorkflow:1:cd576c1a-0163-11ea-833d-ca12e5983940","processDefinitionKey":"CamundaWorkflow","processInstanceId":"63ad034f-0255-11ea-833d-ca12e5983940","retries":null,"suspended":false,"workerId":"0","topicName":"CamundaWorkflow","tenantId":null,"variables":{"x":{"type":"String","value":"abc","valueInfo":{}}},"priority":0,"businessKey":"WorkflowBusinessKey"}]'
     http_version: 
-  recorded_at: Thu, 07 Nov 2019 17:35:52 GMT
-- request:
-    method: post
-    uri: http://localhost:8080/rest/external-task/0712283c-0185-11ea-833d-ca12e5983940/failure
-    body:
-      encoding: UTF-8
-      string: '{"workerId":0,"id":"0712283c-0185-11ea-833d-ca12e5983940","errorMessage":"undefined
-        method `perform_later'' for CamundaWorkflow::DoSomething:Module","errorDetails":"Input
-        variables are {\"x\"=>\"abcd\"}\n\n/Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/lib/camunda/external_task.rb:45:in
-        `queue_task'': undefined method `perform_later'' for CamundaWorkflow::DoSomething:Module
-        (NoMethodError)\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/lib/camunda/poller.rb:8:in
-        `block (2 levels) in fetch_and_execute''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/lib/camunda/poller.rb:5:in
-        `each''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/lib/camunda/poller.rb:5:in
-        `block in fetch_and_execute''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/lib/camunda/poller.rb:3:in
-        `loop''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/lib/camunda/poller.rb:3:in
-        `fetch_and_execute''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/spec/unit/poller_spec.rb:13:in
-        `block (2 levels) in <top (required)>''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:317:in
-        `block (2 levels) in let''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:157:in
-        `block (3 levels) in fetch_or_store''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:157:in
-        `fetch''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:157:in
-        `block (2 levels) in fetch_or_store''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-support-3.9.0/lib/rspec/support/reentrant_mutex.rb:23:in
-        `synchronize''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:156:in
-        `block in fetch_or_store''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:155:in
-        `fetch''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:155:in
-        `fetch_or_store''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/memoized_helpers.rb:317:in
-        `block in let''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/spec/unit/poller_spec.rb:18:in
-        `block (5 levels) in <top (required)>''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-expectations-3.9.0/lib/rspec/matchers/built_in/raise_error.rb:52:in
-        `matches?''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-expectations-3.9.0/lib/rspec/expectations/handler.rb:50:in
-        `block in handle_matcher''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-expectations-3.9.0/lib/rspec/expectations/handler.rb:27:in
-        `with_matcher''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-expectations-3.9.0/lib/rspec/expectations/handler.rb:48:in
-        `handle_matcher''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-expectations-3.9.0/lib/rspec/expectations/expectation_target.rb:65:in
-        `to''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-expectations-3.9.0/lib/rspec/expectations/expectation_target.rb:101:in
-        `to''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/spec/unit/poller_spec.rb:18:in
-        `block (4 levels) in <top (required)>''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/vcr-5.0.0/lib/vcr/util/variable_args_block_caller.rb:9:in
-        `call_block''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/vcr-5.0.0/lib/vcr.rb:188:in
-        `use_cassette''\n\tfrom /Users/dugganroberts/Code/Ruby/camunda/camunda-workflow/spec/unit/poller_spec.rb:17:in
-        `block (3 levels) in <top (required)>''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:257:in
-        `instance_exec''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:257:in
-        `block in run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:503:in
-        `block in with_around_and_singleton_context_hooks''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:460:in
-        `block in with_around_example_hooks''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/hooks.rb:472:in
-        `block in run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/hooks.rb:610:in
-        `run_around_example_hooks_for''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/hooks.rb:472:in
-        `run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:460:in
-        `with_around_example_hooks''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:503:in
-        `with_around_and_singleton_context_hooks''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example.rb:254:in
-        `run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:633:in
-        `block in run_examples''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:629:in
-        `map''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:629:in
-        `run_examples''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:595:in
-        `run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:596:in
-        `block in run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:596:in
-        `map''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/example_group.rb:596:in
-        `run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:121:in
-        `block (3 levels) in run_specs''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:121:in
-        `map''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:121:in
-        `block (2 levels) in run_specs''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/configuration.rb:2031:in
-        `with_suite_hooks''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:116:in
-        `block in run_specs''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/reporter.rb:74:in
-        `report''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:115:in
-        `run_specs''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:89:in
-        `run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:71:in
-        `run''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/lib/rspec/core/runner.rb:45:in
-        `invoke''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/gems/rspec-core-3.9.0/exe/rspec:4:in
-        `<top (required)>''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/bin/rspec:23:in
-        `load''\n\tfrom /Users/dugganroberts/.rvm/gems/ruby-2.6.3/bin/rspec:23:in
-        `<main>''\n"}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.0
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 204
-      message: ''
-    headers:
-      date:
-      - Thu, 07 Nov 2019 17:35:52 GMT
-      connection:
-      - close
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Thu, 07 Nov 2019 17:35:52 GMT
+  recorded_at: Fri, 08 Nov 2019 18:27:15 GMT
 recorded_with: VCR 5.0.0

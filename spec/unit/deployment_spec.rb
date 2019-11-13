@@ -12,10 +12,10 @@ RSpec.describe Camunda::Deployment do
       config.engine_route_prefix = 'rest'
     end
   end
+  let(:model) { Camunda::Deployment.create file_name: 'lib/generators/camunda/spring_boot/templates/sample.bpmn' }
 
-  it 'creates a model' do
+  it '#creates a running instance' do
     VCR.use_cassette('deployment_results') do
-      model = Camunda::Deployment.create file_name: 'lib/generators/camunda/spring_boot/templates/sample.bpmn'
       expect(model[:response].status).to eq(200)
     end
   end

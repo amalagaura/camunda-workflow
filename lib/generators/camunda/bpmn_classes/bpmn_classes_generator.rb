@@ -47,13 +47,15 @@ module Camunda
         rescue NameError
           puts "Cannot create a class/module with name #{colorized_name}. Not a valid name."
           puts "You must set the ID in Camunda to be the name of a Ruby style constant"
-          exit(1)
+          # TODO write rescue
+          #exit(1)
         end
         return unless name.include?("_")
 
         puts "Class name #{colorized_name} should not have an underscore _."
         puts "Underscores are valid Ruby constant names, but likely you have not changed the name from the default."
-        exit(1)
+        # TODO write rescue
+        #exit(1)
       end
 
       def colored_model_path

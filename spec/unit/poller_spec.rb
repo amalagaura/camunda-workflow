@@ -5,9 +5,10 @@ require 'camunda/poller'
 RSpec.describe Camunda::Poller do
   class CamundaWorkflow
     module DoSomething
-     # def self.perform_later(id,variables)
-       # puts "Passed through perform now"
-      # end
+      # Method has been commented out to prevent the loop from continuing.
+       #def self.perform_later(id,variables)
+         #puts "Passed through perform now"
+       #end
     end
   end
   let(:poller) { Camunda::Poller.fetch_and_execute(%w[CamundaWorkflow]) }
@@ -18,5 +19,10 @@ RSpec.describe Camunda::Poller do
         expect { expect(poller).to receive(:loop).and_yield }.to raise_error(NoMethodError)
       end
     end
+  end
+
+  it '#fetch and execute with no class' do
+    #klass = Camunda::Poller.fetch_and_execute (%w[test])
+    #p klass
   end
 end

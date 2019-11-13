@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'rails/generators/testing/behaviour'
 require 'generators/camunda/install/install_generator.rb'
 
@@ -8,6 +9,7 @@ describe Camunda::Generators::InstallGenerator do
 
   before do
     generator.start([], destination_root: dummy_app_root)
+
   end
 
   let(:camunda_job) { File.join(dummy_app_root, 'app', 'jobs', 'camunda_job.rb') }
@@ -20,6 +22,6 @@ describe Camunda::Generators::InstallGenerator do
 
 
   after do
-    remove_file File.expand_path(camunda_job)
+    #remove_file File.expand_path(camunda_job)
   end
 end
