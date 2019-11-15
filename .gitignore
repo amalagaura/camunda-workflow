@@ -84,3 +84,7 @@ solr/default/data
 solr/pids
 
 data
+
+#ignore floo files
+.floo
+.flooignore

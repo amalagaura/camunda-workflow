@@ -25,7 +25,7 @@ RSpec.describe Camunda::ExternalTaskJob do
     end
   end
   # let(:tasks) { [Camunda::ExternalTask.new()]}
-  let (:task) { Camunda::ExternalTask.new(id: 1234, variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
+  let(:task) { Camunda::ExternalTask.new(id: 1234, variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
   context 'process external task' do
     it 'performs jobs with success' do
       VCR.use_cassette('perform_external_task_job') do
@@ -37,7 +37,7 @@ RSpec.describe Camunda::ExternalTaskJob do
 end
 
 RSpec.describe Camunda::ExternalTaskJob do
-  let (:task) { Camunda::ExternalTask.new(worker_id: 34, id: 1234, variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
+  let(:task) { Camunda::ExternalTask.new(worker_id: 34, id: 1234, variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
   let(:helper) { CamundaJobWithFailure.new }
   context 'process external task' do
     it 'fails with wrong id' do

@@ -48,7 +48,7 @@ allows one to have some tasks be handled outside the Rails app. It confirms that
 
 Start the application: `mvn spring-boot:run`
 
-Camunda-workflow defaults to an in-memory, h2 database engine. Data is not persistent. If you want to use a Postgres database engine instead, comment out the 
+Camunda-workflow defaults to an in-memory, h2 database engine. If you rather use a Postgres database engine, comment out the 
 h2 database engine settings in the  `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 
 You will need to create a Postgres database on localhost called `camunda`. 
 
@@ -97,7 +97,7 @@ or
 ```ruby
   start_response = Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
 ```
-**Camunda cannot handle snake case variables, all snake_case variables are converted to camelCase before an request is sent to the REST api. Variables returned back from the Camunda API will be deserialized back to snake_case.**
+**Camunda cannot handle snake case variables, all snake_case variables are serialized to camelCase before a request is sent to the REST api. Variables returned back from the Camunda API will be deserialized back to snake_case.**
 
 `{ my_variable: "xyz" }`
 
@@ -119,7 +119,7 @@ as show in the screenshot example from the Camunda Modeler.
   Camunda::Poller.fetch_and_execute %w[Topic]
 ```
 Below will run the poller to fetch, lock, and run a task for the example process definition located in 
-the `starting a process` documentation.
+the `starting a process` detailed above.
 
 ```ruby
   Camunda::Poller.fetch_and_execute %w[CamundaWorkflow]

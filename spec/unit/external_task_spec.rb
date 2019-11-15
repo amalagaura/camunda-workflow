@@ -12,7 +12,7 @@ RSpec.describe Camunda::ExternalTask do
     end
   end
 
-  let (:task) do
+  let(:task) do
     Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
                               variables: { "foo" => { "type" => "Json", "value" => { "bar" => "baz" }.to_json } })
   end
