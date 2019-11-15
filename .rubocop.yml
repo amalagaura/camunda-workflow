@@ -28,3 +28,5 @@ Metrics/AbcSize:
   Max: 75 # 15 is the default
 Style/ClassAndModuleChildren:
   Enabled: false
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space

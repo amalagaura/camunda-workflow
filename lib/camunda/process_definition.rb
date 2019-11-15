@@ -6,8 +6,8 @@ class Camunda::ProcessDefinition < Camunda::Model
   primary_key :id
   custom_post :start
 
-  def self.start_with_variables(hash)
+  def self.start(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
-    start hash
+    super(hash)
   end
 end
