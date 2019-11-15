@@ -4,7 +4,7 @@
 
 [Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). The process definitions key defines topic names. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
     
-![image](https://www.evernote.com/l/Ajnoawx6CYhKha7OXUPkyeo6CjrxvSoTgOU)
+![image](https://www.evernote.com/l/Ajnoawx6CYhKha7OXUPkyeo6CjrxvSoTgOUB/image.png)
 
 We will have scripts to run unit tests on the BPMN definitions. This expects Java and Maven.
 
