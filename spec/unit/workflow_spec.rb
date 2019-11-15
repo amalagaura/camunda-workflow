@@ -22,6 +22,5 @@ RSpec.describe Camunda::Workflow do
     it 'should have a default polling duration of 30 seconds' do
       expect(workflow.configuration.long_polling_duration).to eq(30.seconds)
     end
-
   end
 end

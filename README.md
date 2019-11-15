@@ -4,7 +4,7 @@
 
 [Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). The process definitions key defines topic names. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
     
-![Screenshot] (http://imagur.com/3ALVUMh)
+![image](https://www.evernote.com/l/Ajnoawx6CYhKha7OXUPkyeo6CjrxvSoTgOU)
 
 We will have scripts to run unit tests on the BPMN definitions. This expects Java and Maven.
 
@@ -97,7 +97,7 @@ or
 ```ruby
   start_response = Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
 ```
-**Camunda cannot handle snake case variables, all snake_case variables are converted to camelCase before request is sent to the REST api.**
+**Camunda cannot handle snake case variables, all snake_case variables are converted to camelCase before an request is sent to the REST api. Variables returned back from the Camunda API will be deserialized back to snake_case.**
 
 `{ my_variable: "xyz" }`
 

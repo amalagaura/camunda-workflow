@@ -12,31 +12,20 @@ RSpec.describe Camunda::ExternalTask do
     end
   end
 
-  let (:task) { Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
-                                   variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
+  let (:task) do
+    Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
+                              variables: { "foo" => { "type" => "Json", "value" => { "bar" => "baz" }.to_json } })
+  end
   let(:tasks) { Camunda::ExternalTask.fetch_and_lock(%w[CamundaWorkflow]) }
-  let(:fail_task) { Camunda::ExternalTask.fetch_and_lock(%[]) }
+  let(:fail_task) { Camunda::ExternalTask.fetch_and_lock(%()) }
   context 'fetch and run external tasks from Camunda' do
-    it 'fetch tasks' do
-      #VCR.use_cassette('external_task_fetch_and_lock') do
-        expect(task).not_to be_empty
-        p task
-      #end
-    end
-
     it 'should run fetched tasks' do
-      expect(task.run_now).to eq("foo" => "bar")
-    end
-
-    it 'should queue task' do
+      expect(task.run_now).to eq("foo" => { "bar" => "baz" })
     end
 
     it 'creates task class name for perform' do
-      #VCR.use_cassette('get_external_tasks_check_class_name') do
-        #task = Camunda::ExternalTask.all.first
-        class_name = task.task_class_name
-        expect(class_name).to eq("CamundaWorkflow::DoSomething")
-      #end
+      class_name = task.task_class_name
+      expect(class_name).to eq("CamundaWorkflow::DoSomething")
     end
   end
 

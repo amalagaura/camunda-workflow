@@ -47,7 +47,7 @@ RSpec.describe Camunda::VariableSerialization do
     it 'is expected to transform Array to Json' do
       array = [hello: "test", foo: "bar"]
       result = helper.transform_json(array)
-      expect(result).to eq([{"foo"=>"bar", "hello"=>"test"}])
+      expect(result).to eq([{ "foo" => "bar", "hello" => "test" }])
     end
     it 'is expected to return json if json' do
       json = { "foo" => "bar" }.to_json

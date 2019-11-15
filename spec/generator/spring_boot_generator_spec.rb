@@ -58,8 +58,7 @@ describe Camunda::Generators::SpringBootGenerator do
     end
   end
   it "expects to show output error" do
-    expect{generator.new.output_error_instructions}.to output(/If you get an error when starting your Rails app/).to_stdout
-
+    expect { generator.new.output_error_instructions }.to output(/If you get an error when starting your Rails app/).to_stdout
   end
 
   after do
