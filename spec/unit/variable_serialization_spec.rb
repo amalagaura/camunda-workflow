@@ -1,5 +1,3 @@
-require 'camunda/variable_serialization'
-
 RSpec.describe Camunda::VariableSerialization do
   let(:helper) { Class.new { include Camunda::VariableSerialization } }
   context 'is expected_to transform snake_case to camelCase' do

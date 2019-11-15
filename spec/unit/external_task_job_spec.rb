@@ -1,7 +1,3 @@
-require 'camunda/workflow'
-require 'camunda/model'
-require 'camunda/external_task'
-require 'camunda/external_task_job'
 RSpec.describe Camunda::ExternalTaskJob do
   class CamundaJob
     include Camunda::ExternalTaskJob
@@ -20,7 +16,7 @@ RSpec.describe Camunda::ExternalTaskJob do
   let(:helper) { CamundaJob.new }
   before(:each) do
     VCR.use_cassette('external_task_job_requests') do
-      @process = Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
+      @process = Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'Key'
       @task =  Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
     end
   end
@@ -36,7 +32,10 @@ RSpec.describe Camunda::ExternalTaskJob do
 end
 
 RSpec.describe Camunda::ExternalTaskJob do
-  let(:task) { Camunda::ExternalTask.new(worker_id: 34, id: 1234, variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
+  let(:task) do
+    Camunda::ExternalTask.new(worker_id: 34, id: 1234,
+                              variables: { "foo" => { "type" => "String", "value" => "bar" } })
+  end
   let(:helper) { CamundaJobWithFailure.new }
   context 'process external task' do
     it 'fails with wrong id' do

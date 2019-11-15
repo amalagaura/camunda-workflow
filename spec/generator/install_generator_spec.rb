@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'rails/generators/testing/behaviour'
 require 'generators/camunda/install/install_generator.rb'
 

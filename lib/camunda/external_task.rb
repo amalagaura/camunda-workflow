@@ -27,7 +27,7 @@ class Camunda::ExternalTask < Camunda::Model
     self.class.report_failure id, exception, variables
   end
 
-  def self.complete_task(id, variables = {})
+  def self.complete_task(id, variables={})
     complete workerId: worker_id, id: id, variables: serialize_variables(variables)
   end
 

@@ -1,26 +1,12 @@
-require 'camunda/workflow'
-
 RSpec.describe Camunda::Workflow do
-  let(:workflow) { Camunda::Workflow }
-  before do
-    Camunda::Workflow
-  end
-  context 'test initialize default variable' do
-    it 'should have an engine_url' do
-      expect(workflow.configuration.engine_url).to eq('http://localhost:8080')
-    end
-
-    it 'should have an engine_route_prefix of rest-engine' do
-      allow(Camunda::Workflow::Configuration).to receive(:new).and_return("rest-engine")
-      expect(workflow.configuration.engine_route_prefix).to eq("rest")
-    end
-
-    it 'should have a default lock duration of 14 days' do
-      expect(workflow.configuration.lock_duration).to eq(14.days)
-    end
-
-    it 'should have a default polling duration of 30 seconds' do
-      expect(workflow.configuration.long_polling_duration).to eq(30.seconds)
+  let(:subject) { Camunda::Workflow }
+  context 'test defaults' do
+    it('should have an engine_url') { expect(subject.configuration.engine_url).to eq('http://localhost:8080') }
+    # This is overridden in the spec_helper.rb
+    it('should have an engine_route_prefix of rest-engine') { expect(subject.configuration.engine_route_prefix).to eq("rest") }
+    it('should have a default lock duration of 14 days') { expect(subject.configuration.lock_duration).to eq(14.days) }
+    it('should have a default polling duration of 30 seconds') do
+      expect(subject.configuration.long_polling_duration).to eq(30.seconds)
     end
   end
 end

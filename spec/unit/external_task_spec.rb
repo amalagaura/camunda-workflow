@@ -1,8 +1,3 @@
-require 'camunda/workflow'
-require 'camunda/model'
-require 'camunda/variable_serialization'
-require 'camunda/external_task'
-
 RSpec.describe Camunda::ExternalTask do
   module CamundaWorkflow
     class DoSomething

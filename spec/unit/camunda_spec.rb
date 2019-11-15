@@ -1,5 +1,3 @@
-require 'camunda'
-
 RSpec.describe '#Caumnda' do
   context 'test Camunda methods' do
     it 'expects #logger' do

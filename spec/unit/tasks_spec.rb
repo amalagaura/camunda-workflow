@@ -1,6 +1,3 @@
-require 'camunda/workflow'
-require 'camunda/task'
-
 RSpec.describe Camunda::Task do
   let(:tasks) { Camunda::Task.all }
   before(:each) do
@@ -24,7 +21,8 @@ RSpec.describe Camunda::Task do
     end
     it 'fails user task by business key and task definition' do
       VCR.use_cassette('fail_user_task_by_business_key') do
-        expect { Camunda::Task.find_by_business_key_and_task_definition_key! "UnknownBusinessKey", "UnknownTask" }.to raise_error
+        expect { Camunda::Task.find_by_business_key_and_task_definition_key! "UnknownBusinessKey", "UnknownTask" }
+          .to raise_error(Camunda::Task::MissingTask)
       end
     end
   end

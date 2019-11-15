@@ -1,16 +1,16 @@
-require 'camunda/bpmn_xml'
+require 'nokogiri'
 
 RSpec.describe Camunda::BpmnXML do
-  let(:bpmn) { Camunda::BpmnXML.new(File.expand_path("spec/bpmn_test_files/sample.pmn")) }
+  let(:bpmn) { Camunda::BpmnXML.new(File.open("#{__dir__}/../bpmn_test_files/sample.bpmn")) }
 
   context 'scans file and creates class' do
     it 'topics to be an array' do
       string = bpmn.topics
-      expect(string).to be_an_instance_of(Array)
+      expect(string).to eq %w[CamundaWorkflow]
     end
 
     it 'expects module_name to be string' do
-      # bpmn.to_s
+      expect(bpmn.to_s).to eq('CamundaWorkflow')
     end
   end
 end

@@ -21,6 +21,6 @@ class Camunda::Model
   use_api api
 
   def self.worker_id
-    Camunda::Workflow.configuration.cf_instance_index
+    Camunda::Workflow.configuration.worker_id
   end
 end
