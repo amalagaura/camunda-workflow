@@ -39,7 +39,7 @@ module Camunda
 
       private
 
-      def validate_constant_name(name, module_name = nil)
+      def validate_constant_name(name, module_name=nil)
         top_level = module_name.nil? ? Module.new : module_name.constantize
         colorized_name = set_color name, :red
         begin
