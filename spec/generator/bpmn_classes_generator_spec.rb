@@ -9,8 +9,6 @@ describe Camunda::Generators::BpmnClassesGenerator do
   let(:generator) { Camunda::Generators::BpmnClassesGenerator }
   let(:dummy_app_root) { File.expand_path('../dummy', __dir__) }
 
-  let(:model) { Camunda::Deployment.create file_name: 'spec/bpmn_test_files/sample.bpmn' }
-
   before do
     # generator.start([File.expand_path("lib/generators/camunda/spring_boot/templates/sample_test.bpmn")], destination_root: dummy_app_root)
     generator.start([File.expand_path("spec/bpmn_test_files/sample_test.bpmn")], destination_root: dummy_app_root)
@@ -25,7 +23,7 @@ describe Camunda::Generators::BpmnClassesGenerator do
   end
 
   it 'checks to_s' do
-    p Camunda::BpmnXML.new(model).to_s
+     #Camunda::BpmnXML.new
   end
 
   after do

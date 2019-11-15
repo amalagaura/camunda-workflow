@@ -20,6 +20,6 @@ describe Camunda::Generators::InstallGenerator do
   end
 
   after do
-    # remove_file File.expand_path(camunda_job)
+    remove_file File.expand_path(camunda_job)
   end
 end

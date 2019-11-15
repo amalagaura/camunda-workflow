@@ -2,7 +2,7 @@
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
 
-[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). The process definitions key defines topic names. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
+[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). The process definitions key defines topic names and must be set to the name of a ruby style constant (screenshot example provided below).  Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
     
 ![image](https://www.evernote.com/l/Ajnoawx6CYhKha7OXUPkyeo6CjrxvSoTgOUB/image.png)
 

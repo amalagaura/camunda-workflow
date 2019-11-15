@@ -25,7 +25,6 @@ RSpec.describe Camunda::ExternalTaskJob do
     end
   end
   # let(:tasks) { [Camunda::ExternalTask.new()]}
-  let(:task) { Camunda::ExternalTask.new(id: 1234, variables: { "foo" => { "type" => "String", "value" => "bar" } }) }
   context 'process external task' do
     it 'performs jobs with success' do
       VCR.use_cassette('perform_external_task_job') do
