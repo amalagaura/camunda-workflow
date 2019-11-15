@@ -20,7 +20,7 @@ RSpec.describe Camunda::ExternalTaskJob do
   let(:helper) { CamundaJob.new }
   before(:each) do
     VCR.use_cassette('external_task_job_requests') do
-      @process = Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
+      @process = Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
       @task =  Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
     end
   end
@@ -40,8 +40,10 @@ RSpec.describe Camunda::ExternalTaskJob do
   let(:helper) { CamundaJobWithFailure.new }
   context 'process external task' do
     it 'fails with wrong id' do
-      results = helper.perform(task[:id], task[:variables])
-      expect(results[:message]).to eq("External task with id 1234 does not exist")
+      VCR.use_cassette('external_task_fails_with_wrong_id') do
+        results = helper.perform(task[:id], task[:variables])
+        expect(results[:message]).to eq("External task with id 1234 does not exist")
+      end
     end
     it 'fails bpmn_perform' do
       expect { helper.bpmn_perform(task[:variables]) }.to raise_error(StandardError)

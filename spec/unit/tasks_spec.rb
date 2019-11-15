@@ -5,8 +5,7 @@ RSpec.describe Camunda::Task do
   let(:tasks) { Camunda::Task.all }
   before(:each) do
     VCR.use_cassette 'create_process_definition_for_user_task' do
-      Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow',
-                                                      variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
+      Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
     end
   end
   context 'mark user tasks completed' do

@@ -13,7 +13,7 @@ RSpec.describe Camunda::ProcessDefinition do
   it 'starts a process with variables' do
     VCR.use_cassette('process_definition_with_variables') do
       # rubocop:disable Metrics/LineLength
-      Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
+      Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
       # rubocop:enable Metrics/LineLength
     end
   end
