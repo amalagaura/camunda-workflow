@@ -12,8 +12,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
   spec.required_ruby_version = ">= 2.6"
 
-  spec.add_dependency 'faraday', '>= 0.17'
-  spec.add_dependency 'faraday_middleware'
+  spec.add_dependency 'faraday', '~> 0.17'
   spec.add_dependency 'her', '~> 1.1'
 
   spec.add_development_dependency 'rails'
