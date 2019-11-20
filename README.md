@@ -14,7 +14,7 @@ We also have RSpec helpers which will validate your application to make sure it 
 
 The module `ExternalTaskJob` should be included in your job implementation classes. The job implementation classes can inherit from `ActiveJob::Base`, or use `Sidekiq::Worker` or use some other system for job queuing.
 
-But right now, we are using `perform_later` on worker classes. If we want to make this more flexible, we need to make the method used to queue jobs configurable. `perform_later` for ActiveJob, `perform_async` for Sidekiq, or `perform` if no background task system is used.
+Currently we call `perform_later` on job implementation classes. If we want to make this more flexible, we need to make the method used to queue jobs configurable. `perform_later` for ActiveJob, `perform_async` for Sidekiq, or `perform` if no background task system is used.
 
 ## Generators
 
