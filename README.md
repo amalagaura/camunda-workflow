@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/amalagaura/camunda-workflow.svg?branch=master)](https://travis-ci.com/amalagaura/camunda-workflow)
 # Camunda Workflow
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
@@ -112,9 +113,7 @@ Fetch tasks and queue with ActiveJob
 
 The poller will run as an infinite loop with long polling to fetch tasks, queue, and run them. Topic is the process definition key, 
 as show in the screenshot example from the Camunda Modeler.
-```ruby
-  Camunda::Poller.fetch_and_execute %w[Topic]
-```
+
 Below will run the poller to fetch, lock, and run a task for the example process definition located in 
 the `starting a process` detailed above.
 
@@ -127,11 +126,6 @@ Fetch tasks (one time for testing from the console)
 ```ruby
   tasks = Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
 ``` 
-Example to fetch and lock using `sample.bpmn` example.
-
-```ruby
- tasks = Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
-```
 Run a task
 
 ```ruby

@@ -85,6 +85,10 @@ solr/pids
 
 data
 
+# files added by RubyMine
+.rakeTasks
+.generators
+
 #ignore floo files
 .floo
 .flooignore
