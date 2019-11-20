@@ -12,7 +12,7 @@ We also have RSpec helpers which will validate your application to make sure it 
 
 ## Integration with your worker classes
 
-We have a module `ExternalTaskJob`, which you need to include in your classes. We want your classes to inherit from `ActiveJob::Base` or use `Sidekiq::Worker` or not use either.
+The module `ExternalTaskJob` should be included in your job implementation classes. The job implementation classes can inherit from `ActiveJob::Base`, or use `Sidekiq::Worker` or use some other system for job queuing.
 
 But right now, we are using `perform_later` on worker classes. If we want to make this more flexible, we need to make the method used to queue jobs configurable. `perform_later` for ActiveJob, `perform_async` for Sidekiq, or `perform` if no background task system is used.
 
