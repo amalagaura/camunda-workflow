@@ -13,7 +13,13 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.6"
 
   spec.add_dependency 'faraday', '~> 0.17'
+  spec.add_dependency 'faraday_middleware'
   spec.add_dependency 'her', '~> 1.1'
+
+  spec.add_development_dependency 'rails'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'simplecov', '~>0.17.1'
+  spec.add_development_dependency 'vcr'
 
   # We use .camelcase, .underscore and ActiveSupport::Concern
   spec.add_dependency 'activesupport', '>= 3.2.0'

@@ -3,7 +3,7 @@ require 'active_support/core_ext/string/inflections.rb'
 class Camunda::ExternalTask < Camunda::Model
   include Camunda::VariableSerialization
   collection_path 'external-task'
-  custom_post :fetchAndLock, :unlock, :complete, :failure
+  custom_post :fetchAndLock, :unlock, :complete
 
   def self.long_polling_duration
     Camunda::Workflow.configuration.long_polling_duration.in_milliseconds
@@ -19,12 +19,8 @@ class Camunda::ExternalTask < Camunda::Model
 
   def self.report_failure(id, exception, input_variables)
     variables_information = "Input variables are #{input_variables.inspect}\n\n"
-    failure workerId: worker_id, id: id, errorMessage: exception.message,
-            errorDetails: variables_information + exception.full_message
-  end
-
-  def report_failure(exception)
-    self.class.report_failure id, exception, variables
+    post_raw :failure, workerId: worker_id, id: id, errorMessage: exception.message,
+                       errorDetails: variables_information + exception.full_message
   end
 
   def self.complete_task(id, variables={})
@@ -65,7 +61,7 @@ class Camunda::ExternalTask < Camunda::Model
 
   def task_class
     task_class_name.safe_constantize.tap do |klass|
-      raise MissingImplementationClass, task_class_name unless klass
+      raise Camunda::MissingImplementationClass, task_class_name unless klass
     end
   end
 end

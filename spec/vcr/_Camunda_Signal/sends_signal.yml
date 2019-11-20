@@ -1,0 +1,28 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/signal
+    body:
+      encoding: UTF-8
+      string: '{"name":"baz","variables":{"foo":{"value":"bar","type":"String"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Wed, 20 Nov 2019 15:08:14 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 20 Nov 2019 15:08:15 GMT
+recorded_with: VCR 5.0.0

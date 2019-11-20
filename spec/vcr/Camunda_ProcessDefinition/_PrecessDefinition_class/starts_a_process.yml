@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/process-definition/key/CamundaWorkflow/start
+    body:
+      encoding: UTF-8
+      string: '{"id":"CamundaWorkflow"}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '336'
+      date:
+      - Wed, 20 Nov 2019 15:08:14 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/93a5502a-0ba7-11ea-a5c7-7621974296a8","rel":"self"}],"id":"93a5502a-0ba7-11ea-a5c7-7621974296a8","definitionId":"CamundaWorkflow:1:92a4f6e7-0ba7-11ea-a5c7-7621974296a8","businessKey":null,"caseInstanceId":null,"ended":false,"suspended":false,"tenantId":null}'
+    http_version: 
+  recorded_at: Wed, 20 Nov 2019 15:08:15 GMT
+recorded_with: VCR 5.0.0
