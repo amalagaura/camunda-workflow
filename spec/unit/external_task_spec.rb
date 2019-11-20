@@ -23,28 +23,18 @@ RSpec.describe Camunda::ExternalTask do
   let(:tasks) { Camunda::ExternalTask.fetch_and_lock(%w[CamundaWorkflow]) }
 
   context 'fetch and run external tasks from Camunda' do
-    it 'should run fetched tasks with Json' do
-      expect(task.run_now).to eq("foo" => { "bar" => "baz" })
-    end
-    it 'should run fetched task with a String' do
-      expect(task_string.run_now).to eq("foo" => "barBaz")
-    end
-
+    it('should run fetched tasks with Json') { expect(task.run_now).to eq("foo" => { "bar" => "baz" }) }
+    it('should run fetched task with a String') { expect(task_string.run_now).to eq("foo" => "barBaz") }
     it 'should fail with no class' do
       fail_task = Camunda::ExternalTask.new(activity_id: "NoClass", process_definition_key: "NoWorkflow", variables: {})
       expect { fail_task.task_class }.to raise_error(Camunda::MissingImplementationClass)
     end
-
-    it 'should queue task' do
-      expect(task.queue_task).to eq("foo" => { "bar" => "baz" })
-    end
-
+    it('should queue task') { expect(task.queue_task).to eq("foo" => { "bar" => "baz" }) }
     it 'creates task class name for perform' do
       class_name = task.task_class_name
       expect(class_name).to eq("CamundaWorkflow::DoSomething")
     end
   end
-
   context 'default initializers are set in Workflow configuration' do
     it 'has a default long_polling_duration of 30000' do
       polling_duration = Camunda::ExternalTask.long_polling_duration
