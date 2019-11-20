@@ -5,10 +5,10 @@ http_interactions:
     uri: http://localhost:8080/rest/deployment/create
     body:
       encoding: UTF-8
-      string: "-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
-        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
-        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
-        form-data; name=\"data\"; filename=\"sample.bpmn\"\r\nContent-Length: 5439\r\nContent-Type:
+      string: "-------------RubyMultipartPost-d1e14fcef496f8fd789a5ccc9df61d98\r\nContent-Disposition:
+        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-d1e14fcef496f8fd789a5ccc9df61d98\r\nContent-Disposition:
+        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-d1e14fcef496f8fd789a5ccc9df61d98\r\nContent-Disposition:
+        form-data; name=\"data\"; filename=\"sample.bpmn\"\r\nContent-Length: 5438\r\nContent-Type:
         text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\n<?xml version=\"1.0\"
         encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\"
         xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\"
@@ -74,15 +74,14 @@ http_interactions:
         x=\"400\" y=\"340\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_1cuiwcp_di\"
         bpmnElement=\"SequenceFlow_1cuiwcp\">\n        <di:waypoint x=\"500\" y=\"340\"
         />\n        <di:waypoint x=\"630\" y=\"340\" />\n        <di:waypoint x=\"630\"
-        y=\"255\" />\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9\r\nContent-Disposition:
-        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9--\r\n"
+        y=\"255\" />\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\r\n-------------RubyMultipartPost-d1e14fcef496f8fd789a5ccc9df61d98--\r\n"
     headers:
       User-Agent:
       - Faraday v0.17.0
       Content-Type:
-      - multipart/form-data; boundary=-----------RubyMultipartPost-d63204238c0dfa2587e5e620b9b32fe9
+      - multipart/form-data; boundary=-----------RubyMultipartPost-d1e14fcef496f8fd789a5ccc9df61d98
       Content-Length:
-      - '6145'
+      - '6009'
   response:
     status:
       code: 200
@@ -91,15 +90,15 @@ http_interactions:
       content-type:
       - application/json
       content-length:
-      - '909'
+      - '881'
       date:
-      - Wed, 13 Nov 2019 19:24:09 GMT
+      - Wed, 20 Nov 2019 15:08:13 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/2a4e4dc5-064b-11ea-bd07-06aa6ba49f76","rel":"self"}],"id":"2a4e4dc5-064b-11ea-bd07-06aa6ba49f76","name":"sample.bpmn","source":"Camunda
-        Workflow Gem","deploymentTime":"2019-11-13T13:24:09.031-0600","tenantId":"test-environment","deployedProcessDefinitions":{"CamundaWorkflow:1:2a733ae7-064b-11ea-bd07-06aa6ba49f76":{"id":"CamundaWorkflow:1:2a733ae7-064b-11ea-bd07-06aa6ba49f76","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"camunda-bpm-servlet-project","version":1,"resource":"sample.bpmn","deploymentId":"2a4e4dc5-064b-11ea-bd07-06aa6ba49f76","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/928009c5-0ba7-11ea-a5c7-7621974296a8","rel":"self"}],"id":"928009c5-0ba7-11ea-a5c7-7621974296a8","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-20T09:08:13.353-0600","tenantId":null,"deployedProcessDefinitions":{"CamundaWorkflow:1:92a4f6e7-0ba7-11ea-a5c7-7621974296a8":{"id":"CamundaWorkflow:1:92a4f6e7-0ba7-11ea-a5c7-7621974296a8","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"camunda-bpm-servlet-project","version":1,"resource":"sample.bpmn","deploymentId":"928009c5-0ba7-11ea-a5c7-7621974296a8","diagram":null,"suspended":false,"tenantId":null,"versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
     http_version: 
-  recorded_at: Wed, 13 Nov 2019 19:24:09 GMT
+  recorded_at: Wed, 20 Nov 2019 15:08:13 GMT
 recorded_with: VCR 5.0.0

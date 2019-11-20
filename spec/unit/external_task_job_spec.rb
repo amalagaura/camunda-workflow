@@ -8,44 +8,51 @@ RSpec.describe Camunda::ExternalTaskJob do
 
   class CamundaJobWithFailure
     include Camunda::ExternalTaskJob
-    # def bpmn_perform(_variables)
-    # raise "This broke"
-    # end
-  end
-
-  let(:helper) { CamundaJob.new }
-  before(:each) do
-    VCR.use_cassette('external_task_job_requests') do
-      @process = Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'Key'
-      @task =  Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
+    def bpmn_perform(_variables)
+      raise StandardError, "This broke"
     end
   end
-  # let(:tasks) { [Camunda::ExternalTask.new()]}
-  context 'process external task' do
-    it 'performs jobs with success' do
-      VCR.use_cassette('perform_external_task_job') do
-        results = helper.perform(@task[0][:id], @task[0][:variables])
-        expect(results).to be_a Camunda::ExternalTask
-      end
-    end
-  end
-end
 
-RSpec.describe Camunda::ExternalTaskJob do
+  class CamundaJobNoBpmnPerformMethod
+    include Camunda::ExternalTaskJob
+  end
+
+  let(:fail_task) do
+    Camunda::ExternalTask.new(activity_id: "NoClass", process_definition_key: "NoWorkflow", variables: {})
+  end
+
   let(:task) do
     Camunda::ExternalTask.new(worker_id: 34, id: 1234,
                               variables: { "foo" => { "type" => "String", "value" => "bar" } })
   end
-  let(:helper) { CamundaJobWithFailure.new }
-  context 'process external task' do
-    it 'fails with wrong id' do
-      VCR.use_cassette('external_task_fails_with_wrong_id') do
-        results = helper.perform(task[:id], task[:variables])
-        expect(results[:message]).to eq("External task with id 1234 does not exist")
-      end
+  let(:helper) { CamundaJob.new }
+  let(:helper_fail) { CamundaJobWithFailure.new }
+  let(:bpmn) { CamundaJobNoBpmnPerformMethod.new }
+
+  let!(:process) { Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'Key' }
+  let!(:task) { Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow] }
+
+  before(:each) do
+    process
+    task
+  end
+
+  context 'process external task', :vcr do
+    it 'performs jobs with success' do
+      results = helper.perform(task[0][:id], task[0][:variables])
+      expect(results).to be_a Camunda::ExternalTask
     end
-    it 'fails bpmn_perform' do
-      expect { helper.bpmn_perform(task[:variables]) }.to raise_error(StandardError)
-    end
+  end
+
+  it 'raises error in from CamundaJobFailure bpmn_perform' do
+    response = helper_fail.perform(task[0][:id], task[0][:variables])
+    expect(response[:parsed_data][:data]).to eq({})
+    expect(response[:response].status).to eq(204)
+  end
+
+  it 'no bpmn class available for output variables' do
+    response = bpmn.perform(task[0][:id], task[0][:variables])
+    expect(response[:parsed_data][:data]).to eq({})
+    expect(response[:response].status).to eq(204)
   end
 end

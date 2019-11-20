@@ -15,20 +15,14 @@ module Camunda
       attr_accessor :lock_duration
       attr_accessor :max_polling_tasks
       attr_accessor :long_polling_duration
-      attr_accessor :default_tenant_id
 
       def initialize
         @engine_url = 'http://localhost:8080'
         @engine_route_prefix = 'rest-engine'
-        # This assumes Camunda is only called by one "application" in PCF
-        @worker_id = nil
+        @worker_id = '0'
         @lock_duration = 14.days
         @max_polling_tasks = 2
         @long_polling_duration = 30.seconds
-        @default_tenant_id =
-          if defined?(Rails)
-            Rails.env.test? ? 'test-environment' : nil
-          end
       end
     end
   end

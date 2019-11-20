@@ -18,5 +18,4 @@ describe Camunda::Generators::BpmnClassesGenerator do
   it 'runs sample sample with failure' do
     generator.start([File.expand_path("spec/bpmn_test_files/sample_fail.bpmn")], destination_root: dummy_app_root)
   end
-
 end

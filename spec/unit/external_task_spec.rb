@@ -15,35 +15,30 @@ RSpec.describe Camunda::ExternalTask do
     Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
                               variables: { "foo" => { "type" => "Json", "value" => { "bar" => "baz" }.to_json } })
   end
+
   let(:task_string) do
     Camunda::ExternalTask.new(activity_id: "DoSomething", process_definition_key: "CamundaWorkflow",
-                              variables: { "foo" => { "type" => "String", "value" => "barBaz" } } )
+                              variables: { "foo" => { "type" => "String", "value" => "barBaz" } })
   end
   let(:tasks) { Camunda::ExternalTask.fetch_and_lock(%w[CamundaWorkflow]) }
-  let(:fail_task) { Camunda::ExternalTask.fetch_and_lock(%()) }
+
   context 'fetch and run external tasks from Camunda' do
     it 'should run fetched tasks with Json' do
       expect(task.run_now).to eq("foo" => { "bar" => "baz" })
     end
     it 'should run fetched task with a String' do
-      expect(task_string.run_now).to eq({"foo" => "barBaz"})
+      expect(task_string.run_now).to eq("foo" => "barBaz")
+    end
+
+    it 'should fail with no class' do
+      fail_task = Camunda::ExternalTask.new(activity_id: "NoClass", process_definition_key: "NoWorkflow", variables: {})
+      expect { fail_task.task_class }.to raise_error(Camunda::MissingImplementationClass)
     end
 
     it 'should queue task' do
       expect(task.queue_task).to eq("foo" => { "bar" => "baz" })
     end
 
-    it 'should report failure' do
-      #Placeed mock klass inside block to prevent overriding the klass outside of the spec
-      module Camunda
-        class ExternalTask
-          def self.report_failure(id,exception, variables)
-            exception
-          end
-        end
-      end
-      expect(task.report_failure("RaiseError")).to eq("RaiseError")
-    end
     it 'creates task class name for perform' do
       class_name = task.task_class_name
       expect(class_name).to eq("CamundaWorkflow::DoSomething")

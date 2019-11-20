@@ -82,7 +82,7 @@ It will fail to start. Create a postgres database  as a service in PCF and bind 
 
 ### Methods
 #### Processes
-Deploying a model. Uses a default name, tenant id, etc. Below outlines how to deploy a process using the included sample.bpmn
+Deploying a model. Uses a default name, etc. Below outlines how to deploy a process using the included sample.bpmn
 file created by the generator.
 
 ```ruby
@@ -90,12 +90,9 @@ file created by the generator.
 ```
 
 Starting a process
+
 ```ruby
-  start_response = Camunda::ProcessDefinition.start id: 'CamundaWorkflow'
-```
-or
-```ruby
-  start_response = Camunda::ProcessDefinition.start_with_variables id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
+  start_response = Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
 ```
 **Camunda cannot handle snake case variables, all snake_case variables are serialized to camelCase before a request is sent to the REST api. Variables returned back from the Camunda API will be deserialized back to snake_case.**
 
