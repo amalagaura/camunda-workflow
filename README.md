@@ -125,7 +125,7 @@ the `starting a process` detailed above.
 Fetch tasks (one time for testing from the console)
 
 ```ruby
-  tasks = Camunda::ExternalTask.fetch_and_lock %w[topic]
+  tasks = Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
 ``` 
 Example to fetch and lock using `sample.bpmn` example.
 
