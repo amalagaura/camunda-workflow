@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    camunda-workflow (0.1)
+    camunda-workflow (0.1.1)
       activesupport (>= 3.2.0)
       faraday (~> 0.17)
-      faraday_middleware
+      faraday_middleware (~> 0.13.1)
       her (~> 1.1)
 
 GEM
@@ -185,13 +185,12 @@ PLATFORMS
 
 DEPENDENCIES
   camunda-workflow!
-  pry
-  pry-rescue
-  pry-stack_explorer
-  rails
-  rspec
+  pry-rescue (~> 1.5.0)
+  pry-stack_explorer (~> 0.4.9.3)
+  rails (~> 6.0.1)
+  rspec (~> 3.9.0)
   simplecov (~> 0.17.1)
-  vcr
+  vcr (~> 5.0.0)
 
 BUNDLED WITH
    2.0.2
