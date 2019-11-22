@@ -3,7 +3,7 @@ require 'active_support/core_ext/string/inflections.rb'
 class Camunda::ExternalTask < Camunda::Model
   include Camunda::VariableSerialization
   collection_path 'external-task'
-  custom_post :fetchAndLock, :unlock, :complete
+  custom_post :fetchAndLock, :unlock
 
   def self.long_polling_duration
     Camunda::Workflow.configuration.long_polling_duration.in_milliseconds
@@ -17,14 +17,30 @@ class Camunda::ExternalTask < Camunda::Model
     Camunda::Workflow.configuration.lock_duration.in_milliseconds
   end
 
-  def self.report_failure(id, exception, input_variables)
+  def failure(exception, input_variables)
     variables_information = "Input variables are #{input_variables.inspect}\n\n"
-    post_raw :failure, workerId: worker_id, id: id, errorMessage: exception.message,
-                       errorDetails: variables_information + exception.full_message
+    self.class.post_raw("#{collection_path}/#{id}/failure",
+                        workerId: worker_id, errorMessage: exception.message,
+                        errorDetails: variables_information + exception.full_message)[:response]
   end
 
-  def self.complete_task(id, variables={})
-    complete workerId: worker_id, id: id, variables: serialize_variables(variables)
+  def bpmn_error(bpmn_exception)
+    self.class.post_raw("#{collection_path}/#{id}/bpmnError",
+                        workerId: worker_id, variables: serialize_variables(bpmn_exception.variables),
+                        errorCode: bpmn_exception.error_code, errorMessage: bpmn_exception.message)[:response]
+  end
+
+  def complete(variables={})
+    self.class.post_raw("#{collection_path}/#{id}/complete",
+                        workerId: worker_id, variables: serialize_variables(variables))[:response]
+  end
+
+  def worker_id
+    self.class.worker_id
+  end
+
+  def collection_path
+    self.class.collection_path
   end
 
   def variables

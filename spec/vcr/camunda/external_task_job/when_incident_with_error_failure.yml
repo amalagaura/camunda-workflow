@@ -1,0 +1,266 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/deployment/create
+    body:
+      encoding: UTF-8
+      string: "-------------RubyMultipartPost-f72f1d75e67c5694fc9e7d68e39b866b\r\nContent-Disposition:
+        form-data; name=\"spec/bpmn_test_files/sample.bpmn\"; filename=\"sample.bpmn\"\r\nContent-Length:
+        5438\r\nContent-Type: text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\n<?xml
+        version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\"
+        xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\"
+        xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xmlns:camunda=\"http://camunda.org/schema/1.0/bpmn\" id=\"Definitions_1\"
+        targetNamespace=\"http://bpmn.io/schema/bpmn\" exporter=\"Camunda Modeler\"
+        exporterVersion=\"3.3.5\">\n  <bpmn:process id=\"CamundaWorkflow\" name=\"Sample
+        Project for Testing\" isExecutable=\"true\">\n    <bpmn:startEvent id=\"StartEventProcessStarted\"
+        name=\"Process&#10;started\">\n      <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>\n
+        \   </bpmn:startEvent>\n    <bpmn:endEvent id=\"EndEventProcessEnded\" name=\"Process&#10;ended\">\n
+        \     <bpmn:incoming>SequenceFlow_1o8pywg</bpmn:incoming>\n    </bpmn:endEvent>\n
+        \   <bpmn:sequenceFlow id=\"SequenceFlow1\" sourceRef=\"StartEventProcessStarted\"
+        targetRef=\"ExclusiveGateway_0si3l52\" />\n    <bpmn:sequenceFlow id=\"SequenceFlow_07flmy9\"
+        sourceRef=\"ExclusiveGateway_0si3l52\" targetRef=\"UserTask\" />\n    <bpmn:serviceTask
+        id=\"DoSomething\" name=\"Do Something\" camunda:type=\"external\" camunda:topic=\"CamundaWorkflow\">\n
+        \     <bpmn:incoming>SequenceFlow_1jruu78</bpmn:incoming>\n      <bpmn:outgoing>SequenceFlow_1cuiwcp</bpmn:outgoing>\n
+        \   </bpmn:serviceTask>\n    <bpmn:sequenceFlow id=\"SequenceFlow_17eprda\"
+        sourceRef=\"UserTask\" targetRef=\"ExclusiveGateway_0zchwar\" />\n    <bpmn:userTask
+        id=\"UserTask\" name=\"User Task\">\n      <bpmn:incoming>SequenceFlow_07flmy9</bpmn:incoming>\n
+        \     <bpmn:outgoing>SequenceFlow_17eprda</bpmn:outgoing>\n    </bpmn:userTask>\n
+        \   <bpmn:parallelGateway id=\"ExclusiveGateway_0si3l52\">\n      <bpmn:incoming>SequenceFlow1</bpmn:incoming>\n
+        \     <bpmn:outgoing>SequenceFlow_07flmy9</bpmn:outgoing>\n      <bpmn:outgoing>SequenceFlow_1jruu78</bpmn:outgoing>\n
+        \   </bpmn:parallelGateway>\n    <bpmn:sequenceFlow id=\"SequenceFlow_1o8pywg\"
+        sourceRef=\"ExclusiveGateway_0zchwar\" targetRef=\"EndEventProcessEnded\"
+        />\n    <bpmn:parallelGateway id=\"ExclusiveGateway_0zchwar\">\n      <bpmn:incoming>SequenceFlow_17eprda</bpmn:incoming>\n
+        \     <bpmn:incoming>SequenceFlow_1cuiwcp</bpmn:incoming>\n      <bpmn:outgoing>SequenceFlow_1o8pywg</bpmn:outgoing>\n
+        \   </bpmn:parallelGateway>\n    <bpmn:sequenceFlow id=\"SequenceFlow_1jruu78\"
+        sourceRef=\"ExclusiveGateway_0si3l52\" targetRef=\"DoSomething\" />\n    <bpmn:sequenceFlow
+        id=\"SequenceFlow_1cuiwcp\" sourceRef=\"DoSomething\" targetRef=\"ExclusiveGateway_0zchwar\"
+        />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"BPMNDiagram_1\">\n    <bpmndi:BPMNPlane
+        id=\"BPMNPlane_1\" bpmnElement=\"CamundaWorkflow\">\n      <bpmndi:BPMNShape
+        id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEventProcessStarted\">\n
+        \       <dc:Bounds x=\"173\" y=\"212\" width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n
+        \         <dc:Bounds x=\"171\" y=\"248\" width=\"40\" height=\"27\" />\n        </bpmndi:BPMNLabel>\n
+        \     </bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"EndEvent_0fkea3f_di\"
+        bpmnElement=\"EndEventProcessEnded\">\n        <dc:Bounds x=\"752\" y=\"212\"
+        width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n          <dc:Bounds
+        x=\"750\" y=\"248\" width=\"40\" height=\"27\" />\n        </bpmndi:BPMNLabel>\n
+        \     </bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_08va5r8_di\"
+        bpmnElement=\"SequenceFlow1\">\n        <di:waypoint x=\"209\" y=\"230\" />\n
+        \       <di:waypoint x=\"265\" y=\"230\" />\n        <bpmndi:BPMNLabel>\n
+        \         <dc:Bounds x=\"337.5\" y=\"110\" width=\"90\" height=\"20\" />\n
+        \       </bpmndi:BPMNLabel>\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge
+        id=\"SequenceFlow_07flmy9_di\" bpmnElement=\"SequenceFlow_07flmy9\">\n        <di:waypoint
+        x=\"290\" y=\"205\" />\n        <di:waypoint x=\"290\" y=\"120\" />\n        <di:waypoint
+        x=\"410\" y=\"120\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape
+        id=\"ServiceTask_0vzc2vr_di\" bpmnElement=\"DoSomething\">\n        <dc:Bounds
+        x=\"400\" y=\"300\" width=\"100\" height=\"80\" />\n      </bpmndi:BPMNShape>\n
+        \     <bpmndi:BPMNEdge id=\"SequenceFlow_17eprda_di\" bpmnElement=\"SequenceFlow_17eprda\">\n
+        \       <di:waypoint x=\"510\" y=\"120\" />\n        <di:waypoint x=\"630\"
+        y=\"120\" />\n        <di:waypoint x=\"630\" y=\"205\" />\n      </bpmndi:BPMNEdge>\n
+        \     <bpmndi:BPMNShape id=\"UserTask_1w736wx_di\" bpmnElement=\"UserTask\">\n
+        \       <dc:Bounds x=\"410\" y=\"80\" width=\"100\" height=\"80\" />\n      </bpmndi:BPMNShape>\n
+        \     <bpmndi:BPMNShape id=\"ParallelGateway_0afz9x3_di\" bpmnElement=\"ExclusiveGateway_0si3l52\">\n
+        \       <dc:Bounds x=\"265\" y=\"205\" width=\"50\" height=\"50\" />\n      </bpmndi:BPMNShape>\n
+        \     <bpmndi:BPMNEdge id=\"SequenceFlow_1o8pywg_di\" bpmnElement=\"SequenceFlow_1o8pywg\">\n
+        \       <di:waypoint x=\"655\" y=\"230\" />\n        <di:waypoint x=\"752\"
+        y=\"230\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape id=\"ParallelGateway_0rz1ckz_di\"
+        bpmnElement=\"ExclusiveGateway_0zchwar\">\n        <dc:Bounds x=\"605\" y=\"205\"
+        width=\"50\" height=\"50\" />\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge
+        id=\"SequenceFlow_1jruu78_di\" bpmnElement=\"SequenceFlow_1jruu78\">\n        <di:waypoint
+        x=\"290\" y=\"255\" />\n        <di:waypoint x=\"290\" y=\"340\" />\n        <di:waypoint
+        x=\"400\" y=\"340\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_1cuiwcp_di\"
+        bpmnElement=\"SequenceFlow_1cuiwcp\">\n        <di:waypoint x=\"500\" y=\"340\"
+        />\n        <di:waypoint x=\"630\" y=\"340\" />\n        <di:waypoint x=\"630\"
+        y=\"255\" />\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-f72f1d75e67c5694fc9e7d68e39b866b\r\nContent-Disposition:
+        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-f72f1d75e67c5694fc9e7d68e39b866b\r\nContent-Disposition:
+        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-f72f1d75e67c5694fc9e7d68e39b866b\r\nContent-Disposition:
+        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-f72f1d75e67c5694fc9e7d68e39b866b--\r\n"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - multipart/form-data; boundary=-----------RubyMultipartPost-f72f1d75e67c5694fc9e7d68e39b866b
+      Content-Length:
+      - '6172'
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '908'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/55a9b489-0d6e-11ea-b338-acde48001122","rel":"self"}],"id":"55a9b489-0d6e-11ea-b338-acde48001122","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-22T16:23:32.297-0500","tenantId":"test-environment","deployedProcessDefinitions":{"CamundaWorkflow:1:55aaed0b-0d6e-11ea-b338-acde48001122":{"id":"CamundaWorkflow:1:55aaed0b-0d6e-11ea-b338-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
+        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"55a9b489-0d6e-11ea-b338-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '234'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"links":[],"id":"55af80ec-0d6e-11ea-b338-acde48001122","definitionId":"CamundaWorkflow:1:55aaed0b-0d6e-11ea-b338-acde48001122","businessKey":"Key","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/process-instance/55af80ec-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-definition?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '408'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"CamundaWorkflow:1:55aaed0b-0d6e-11ea-b338-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
+        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"55a9b489-0d6e-11ea-b338-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/process-definition/CamundaWorkflow%3A1%3A55aaed0b-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-length:
+      - '0'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/deployment?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '189'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"links":[],"id":"55a9b489-0d6e-11ea-b338-acde48001122","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-22T16:23:32.297-0500","tenantId":"test-environment"}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/deployment/55a9b489-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+recorded_with: VCR 5.0.0

@@ -3,6 +3,10 @@ module Camunda
   module VariableSerialization
     extend ActiveSupport::Concern
 
+    def serialize_variables(variables)
+      self.class.serialize_variables(variables)
+    end
+
     class_methods do
       # rubocop:disable Metrics/MethodLength
       def serialize_variables(variables)

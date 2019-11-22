@@ -15,12 +15,14 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday', '~> 0.17'
   spec.add_dependency 'faraday_middleware'
   spec.add_dependency 'her', '~> 1.1'
+  # We use .camelcase, .underscore and ActiveSupport::Concern
+  spec.add_dependency 'activesupport', '>= 3.2.0'
 
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry-rescue'
+  spec.add_development_dependency 'pry-stack_explorer'
   spec.add_development_dependency 'rails'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'simplecov', '~>0.17.1'
   spec.add_development_dependency 'vcr'
-
-  # We use .camelcase, .underscore and ActiveSupport::Concern
-  spec.add_dependency 'activesupport', '>= 3.2.0'
 end

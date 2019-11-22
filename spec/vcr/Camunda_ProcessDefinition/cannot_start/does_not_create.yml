@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/process-definition/unknown/start
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 500
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '165'
+      date:
+      - Fri, 22 Nov 2019 21:23:30 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"RestException","message":"Cannot instantiate process definition
+        unknown: no deployed process definition found with id ''unknown'': processDefinition
+        is null"}'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+recorded_with: VCR 5.0.0

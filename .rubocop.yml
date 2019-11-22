@@ -10,22 +10,21 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/StringLiterals:
   Enabled: false
-Documentation:
+Style/Documentation:
   Enabled: false
-Metrics/ClassLength:
-  Max: 200 # 100 is the default
 Metrics/BlockLength:
-  Max: 50
+  ExcludedMethods:
+    - class_methods
+  Exclude:
+    - 'spec/unit/**/*'
 Metrics/LineLength:
   Max: 130 # default is 80
 Metrics/MethodLength:
   Max: 15 # 10 is the default
 Metrics/ModuleLength:
   Max: 200 # 100 is the default
-Metrics/ParameterLists:
-  Max: 7 # 5 is the default
 Metrics/AbcSize:
-  Max: 75 # 15 is the default
+  Max: 20 # 15 is the default
 Style/ClassAndModuleChildren:
   Enabled: false
 Layout/SpaceAroundEqualsInParameterDefault:

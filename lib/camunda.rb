@@ -41,4 +41,14 @@ module Camunda
 
   class ProcessEngineException < StandardError
   end
+
+  class BpmnError < StandardError
+    attr_reader :error_code, :variables
+
+    def initialize(message:, error_code:, variables: {})
+      super(message)
+      @error_code = error_code
+      @variables = variables
+    end
+  end
 end

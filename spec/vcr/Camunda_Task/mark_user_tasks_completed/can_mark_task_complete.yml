@@ -1,0 +1,115 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8080/rest/process-definition/key/CamundaWorkflow/tenant-id/test-environment/start
+    body:
+      encoding: UTF-8
+      string: '{"businessKey":"WorkflowBusinessKey"}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '367'
+      date:
+      - Fri, 22 Nov 2019 21:23:30 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/550cff05-0d6e-11ea-b338-acde48001122","rel":"self"}],"id":"550cff05-0d6e-11ea-b338-acde48001122","definitionId":"CamundaWorkflow:1:55090764-0d6e-11ea-b338-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/task?instanceBusinessKey=WorkflowBusinessTask&taskDefinitionKey=UserTask
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      vary:
+      - Accept
+      content-type:
+      - application/json
+      content-length:
+      - '593'
+      date:
+      - Fri, 22 Nov 2019 21:23:30 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"550d261b-0d6e-11ea-b338-acde48001122","name":"User Task","assignee":null,"created":"2019-11-22T16:23:31.271-0500","due":null,"followUp":null,"delegationState":null,"description":null,"executionId":"550d2618-0d6e-11ea-b338-acde48001122","owner":null,"parentTaskId":null,"priority":50,"processDefinitionId":"CamundaWorkflow:1:55090764-0d6e-11ea-b338-acde48001122","processInstanceId":"550cff05-0d6e-11ea-b338-acde48001122","taskDefinitionKey":"UserTask","caseExecutionId":null,"caseInstanceId":null,"caseDefinitionId":null,"suspended":false,"formKey":null,"tenantId":"test-environment"}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+- request:
+    method: post
+    uri: http://localhost:8080/rest/task/550d261b-0d6e-11ea-b338-acde48001122/complete
+    body:
+      encoding: UTF-8
+      string: '{"variables":{}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Fri, 22 Nov 2019 21:23:30 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/task?instanceBusinessKey=WorkflowBusinessKey&taskDefinitionKey=UserTask
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      vary:
+      - Accept
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Fri, 22 Nov 2019 21:23:30 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+recorded_with: VCR 5.0.0

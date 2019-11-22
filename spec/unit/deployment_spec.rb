@@ -1,13 +1,14 @@
-require 'faraday_middleware'
+RSpec.describe Camunda::Deployment, :vcr do
+  context "creates process definition" do
+    let(:subject) { Camunda::Deployment.create(file_names: ['spec/bpmn_test_files/sample.bpmn']).first }
 
-RSpec.describe Camunda::Deployment do
-  let(:subject) { Camunda::Deployment.create file_name: 'lib/generators/camunda/spring_boot/templates/sample.bpmn' }
-
-  it '#creates a running instance', :vcr do
-    expect(subject[:response].status).to eq(200)
+    it('creates a process definition that can be started') do
+      is_expected.to be_an_instance_of(Camunda::ProcessDefinition)
+      expect(subject.start).to be_an_instance_of(Camunda::ProcessInstance)
+    end
   end
 
-  it 'tries to create model without a file path' do
-    expect { Camunda::Deployment.create }.to raise_error(ArgumentError)
+  it 'throws an error with invalid bpmn' do
+    expect { Camunda::Deployment.create file_names: ['README.md'] }.to raise_error(Camunda::ProcessEngineException)
   end
 end

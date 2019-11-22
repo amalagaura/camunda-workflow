@@ -1,0 +1,163 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '233'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"links":[],"id":"55cfb231-0d6e-11ea-b338-acde48001122","definitionId":"CamundaWorkflow:1:55cddd70-0d6e-11ea-b338-acde48001122","businessKey":null,"caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/process-instance/55cfb231-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-definition?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '408'
+      date:
+      - Fri, 22 Nov 2019 21:23:32 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"CamundaWorkflow:1:55cddd70-0d6e-11ea-b338-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
+        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"55cca4ee-0d6e-11ea-b338-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/process-definition/CamundaWorkflow%3A1%3A55cddd70-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-length:
+      - '0'
+      date:
+      - Fri, 22 Nov 2019 21:23:32 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/deployment?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '189'
+      date:
+      - Fri, 22 Nov 2019 21:23:32 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"links":[],"id":"55cca4ee-0d6e-11ea-b338-acde48001122","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-22T16:23:32.526-0500","tenantId":"test-environment"}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/deployment/55cca4ee-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Fri, 22 Nov 2019 21:23:32 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+recorded_with: VCR 5.0.0

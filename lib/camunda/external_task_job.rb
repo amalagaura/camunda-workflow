@@ -5,6 +5,8 @@ module Camunda::ExternalTaskJob
     raise ArgumentError, "Expected a hash, got #{output_variables}" unless output_variables.is_a?(Hash)
 
     report_completion id, output_variables
+  rescue Camunda::BpmnError => e
+    report_bpmn_error id, e
   rescue StandardError => e
     report_failure id, e, input_variables
   end
@@ -12,13 +14,19 @@ module Camunda::ExternalTaskJob
   def report_completion(id, variables)
     # Submit to Camunda using
     # POST /external-task/{id}/complete
-    Camunda::ExternalTask.complete_task(id, variables)
+    Camunda::ExternalTask.new(id: id).complete(variables)
   end
 
   def report_failure(id, exception, input_variables)
     # Submit error state to Camunda using
     # POST /external-task/{id}/failure
-    Camunda::ExternalTask.report_failure(id, exception, input_variables)
+    Camunda::ExternalTask.new(id: id).failure(exception, input_variables)
+  end
+
+  def report_bpmn_error(id, exception)
+    # Submit bpmn error state to Camunda using
+    # POST /external-task/{id}/bpmnError
+    Camunda::ExternalTask.new(id: id).bpmn_error(exception)
   end
 
   def bpmn_perform(_variables)

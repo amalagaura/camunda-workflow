@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-definition?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/deployment?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '187'
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"links":[],"id":"55c4407c-0d6e-11ea-b338-acde48001122","name":"README.md","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-22T16:23:32.471-0500","tenantId":"test-environment"}]'
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+- request:
+    method: delete
+    uri: http://localhost:8080/rest/deployment/55c4407c-0d6e-11ea-b338-acde48001122
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Fri, 22 Nov 2019 21:23:31 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 22 Nov 2019 21:23:32 GMT
+recorded_with: VCR 5.0.0
