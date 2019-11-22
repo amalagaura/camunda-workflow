@@ -1,4 +1,4 @@
-require "vcr"
+require 'pry'
 require "support/vcr"
 require 'rails'
 require 'simplecov'
@@ -6,6 +6,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 SimpleCov.start do
   add_filter '/spec/'
+  minimum_coverage 100
 end
 
 require 'camunda/workflow'
@@ -109,8 +110,7 @@ RSpec.configure do |config|
   #   # the seed, which is printed after each run.
   #   #     --seed 1234
   #   #
-  #   # We cannot use random order if we delete the VCR recorded http requests.
-  #   config.order = :random
+  config.order = :random
   #
   #   # Seed global randomization in this process using the `--seed` CLI option.
   #   # Setting this allows you to use `--seed` to deterministically reproduce
@@ -118,24 +118,21 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
   #
-  # Add VCR to all tests
-  config.around(:each) do |example|
-    vcr_tag = example.metadata[:vcr]
+  # Add VCR to tests with :vcr metadata
+  config.around(:each, :vcr) do |example|
+    name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(%r{[^\w/]+}, "_")
+    options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
+    VCR.use_cassette(name, options) do
+      Camunda::Deployment.create(file_names: ['spec/bpmn_test_files/sample.bpmn']) if example.metadata[:deployment]
+      result = example.run
 
-    if vcr_tag == false
-      VCR.turned_off(&example)
-    else
-      options = vcr_tag.is_a?(Hash) ? vcr_tag : {}
-      path_data = [example.metadata[:description]]
-      parent = example.example_group
-      while parent != RSpec::ExampleGroups
-        path_data << parent.metadata[:description]
-        parent = parent.module_parent
+      # Leave Process Instances and Deployments available for failed examples. This will not work though unless you run only the
+      # failing example because a subsequent successful spec will clear the Process Instances and Deployments
+      if result.nil?
+        Camunda::ProcessInstance.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).each(&:destroy)
+        Camunda::ProcessDefinition.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).each(&:destroy)
+        Camunda::Deployment.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).each(&:destroy)
       end
-
-      name = path_data.map { |str| str.underscore.gsub(/\./, '').gsub(%r{[^\w/]+}, '_').gsub(%r{/$}, '') }.reverse.join("/")
-
-      VCR.use_cassette(name, options, &example)
     end
   end
 end

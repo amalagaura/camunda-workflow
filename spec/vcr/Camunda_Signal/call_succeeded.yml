@@ -17,12 +17,12 @@ http_interactions:
       message: ''
     headers:
       date:
-      - Wed, 20 Nov 2019 15:08:14 GMT
+      - Fri, 22 Nov 2019 21:23:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 20 Nov 2019 15:08:15 GMT
+  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
 recorded_with: VCR 5.0.0

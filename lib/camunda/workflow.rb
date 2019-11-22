@@ -15,6 +15,7 @@ module Camunda
       attr_accessor :lock_duration
       attr_accessor :max_polling_tasks
       attr_accessor :long_polling_duration
+      attr_accessor :tenant_id
 
       def initialize
         @engine_url = 'http://localhost:8080'
@@ -23,13 +24,16 @@ module Camunda
         @lock_duration = 14.days
         @max_polling_tasks = 2
         @long_polling_duration = 30.seconds
+        @tenant_id = if defined?(Rails)
+                       Rails.env.test? ? 'test-environment' : nil
+                     end
       end
     end
   end
 end
 
 %w[../camunda.rb variable_serialization.rb model.rb task.rb external_task.rb external_task_job.rb poller.rb process_definition.rb
-   process_instance.rb deployment.rb signal.rb bpmn_xml.rb]
+   process_instance.rb deployment.rb signal.rb bpmn_xml.rb incident.rb]
   .each do |file|
   require File.join(__dir__, file)
 end

@@ -3,19 +3,34 @@
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
 
-[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). The process definitions key defines topic names and must be set to the name of a ruby style constant (screenshot example provided below).  Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
+[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). 
+
+### Add to your Gemfile
+```ruby
+  gem 'camunda-workflow'
+```
+
+## Camunda Integration with Ruby
+The process definitions key becomes the module name of your implementation classes and must be set to the name of a ruby style constant (screenshot example provided below). This same process definition key should be set as the topic name for external tasks. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
     
 ![image](https://www.evernote.com/l/Ajnoawx6CYhKha7OXUPkyeo6CjrxvSoTgOUB/image.png)
 
-We will have scripts to run unit tests on the BPMN definitions. This expects Java and Maven.
-
-We also have RSpec helpers which will validate your application to make sure it has a class for every External task in a given BPMN file.
-
-## Integration with your worker classes
+### Integration with your worker classes
 
 The module `ExternalTaskJob` should be included in your job implementation classes. The job implementation classes can inherit from `ActiveJob::Base`, or use `Sidekiq::Worker` or use some other system for job queuing.
 
 Currently we call `perform_later` on job implementation classes. If we want to make this more flexible, we need to make the method used to queue jobs configurable. `perform_later` for ActiveJob, `perform_async` for Sidekiq, or `perform` if no background task system is used.
+
+### Implementing `bpmn_perform`
+
+`bpmn_perform` is your implementation of the service task.
+
+### Supporting bpmn exceptions
+
+Camunda supports throwing bpmn exceptions on a service task to communicate logic errors and not underlying code errors. These expected errors are thrown with 
+```ruby
+raise Camunda::BpmnError.new error_code: 'bpmn-error', message: "Special BPMN error", variables: { bpmn: 'error' }
+```
 
 ## Generators
 
@@ -50,7 +65,7 @@ allows one to have some tasks be handled outside the Rails app. It confirms that
 Start the application: `mvn spring-boot:run`
 
 Camunda-workflow defaults to an in-memory, h2 database engine. If you rather use a Postgres database engine, comment out the 
-h2 database engine settings in the  `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 
+h2 database engine settings in the `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 
 You will need to create a Postgres database on localhost called `camunda`. 
 
 #### Engine Route Prefix using the Java Spring Boot app
@@ -76,24 +91,25 @@ The jar is in `target/camunda-bpm-springboot.jar`
 #### Deploying to PCF
 `cf push app_name -p target/camunda-bpm-springboot.jar`
 
-It will fail to start. Create a postgres database  as a service in PCF and bind it to the application. The Springboot application is configured for Postgres and will then be able to start.
+It will fail to start. Create a postgres database as a service in PCF and bind it to the application. The Springboot application is configured for Postgres and will then be able to start.
 
 #### Running java unit tests
 `mvn clean test`
 
-### Methods
-#### Processes
-Deploying a model. Uses a default name, etc. Below outlines how to deploy a process using the included sample.bpmn
-file created by the generator.
+## Usage
+### Deploying a model
+Uses a default name, etc. Below outlines how to deploy a process using the included sample.bpmn
+file created by the generator. Alternatively you can deploy using Camunda Modeler
 
 ```ruby
   Camunda::Deployment.create file_name: 'bpmn/diagrams/sample.bpmn'
 ```
+### Processes
 
-Starting a process
+#### Starting a process
 
 ```ruby
-  start_response = Camunda::ProcessDefinition.start id: 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
+  start_response = Camunda::ProcessDefinition.start_by_key'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
 ```
 **Camunda cannot handle snake case variables, all snake_case variables are serialized to camelCase before a request is sent to the REST api. Variables returned back from the Camunda API will be deserialized back to snake_case.**
 
@@ -103,13 +119,14 @@ will be converted to:
 
 `{ myVariable: "xyz" }`
 
-Destroy a process
+#### Destroy a process
 ```ruby
   Camunda::ProcessInstance.destroy_existing start_response.id
 ```
 
-#### Tasks
-Fetch tasks and queue with ActiveJob
+### Tasks
+
+#### Fetch tasks and queue with ActiveJob
 
 The poller will run as an infinite loop with long polling to fetch tasks, queue, and run them. Topic is the process definition key, 
 as show in the screenshot example from the Camunda Modeler.
@@ -121,23 +138,39 @@ the `starting a process` detailed above.
   Camunda::Poller.fetch_and_execute %w[CamundaWorkflow]
 ```
 
-Fetch tasks (one time for testing from the console)
+#### Fetch tasks 
+For testing from the console
 
 ```ruby
   tasks = Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]
 ``` 
-Run a task
+
+#### Run a task
 
 ```ruby
   tasks.each(&:run_now)
 ```
 
-#### User Tasks
-Mark a user task complete
+
+### User Tasks
+#### Mark a user task complete
 ```ruby
   Camunda::Task.mark_task_completed!(business_key, task_key, {})
 ```
 
+### Rspec Helpers
+RSpec helpers can will validate your application to make sure it has a class for every External task in a given BPMN file.
+```ruby
+require 'camunda/matchers'
+
+RSpec.describe "BPMN Diagrams" do
+  describe Camunda::BpmnXML.new(File.open("bpmn/diagrams/YourFile.bpmn")) do
+    it { is_expected.to have_module('YourModule') }
+    it { is_expected.to have_topics(%w[YourModule]) }
+    it { is_expected.to have_defined_classes }
+  end
+end
+```
 #### Note: 
 
 If you get an error
