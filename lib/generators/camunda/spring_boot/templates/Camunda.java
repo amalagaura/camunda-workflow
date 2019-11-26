@@ -16,13 +16,30 @@ package camunda;
  * limitations under the License.
  */
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
+import org.camunda.bpm.engine.rest.security.auth.ProcessEngineAuthenticationFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @SpringBootApplication
 @EnableProcessApplication("camunda-bpm-springboot")
 public class Camunda {
   public static void main(String... args) {
     SpringApplication.run(Camunda.class, args);
+  }
+
+  @Bean
+  @ConditionalOnProperty(name="camunda.authentication", havingValue="true")
+  public FilterRegistrationBean authenticationFilter() {
+    FilterRegistrationBean registration = new FilterRegistrationBean();
+    registration.setFilter(new ProcessEngineAuthenticationFilter());
+    registration.addUrlPatterns("/rest/*");
+    registration.addInitParameter("authentication-provider", "org.camunda.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider");
+    registration.setName("camunda-auth");
+    registration.setOrder(1);
+    return registration;
   }
 }

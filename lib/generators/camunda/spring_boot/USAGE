@@ -1,5 +1,5 @@
 Description:
-    One time install of Java Camunda application to do unit testing of your BPMN process
+    One time install of Java Camunda application to do unit testing of your BPMN process.
 
 Example:
     rails generate camunda:unit_tests
