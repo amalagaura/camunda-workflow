@@ -16,10 +16,14 @@ module Camunda
       attr_accessor :max_polling_tasks
       attr_accessor :long_polling_duration
       attr_accessor :tenant_id
+      attr_accessor :camunda_user
+      attr_accessor :camunda_password
 
       def initialize
         @engine_url = 'http://localhost:8080'
         @engine_route_prefix = 'rest-engine'
+        @camunda_user = ''
+        @camunda_password = ''
         @worker_id = '0'
         @lock_duration = 14.days
         @max_polling_tasks = 2

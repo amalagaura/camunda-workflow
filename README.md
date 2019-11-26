@@ -82,7 +82,21 @@ Camunda::Workflow.configure do |config|
   config.engine_route_prefix = 'rest'
 end
 ```
+#### Enable HTTP Basic Auth for Java Spring Boot app
+To add authentication to Camunda's REST API within the Java Spring Boot app change the `camunda.authentication` variable located in the
+`application.properties` (bpmn/java_app/src/main/resources) file to `true`. Creating an environment variable `ENV['CAMUNDA_AUTH']` and setting a value of `true` or `false` will 
+set the value as well. When HTTP Basic Auth is enabled, it's required that a user with the appropriate permissions is setup in Camunda. 
+Otherwise, the request will return as `401 unauthorized`. Users are set up within the admin dashboard of Camunda and used to authenticate by passing an Authorization header during requests to the REST API. Below is how to configure 
+the `camunda_user` and `camunda_password` to be used in the header request to authenticate using HTTP Basic Auth. 
 
+```ruby
+# filename initializers/camunda.rb
+Camunda::Workflow.configure do |config|
+  config.engine_route_prefix = 'rest'
+  config.camunda_user = ENV['CAMUNDA_USER']
+  config.camunda_password = ENV['CAMUNDA_PASSWORD']
+end
+```
 #### Generating a jar for deployment
 `mvn package spring-boot:repackage`
 

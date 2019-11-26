@@ -8,6 +8,8 @@ class Camunda::Model
       # Request
       c.use Faraday::Request::Multipart
       c.use FaradayMiddleware::EncodeJson
+      c.use Faraday::Request::BasicAuthentication, Camunda::Workflow.configuration.camunda_user,
+            Camunda::Workflow.configuration.camunda_password
       # Response
       c.use Faraday::Response::Logger, ActiveSupport::Logger.new(STDOUT), bodies: true if Rails.env.development?
       c.use Her::Middleware::FirstLevelParseJSON
