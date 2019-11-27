@@ -171,6 +171,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rspec (1.37.0)
+      rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
     simplecov (0.17.1)
       docile (~> 1.1)
@@ -205,6 +207,7 @@ DEPENDENCIES
   rails (~> 6.0.1)
   rspec (~> 3.9.0)
   rubocop (~> 0.75.1)
+  rubocop-rspec (~> 1.37.0)
   simplecov (~> 0.17.1)
   vcr (~> 5.0.0)
 
