@@ -6,16 +6,17 @@ describe Camunda::Generators::BpmnClassesGenerator do
   include FileUtils
 
   let(:dummy_app_root) { File.expand_path('../dummy', __dir__) }
-  let(:generator) { Camunda::Generators::BpmnClassesGenerator }
 
-  context 'runs sample with success' do
-    before { generator.start([File.expand_path("spec/bpmn_test_files/sample.bpmn")], destination_root: dummy_app_root) }
+  describe 'runs sample with success' do
+    before { described_class.start([File.expand_path("spec/bpmn_test_files/sample.bpmn")], destination_root: dummy_app_root) }
+
+    after { remove_dir File.expand_path("../dummy/app/bpmn", __dir__) }
+
     it("has the module") { expect(File).to exist(File.join(dummy_app_root, "app/bpmn/camunda_workflow.rb")) }
     it("has the class") { expect(File).to exist(File.join(dummy_app_root, "app/bpmn/camunda_workflow/do_something.rb")) }
-    after { remove_dir File.expand_path("../dummy/app/bpmn", __dir__) }
   end
 
   it 'runs sample sample with failure' do
-    generator.start([File.expand_path("spec/bpmn_test_files/sample_fail.bpmn")], destination_root: dummy_app_root)
+    described_class.start([File.expand_path("spec/bpmn_test_files/sample_fail.bpmn")], destination_root: dummy_app_root)
   end
 end
