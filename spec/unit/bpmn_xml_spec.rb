@@ -5,6 +5,6 @@ RSpec.describe Camunda::BpmnXML do
 
   context 'scans file and creates class' do
     it('topics to be an array') { expect(bpmn.topics).to eq %w[CamundaWorkflow] }
-    it('expects module_name to be string') { expect(bpmn.to_s).to eq('CamundaWorkflow') }
+    it('expects module_name to be string') { expect(bpmn.to_s).to eq(definition_key) }
   end
 end

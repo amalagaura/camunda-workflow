@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.com/amalagaura/camunda-workflow.svg?branch=master)](https://travis-ci.com/amalagaura/camunda-workflow)
+[![Build Status](https://travis-ci.com/amalagaura/camunda-workflow.svg?branch=master)](https://travis-ci.com/amalagaura/camunda-workflow) 
+[![Gem Version](https://badge.fury.io/rb/camunda-workflow.svg)](https://badge.fury.io/rb/camunda-workflow)
+[![Inline docs](http://inch-ci.org/github/amalagaura/camunda-workflow.svg?branch=master)](http://inch-ci.org/github/amalagaura/camunda-workflow)
 # Camunda Workflow
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
@@ -169,7 +171,9 @@ For testing from the console
 ### User Tasks
 #### Mark a user task complete
 ```ruby
-  Camunda::Task.mark_task_completed!(business_key, task_key, {})
+  task = Camunda::Task.find_by_business_key_and_task_definition_key!(instance_business_key, task_key)
+  # Or you can query Camunda::Task with other parameters like assignee 
+  task.complete!(var1: 'value')
 ```
 
 ### Rspec Helpers

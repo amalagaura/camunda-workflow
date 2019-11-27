@@ -5,7 +5,7 @@ http_interactions:
     uri: http://localhost:8080/rest/deployment/create
     body:
       encoding: UTF-8
-      string: "-------------RubyMultipartPost-678a41cd4686764c6d094e83a2321ef0\r\nContent-Disposition:
+      string: "-------------RubyMultipartPost-0fee518b448b5c7628ef5d0d42f51a72\r\nContent-Disposition:
         form-data; name=\"spec/bpmn_test_files/sample.bpmn\"; filename=\"sample.bpmn\"\r\nContent-Length:
         5438\r\nContent-Type: text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\n<?xml
         version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\"
@@ -72,17 +72,19 @@ http_interactions:
         x=\"400\" y=\"340\" />\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_1cuiwcp_di\"
         bpmnElement=\"SequenceFlow_1cuiwcp\">\n        <di:waypoint x=\"500\" y=\"340\"
         />\n        <di:waypoint x=\"630\" y=\"340\" />\n        <di:waypoint x=\"630\"
-        y=\"255\" />\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-678a41cd4686764c6d094e83a2321ef0\r\nContent-Disposition:
-        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-678a41cd4686764c6d094e83a2321ef0\r\nContent-Disposition:
-        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-678a41cd4686764c6d094e83a2321ef0\r\nContent-Disposition:
-        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-678a41cd4686764c6d094e83a2321ef0--\r\n"
+        y=\"255\" />\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n\r\n-------------RubyMultipartPost-0fee518b448b5c7628ef5d0d42f51a72\r\nContent-Disposition:
+        form-data; name=\"deployment-name\"\r\n\r\nsample.bpmn\r\n-------------RubyMultipartPost-0fee518b448b5c7628ef5d0d42f51a72\r\nContent-Disposition:
+        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-0fee518b448b5c7628ef5d0d42f51a72\r\nContent-Disposition:
+        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-0fee518b448b5c7628ef5d0d42f51a72--\r\n"
     headers:
       User-Agent:
       - Faraday v0.17.0
       Content-Type:
-      - multipart/form-data; boundary=-----------RubyMultipartPost-678a41cd4686764c6d094e83a2321ef0
+      - multipart/form-data; boundary=-----------RubyMultipartPost-0fee518b448b5c7628ef5d0d42f51a72
       Content-Length:
       - '6172'
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -93,16 +95,76 @@ http_interactions:
       content-length:
       - '908'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/54a75f39-0d6e-11ea-b338-acde48001122","rel":"self"}],"id":"54a75f39-0d6e-11ea-b338-acde48001122","name":"sample.bpmn","source":"Camunda
-        Workflow Gem","deploymentTime":"2019-11-22T16:23:30.604-0500","tenantId":"test-environment","deployedProcessDefinitions":{"CamundaWorkflow:1:54a8becb-0d6e-11ea-b338-acde48001122":{"id":"CamundaWorkflow:1:54a8becb-0d6e-11ea-b338-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
-        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"54a75f39-0d6e-11ea-b338-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/0d3ba7ff-113a-11ea-b856-acde48001122","rel":"self"}],"id":"0d3ba7ff-113a-11ea-b856-acde48001122","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-27T12:19:21.601-0500","tenantId":"test-environment","deployedProcessDefinitions":{"CamundaWorkflow:1:0d3ce081-113a-11ea-b856-acde48001122":{"id":"CamundaWorkflow:1:0d3ce081-113a-11ea-b856-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
+        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"0d3ba7ff-113a-11ea-b856-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}},"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
+- request:
+    method: post
+    uri: http://localhost:8080/rest/process-definition/key/CamundaWorkflow/tenant-id/test-environment/start
+    body:
+      encoding: UTF-8
+      string: '{"businessKey":"WorkflowBusinessKey","variables":{"s":{"value":"abcd","type":"String"},"n":{"value":1,"type":"Integer"},"f":{"value":2.3,"type":"Double"},"f1":{"value":2.0,"type":"Double"},"h":{"value":"{\"x\":1}","type":"Json"},"a":{"value":"[1,2]","type":"Json"},"b":{"value":true,"type":"Boolean"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '367'
+      date:
+      - Wed, 27 Nov 2019 17:19:21 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/0d403be2-113a-11ea-b856-acde48001122","rel":"self"}],"id":"0d403be2-113a-11ea-b856-acde48001122","definitionId":"CamundaWorkflow:1:0d3ce081-113a-11ea-b856-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}'
+    http_version: 
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-instance/0d403be2-113a-11ea-b856-acde48001122/variables
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '654'
+      date:
+      - Wed, 27 Nov 2019 17:19:21 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"a":{"type":"Json","value":{"nodeType":"ARRAY","array":true,"null":false,"object":false,"boolean":false,"number":false,"value":false,"dataFormatName":"application/json","string":false},"valueInfo":{}},"b":{"type":"Boolean","value":true,"valueInfo":{}},"s":{"type":"String","value":"abcd","valueInfo":{}},"f":{"type":"Double","value":2.3,"valueInfo":{}},"h":{"type":"Json","value":{"nodeType":"OBJECT","array":false,"null":false,"object":true,"boolean":false,"number":false,"value":false,"dataFormatName":"application/json","string":false},"valueInfo":{}},"f1":{"type":"Double","value":2.0,"valueInfo":{}},"n":{"type":"Integer","value":1,"valueInfo":{}}}'
+    http_version: 
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
@@ -112,6 +174,8 @@ http_interactions:
     headers:
       User-Agent:
       - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -122,17 +186,17 @@ http_interactions:
       content-length:
       - '250'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"links":[],"id":"54afeabc-0d6e-11ea-b338-acde48001122","definitionId":"CamundaWorkflow:1:54a8becb-0d6e-11ea-b338-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
+      string: '[{"links":[],"id":"0d403be2-113a-11ea-b856-acde48001122","definitionId":"CamundaWorkflow:1:0d3ce081-113a-11ea-b856-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: delete
-    uri: http://localhost:8080/rest/process-instance/54afeabc-0d6e-11ea-b338-acde48001122
+    uri: http://localhost:8080/rest/process-instance/0d403be2-113a-11ea-b856-acde48001122
     body:
       encoding: UTF-8
       string: "{}"
@@ -141,20 +205,22 @@ http_interactions:
       - Faraday v0.17.0
       Content-Type:
       - application/json
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 204
       message: ''
     headers:
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/process-definition?tenantIdIn=test-environment
@@ -164,6 +230,8 @@ http_interactions:
     headers:
       User-Agent:
       - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -174,18 +242,18 @@ http_interactions:
       content-length:
       - '408'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"id":"CamundaWorkflow:1:54a8becb-0d6e-11ea-b338-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
-        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"54a75f39-0d6e-11ea-b338-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}]'
+      string: '[{"id":"CamundaWorkflow:1:0d3ce081-113a-11ea-b856-acde48001122","key":"CamundaWorkflow","category":"http://bpmn.io/schema/bpmn","description":null,"name":"Sample
+        Project for Testing","version":1,"resource":"sample.bpmn","deploymentId":"0d3ba7ff-113a-11ea-b856-acde48001122","diagram":null,"suspended":false,"tenantId":"test-environment","versionTag":null,"historyTimeToLive":null,"startableInTasklist":true}]'
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: delete
-    uri: http://localhost:8080/rest/process-definition/CamundaWorkflow%3A1%3A54a8becb-0d6e-11ea-b338-acde48001122
+    uri: http://localhost:8080/rest/process-definition/CamundaWorkflow%3A1%3A0d3ce081-113a-11ea-b856-acde48001122
     body:
       encoding: UTF-8
       string: "{}"
@@ -194,6 +262,8 @@ http_interactions:
       - Faraday v0.17.0
       Content-Type:
       - application/json
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -202,14 +272,14 @@ http_interactions:
       content-length:
       - '0'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/deployment?tenantIdIn=test-environment
@@ -219,6 +289,8 @@ http_interactions:
     headers:
       User-Agent:
       - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -229,18 +301,18 @@ http_interactions:
       content-length:
       - '189'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"links":[],"id":"54a75f39-0d6e-11ea-b338-acde48001122","name":"sample.bpmn","source":"Camunda
-        Workflow Gem","deploymentTime":"2019-11-22T16:23:30.604-0500","tenantId":"test-environment"}]'
+      string: '[{"links":[],"id":"0d3ba7ff-113a-11ea-b856-acde48001122","name":"sample.bpmn","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-11-27T12:19:21.601-0500","tenantId":"test-environment"}]'
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: delete
-    uri: http://localhost:8080/rest/deployment/54a75f39-0d6e-11ea-b338-acde48001122
+    uri: http://localhost:8080/rest/deployment/0d3ba7ff-113a-11ea-b856-acde48001122
     body:
       encoding: UTF-8
       string: "{}"
@@ -249,18 +321,20 @@ http_interactions:
       - Faraday v0.17.0
       Content-Type:
       - application/json
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 204
       message: ''
     headers:
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:30 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 recorded_with: VCR 5.0.0

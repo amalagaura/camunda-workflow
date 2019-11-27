@@ -1,5 +1,5 @@
 RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
-  let!(:process_instance) { Camunda::ProcessDefinition.start_by_key 'CamundaWorkflow', businessKey: 'Key' }
+  let!(:process_instance) { Camunda::ProcessDefinition.start_by_key definition_key, businessKey: 'Key' }
   let(:task) { Camunda::ExternalTask.fetch_and_lock("CamundaWorkflow").first }
 
   # We are running a class as the external task implementation. We are ignoring the Camunda activityId class
