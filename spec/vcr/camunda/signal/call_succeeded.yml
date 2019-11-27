@@ -1,6 +1,33 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: http://localhost:8080/rest/signal
+    body:
+      encoding: UTF-8
+      string: '{"name":"baz","variables":{"foo":{"value":"bar","type":"String"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      date:
+      - Wed, 27 Nov 2019 17:19:21 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
+- request:
     method: get
     uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
     body:
@@ -9,6 +36,8 @@ http_interactions:
     headers:
       User-Agent:
       - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -19,14 +48,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/process-definition?tenantIdIn=test-environment
@@ -36,6 +65,8 @@ http_interactions:
     headers:
       User-Agent:
       - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -46,14 +77,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/deployment?tenantIdIn=test-environment
@@ -63,6 +94,8 @@ http_interactions:
     headers:
       User-Agent:
       - Faraday v0.17.0
+      Authorization:
+      - Basic Og==
   response:
     status:
       code: 200
@@ -73,12 +106,12 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Fri, 22 Nov 2019 21:23:30 GMT
+      - Wed, 27 Nov 2019 17:19:21 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Fri, 22 Nov 2019 21:23:31 GMT
+  recorded_at: Wed, 27 Nov 2019 17:19:21 GMT
 recorded_with: VCR 5.0.0
