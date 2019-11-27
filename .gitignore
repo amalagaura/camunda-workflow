@@ -24,9 +24,7 @@
 
 #Ignore Documentation
 /code/
-/doc/
-.yardoc
-/deep_cover
+.yardoc/*
 
 # persists some state between rspec runs
 spec/spec_failures.txt
@@ -83,7 +81,13 @@ rails_best_practices_output.html
 
 .env.development
 
-/spec/camunda/dummy/
+solr/data
+solr/test/data
+solr/development/data
+solr/default/data
+solr/pids
+
+data
 
 # files added by RubyMine
 .rakeTasks
