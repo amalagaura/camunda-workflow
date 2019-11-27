@@ -14,8 +14,11 @@ module Camunda
       end
     end
   end
-
+  ##
+  # Responsible for handling deserialization of variables
   class Her::Middleware::SnakeCase < Faraday::Response::Middleware
+    # Ensure variables are transformed back from camelCase to snake_case.
+    # @param [Object] env
     def on_complete(env)
       return if env[:body].blank?
 
@@ -44,7 +47,9 @@ module Camunda
 
   class BpmnError < StandardError
     attr_reader :error_code, :variables
-
+# @param [String] message
+# @param [String] error_code
+# @param [Object] variables
     def initialize(message:, error_code:, variables: {})
       super(message)
       @error_code = error_code
