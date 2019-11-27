@@ -22,6 +22,10 @@
 # Ignore coverage reports
 /coverage/
 
+#Ignore Documentation
+/code/
+.yardoc/*
+
 # persists some state between rspec runs
 spec/spec_failures.txt
 spec/failures.txt
