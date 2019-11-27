@@ -1,7 +1,7 @@
 RSpec.describe Camunda::ProcessDefinition, :vcr, :deployment do
   context '#start_by_key' do
     let(:subject) do
-      Camunda::ProcessDefinition.start_by_key 'CamundaWorkflow',
+      Camunda::ProcessDefinition.start_by_key definition_key,
                                               businessKey: 'WorkflowBusinessKey',
                                               variables: { s: 'abcd', n: 1, f: 2.3, f1: 2.0, h: { x: 1 }, a: [1, 2], b: true }
     end

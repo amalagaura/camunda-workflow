@@ -4,7 +4,7 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
     - 'spec/dummy/**/*'
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.5
 
 Style/FrozenStringLiteralComment:
   Enabled: false
