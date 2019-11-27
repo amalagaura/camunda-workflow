@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Correct find\_by\_business\_key\_and\_task\_definition\_key! [\#5](https://github.com/amalagaura/camunda-workflow/pull/5) ([amalagaura](https://github.com/amalagaura))
 - added authentication via templates for spring\_boot generator and Her [\#4](https://github.com/amalagaura/camunda-workflow/pull/4) ([curatingbits](https://github.com/curatingbits))
 - Refactor to return proper Her models after responses [\#3](https://github.com/amalagaura/camunda-workflow/pull/3) ([amalagaura](https://github.com/amalagaura))
 - Added tests for Camunda workflow [\#2](https://github.com/amalagaura/camunda-workflow/pull/2) ([curatingbits](https://github.com/curatingbits))
