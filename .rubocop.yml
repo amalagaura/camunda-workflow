@@ -11,7 +11,7 @@ Style/FrozenStringLiteralComment:
 Style/StringLiterals:
   Enabled: false
 Style/Documentation:
-  Enabled: false
+  Enabled: true
 Metrics/BlockLength:
   ExcludedMethods:
     - class_methods
