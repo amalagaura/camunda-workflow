@@ -1,3 +1,7 @@
+##
+# Deployment inherits from the Model class and is responsible for creating BPMN, DMN, add CMMN Models within Camunda.
+#
+
 class Camunda::Deployment < Camunda::Model
   collection_path 'deployment'
   # Only supporting .create which uses a POST on deployment/create.

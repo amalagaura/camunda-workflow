@@ -1,5 +1,5 @@
 lib/camunda.rb 7e9e107d78901f2ab3efcaa1b901ed70f099e213
-lib/camunda/task.rb 403b111b8441babeda035008131ea4cd2cd859a6
+lib/camunda/task.rb d11945d308138cb0455d9de5b51d01c10b1c5f1a
 lib/camunda/model.rb 8f4fc6e197c1f92cca6ecbaeb2346e56b292f24f
 lib/camunda/poller.rb a82bdcd68342ad353b114ae88047846907e4c7ed
 lib/camunda/signal.rb 52f592448d7fbc54050f0112a661ca6636fe9f02
@@ -7,7 +7,7 @@ lib/camunda/bpmn_xml.rb 29c8b6767b584aa366ce632494d874f7809ef02d
 lib/camunda/incident.rb 96bd41c79fd27b0199754a2dc8060e374f08e163
 lib/camunda/matchers.rb e97fb0c15ae389f7236a6fe342d9cc1ffd9453c6
 lib/camunda/workflow.rb 79181f1bcb5a0d6fba6061ab4cbcb0745618881c
-lib/camunda/deployment.rb 07b6bccec561909a6a47f436bcf5c59711d0f182
+lib/camunda/deployment.rb 81099699449d2849afdfe1e224eb5db90b61e075
 lib/camunda/external_task.rb 671c52afb2807cda56b1aca7159dc5b5639e08f7
 lib/camunda/process_instance.rb 692ca1dc6ecc5e6eb54f2de303d3997a3d266231
 lib/camunda/external_task_job.rb 5db5e0a2a166b5986f89af89f2eac11d27d4ec89
@@ -17,3 +17,4 @@ lib/generators/camunda/install/install_generator.rb 0a0e4e5702d05de0f18c528432f5
 lib/generators/camunda/install/templates/camunda_job.rb 16192c47a94209c603fb76ac7a10b2440a1a12c2
 lib/generators/camunda/spring_boot/spring_boot_generator.rb 910cc858e8798bfbfdb62a35452b42e0034fd2f5
 lib/generators/camunda/bpmn_classes/bpmn_classes_generator.rb 0340e7b6a55bb04f182a7b54358c98f2f8c32a13
+lib/camunda/workflow/version.rb bb477a46407f2386dfe2c9a0b827f2843b15b064
