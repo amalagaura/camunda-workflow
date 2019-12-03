@@ -1,3 +1,4 @@
+# All of the BPMN worker classes will inherit from this class
 class CamundaJob < ApplicationJob
   # If using Sidekiq change to include Sidekiq::Worker instead of inheriting from ApplicationJob
   include Camunda::ExternalTaskJob
