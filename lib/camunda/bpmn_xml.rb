@@ -41,6 +41,7 @@ class Camunda::BpmnXML
   end
 
   private
+
   # @return [Array]
   def tasks_with_same_bpmn_id_as_topic
     external_tasks.select { |task| task.topic == module_name }
