@@ -1,4 +1,6 @@
 require 'her/model'
+##
+# This class in the main element of Her. It defines which API models will be bound to.
 class Camunda::Model
   include Her::Model
 
@@ -21,7 +23,8 @@ class Camunda::Model
   end
 
   use_api api
-
+  # Returns the worker id
+  # @return [String] default worker id is set in Camunda::Workflow.configuration
   def self.worker_id
     Camunda::Workflow.configuration.worker_id
   end

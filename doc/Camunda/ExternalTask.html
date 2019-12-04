@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Camunda::ExternalTask
+  
+    &mdash; Documentation by YARD 0.9.20
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Camunda::ExternalTask";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (E)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Camunda.html" title="Camunda (module)">Camunda</a></span></span>
+     &raquo; 
+    <span class="title">ExternalTask</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Camunda::ExternalTask
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Model.html" title="Camunda::Model (class)">Model</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Model.html" title="Camunda::Model (class)">Model</a></span></li>
+          
+            <li class="next">Camunda::ExternalTask</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="VariableSerialization.html" title="Camunda::VariableSerialization (module)">VariableSerialization</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/camunda/external_task.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>External Task is created and then added to a topic. ExternalTask queries the topic and locks the task. After the task is locked, the application can work on it and complete it. Below is an excerpt from the Camunda documentation regarding the ExternalTask process. “When the process engine encounters a service task that is configured to be externally handled, it creates an external task instance and adds it to a list of external tasks(step 1). The task instance receives a topic that identifies the nature of the work to be performed. At a time in the future, an external worker may fetch and lock tasks for a specific set of topics (step2). To prevent one task being fetched by multiple workers at the same time, a task has a timestamp-based lock that is set when the task is acquired. Only when the lock expires, another worker can fetch the task again. When an external worker has completed the desired work, it can signal the process engine to continue process execution after the service task (step 3).”</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://docs.camunda.org/manual/7.7/user-guide/process-engine/external-tasks/" target="_parent" title="https://docs.camunda.org/manual/7.7/user-guide/process-engine/external-tasks/">https://docs.camunda.org/manual/7.7/user-guide/process-engine/external-tasks/</a></li>
+    
+  </ul>
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_and_lock-class_method" title="fetch_and_lock (class method)">.<strong>fetch_and_lock</strong>(topics, lock_duration: nil, long_polling_duration: nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lock_duration-class_method" title="lock_duration (class method)">.<strong>lock_duration</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Default lock duration from Camunda::Workflow configuration.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#long_polling_duration-class_method" title="long_polling_duration (class method)">.<strong>long_polling_duration</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Default polling duration from Camunda::Workflow configuration.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#max_polling_tasks-class_method" title="max_polling_tasks (class method)">.<strong>max_polling_tasks</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the max polling tasks to 2.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bpmn_error-instance_method" title="#bpmn_error (instance method)">#<strong>bpmn_error</strong>(bpmn_exception)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#collection_path-instance_method" title="#collection_path (instance method)">#<strong>collection_path</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#complete-instance_method" title="#complete (instance method)">#<strong>complete</strong>(variables = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#failure-instance_method" title="#failure (instance method)">#<strong>failure</strong>(exception, input_variables)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>When a worker isn&#39;t able to complete a task successfully, it can report a failure to the process engine.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#queue_task-instance_method" title="#queue_task (instance method)">#<strong>queue_task</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Queues the task to run at a specific time via ActiveJob.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run_now-instance_method" title="#run_now (instance method)">#<strong>run_now</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Runs the task using ActiveJob based on the classes created by bpmn_classes_generator.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_class-instance_method" title="#task_class (instance method)">#<strong>task_class</strong>  &#x21d2; Module </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks to make sure an implementation class is available, if the class hasn&#39;t been created, an error is thrown.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_class_name-instance_method" title="#task_class_name (instance method)">#<strong>task_class_name</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the class name of the process definition.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#variables-instance_method" title="#variables (instance method)">#<strong>variables</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#worker_id-instance_method" title="#worker_id (instance method)">#<strong>worker_id</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the worker ID, default is set to &#39;0&#39; in Camunda::Workflow.configuration.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="VariableSerialization.html" title="Camunda::VariableSerialization (module)">VariableSerialization</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="VariableSerialization.html#serialize_variables-instance_method" title="Camunda::VariableSerialization#serialize_variables (method)">#serialize_variables</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Model.html" title="Camunda::Model (class)">Model</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Model.html#worker_id-class_method" title="Camunda::Model.worker_id (method)">worker_id</a></span></p>
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="fetch_and_lock-class_method">
+  
+    .<strong>fetch_and_lock</strong>(topics, lock_duration: nil, long_polling_duration: nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>topics</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lock_duration</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>long_polling_duration</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 96</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fetch_and_lock'>fetch_and_lock</span><span class='lparen'>(</span><span class='id identifier rubyid_topics'>topics</span><span class='comma'>,</span> <span class='label'>lock_duration:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>long_polling_duration:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_long_polling_duration'>long_polling_duration</span> <span class='op'>||=</span> <span class='id identifier rubyid_long_polling_duration'>long_polling_duration</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lock_duration'>lock_duration</span> <span class='op'>||=</span> <span class='id identifier rubyid_lock_duration'>lock_duration</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_topic_details'>topic_details</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_topics'>topics</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_topic'>topic</span><span class='op'>|</span>
+    <span class='lbrace'>{</span> <span class='label'>topicName:</span> <span class='id identifier rubyid_topic'>topic</span><span class='comma'>,</span> <span class='label'>lockDuration:</span> <span class='id identifier rubyid_lock_duration'>lock_duration</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_fetchAndLock'>fetchAndLock</span> <span class='label'>workerId:</span> <span class='id identifier rubyid_worker_id'>worker_id</span><span class='comma'>,</span> <span class='label'>maxTasks:</span> <span class='id identifier rubyid_max_polling_tasks'>max_polling_tasks</span><span class='comma'>,</span> <span class='label'>asyncResponseTimeout:</span> <span class='id identifier rubyid_long_polling_duration'>long_polling_duration</span><span class='comma'>,</span>
+               <span class='label'>topics:</span> <span class='id identifier rubyid_topic_details'>topic_details</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lock_duration-class_method">
+  
+    .<strong>lock_duration</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns default lock duration from Camunda::Workflow configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>default lock duration from Camunda::Workflow configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lock_duration'>lock_duration</span>
+  <span class='const'><span class='object_link'><a href="../Camunda.html" title="Camunda (module)">Camunda</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Workflow.html" title="Camunda::Workflow (module)">Workflow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="Workflow.html#configuration-class_method" title="Camunda::Workflow.configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock_duration'>lock_duration</span><span class='period'>.</span><span class='id identifier rubyid_in_milliseconds'>in_milliseconds</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="long_polling_duration-class_method">
+  
+    .<strong>long_polling_duration</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns default polling duration from Camunda::Workflow configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>default polling duration from Camunda::Workflow configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_long_polling_duration'>long_polling_duration</span>
+  <span class='const'><span class='object_link'><a href="../Camunda.html" title="Camunda (module)">Camunda</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Workflow.html" title="Camunda::Workflow (module)">Workflow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="Workflow.html#configuration-class_method" title="Camunda::Workflow.configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_long_polling_duration'>long_polling_duration</span><span class='period'>.</span><span class='id identifier rubyid_in_milliseconds'>in_milliseconds</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="max_polling_tasks-class_method">
+  
+    .<strong>max_polling_tasks</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns sets the max polling tasks to 2</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>sets the max polling tasks to 2</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_max_polling_tasks'>max_polling_tasks</span>
+  <span class='const'><span class='object_link'><a href="../Camunda.html" title="Camunda (module)">Camunda</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Workflow.html" title="Camunda::Workflow (module)">Workflow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="Workflow.html#configuration-class_method" title="Camunda::Workflow.configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_polling_tasks'>max_polling_tasks</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="bpmn_error-instance_method">
+  
+    #<strong>bpmn_error</strong>(bpmn_exception)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>bpmn_exception</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bpmn_error'>bpmn_error</span><span class='lparen'>(</span><span class='id identifier rubyid_bpmn_exception'>bpmn_exception</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_post_raw'>post_raw</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_collection_path'>collection_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/bpmnError</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                      <span class='label'>workerId:</span> <span class='id identifier rubyid_worker_id'>worker_id</span><span class='comma'>,</span> <span class='label'>variables:</span> <span class='id identifier rubyid_serialize_variables'>serialize_variables</span><span class='lparen'>(</span><span class='id identifier rubyid_bpmn_exception'>bpmn_exception</span><span class='period'>.</span><span class='id identifier rubyid_variables'>variables</span><span class='rparen'>)</span><span class='comma'>,</span>
+                      <span class='label'>errorCode:</span> <span class='id identifier rubyid_bpmn_exception'>bpmn_exception</span><span class='period'>.</span><span class='id identifier rubyid_error_code'>error_code</span><span class='comma'>,</span> <span class='label'>errorMessage:</span> <span class='id identifier rubyid_bpmn_exception'>bpmn_exception</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='symbol'>:response</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="collection_path-instance_method">
+  
+    #<strong>collection_path</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_collection_path'>collection_path</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_collection_path'>collection_path</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="complete-instance_method">
+  
+    #<strong>complete</strong>(variables = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>variables</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_complete'>complete</span><span class='lparen'>(</span><span class='id identifier rubyid_variables'>variables</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_post_raw'>post_raw</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_collection_path'>collection_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/complete</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                      <span class='label'>workerId:</span> <span class='id identifier rubyid_worker_id'>worker_id</span><span class='comma'>,</span> <span class='label'>variables:</span> <span class='id identifier rubyid_serialize_variables'>serialize_variables</span><span class='lparen'>(</span><span class='id identifier rubyid_variables'>variables</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='symbol'>:response</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="failure-instance_method">
+  
+    #<strong>failure</strong>(exception, input_variables)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>When a worker isn&#39;t able to complete a task successfully, it can report a failure to the process engine. The exception is a description of the the error.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>exception</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>input_variables</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_failure'>failure</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='comma'>,</span> <span class='id identifier rubyid_input_variables'>input_variables</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_variables_information'>variables_information</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Input variables are </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input_variables'>input_variables</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_post_raw'>post_raw</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_collection_path'>collection_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/failure</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                      <span class='label'>workerId:</span> <span class='id identifier rubyid_worker_id'>worker_id</span><span class='comma'>,</span> <span class='label'>errorMessage:</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span>
+                      <span class='label'>errorDetails:</span> <span class='id identifier rubyid_variables_information'>variables_information</span> <span class='op'>+</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_full_message'>full_message</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='symbol'>:response</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="queue_task-instance_method">
+  
+    #<strong>queue_task</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Queues the task to run at a specific time via ActiveJob</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_queue_task'>queue_task</span>
+  <span class='id identifier rubyid_task_class'>task_class</span><span class='period'>.</span><span class='id identifier rubyid_perform_later'>perform_later</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_variables'>variables</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="run_now-instance_method">
+  
+    #<strong>run_now</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Runs the task using ActiveJob based on the classes created by bpmn_classes_generator.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run_now'>run_now</span>
+  <span class='id identifier rubyid_task_class_name'>task_class_name</span><span class='period'>.</span><span class='id identifier rubyid_safe_constantize'>safe_constantize</span><span class='period'>.</span><span class='id identifier rubyid_perform_now'>perform_now</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_variables'>variables</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task_class-instance_method">
+  
+    #<strong>task_class</strong>  &#x21d2; <tt>Module</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks to make sure an implementation class is available, if the class hasn&#39;t been created, an error is thrown</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Module</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>return class name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_class'>task_class</span>
+  <span class='id identifier rubyid_task_class_name'>task_class_name</span><span class='period'>.</span><span class='id identifier rubyid_safe_constantize'>safe_constantize</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_klass'>klass</span><span class='op'>|</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Camunda.html" title="Camunda (module)">Camunda</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="MissingImplementationClass.html" title="Camunda::MissingImplementationClass (class)">MissingImplementationClass</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_task_class_name'>task_class_name</span> <span class='kw'>unless</span> <span class='id identifier rubyid_klass'>klass</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task_class_name-instance_method">
+  
+    #<strong>task_class_name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the class name of the process definition</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>class name of definition</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 108</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_class_name'>task_class_name</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_process_definition_key'>process_definition_key</span><span class='embexpr_end'>}</span><span class='tstring_content'>::</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_activity_id'>activity_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="variables-instance_method">
+  
+    #<strong>variables</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_variables'>variables</span>
+  <span class='kw'>super</span><span class='period'>.</span><span class='id identifier rubyid_transform_values'>transform_values</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_details'>details</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_details'>details</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Json</span><span class='tstring_end'>&#39;</span></span>
+      <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_details'>details</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>value</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_details'>details</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>value</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="worker_id-instance_method">
+  
+    #<strong>worker_id</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the worker ID, default is set to &#39;0&#39; in Camunda::Workflow.configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>returns the worker ID, default is set to &#39;0&#39; in Camunda::Workflow.configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/camunda/external_task.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_worker_id'>worker_id</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_worker_id'>worker_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Dec  3 16:12:09 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.20 (ruby-2.6.3).
+</div>
+
+    </div>
+  </body>
+</html>

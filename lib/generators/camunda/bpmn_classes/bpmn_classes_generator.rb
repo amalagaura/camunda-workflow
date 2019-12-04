@@ -1,10 +1,14 @@
 module Camunda
   module Generators
+    # Parses the BPMN file and creates task classes according to the ID of the process file and the ID of
+    # each task. It checks each task and only creates it if the topic name is the same as the process ID. This
+    # allows one to have some tasks be handled outside the Rails app. It confirms that the ID's are valid Ruby constant names.
     class BpmnClassesGenerator < Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
       argument :bpmn_file, type: :string
       class_option :model_path, type: :string, default: 'app/bpmn'
 
+      # @return [String] The id of the BPMN process
       def validate_module_name
         puts "The id of the BPMN process is: #{colored_module_name}. That will be your module name."
         validate_constant_name(module_name)
