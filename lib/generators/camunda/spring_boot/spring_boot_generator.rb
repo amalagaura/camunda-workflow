@@ -1,5 +1,8 @@
 module Camunda
   module Generators
+    # Creates a skeleton Java Spring Boot app, which also contains the minimal files to run unit tests on a BPMN file.
+    # This can be used to start a Camunda instance with a REST api. This can also be deployed to PCF by generating a
+    # Spring Boot jar and pushing it.
     class SpringBootGenerator < Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
       class_option :app_path, type: :string, default: 'bpmn/java_app'

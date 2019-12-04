@@ -19,9 +19,10 @@ RSpec.configure do |config|
       # Leave Process Instances and Deployments available for failed examples. This will not work though unless you run only the
       # failing example because a subsequent successful spec will clear the Process Instances and Deployments
       if result.nil?
-        Camunda::ProcessInstance.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).each(&:destroy)
-        Camunda::ProcessDefinition.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).each(&:destroy)
-        Camunda::Deployment.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).each(&:destroy)
+        tenant_id = Camunda::Workflow.configuration.tenant_id
+        Camunda::ProcessInstance.where(tenantIdIn: tenant_id).each(&:destroy)
+        Camunda::ProcessDefinition.where(tenantIdIn: tenant_id).each(&:destroy)
+        Camunda::Deployment.where(tenantIdIn: tenant_id).each(&:destroy)
       end
     end
   end
