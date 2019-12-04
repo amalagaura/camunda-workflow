@@ -17,11 +17,11 @@ class Camunda::ExternalTask < Camunda::Model
     Camunda::Workflow.configuration.lock_duration.in_milliseconds
   end
 
-  def failure(exception, input_variables)
-    variables_information = "Input variables are #{input_variables.inspect}\n\n"
+  def failure(exception, input_variables={})
+    variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
     self.class.post_raw("#{collection_path}/#{id}/failure",
                         workerId: worker_id, errorMessage: exception.message,
-                        errorDetails: variables_information + exception.full_message)[:response]
+                        errorDetails: variables_information.to_s + exception.full_message)[:response]
   end
 
   def bpmn_error(bpmn_exception)
