@@ -1,4 +1,5 @@
 module Camunda
+  # Generator to run and install camunda_job.rb that includes ExternalTaskJob to be used with task classes.
   module Generators
     # Creates `app/jobs/camunda_job.rb`. A class which inherits from ApplicationJob and includes `ExternalTaskJob`.
     # It can be changed to include Sidekiq::Worker instead.

@@ -25,7 +25,8 @@ class Camunda::Model
 
   use_api api
   # Returns the worker id
-  # @return [String] default worker id is set in Camunda::Workflow.configuration
+  # @note default worker id is set in Camunda::Workflow.configuration
+  # @return [String] id of worker
   def self.worker_id
     Camunda::Workflow.configuration.worker_id
   end

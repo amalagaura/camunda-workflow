@@ -16,5 +16,5 @@ class Camunda::Poller
         task.failure(e)
       end
     end
-end
+  end
 end
