@@ -14,10 +14,13 @@ class Camunda::Task < Camunda::Model
   def complete!(vars={})
     self.class.post_raw("#{self.class.collection_path}/#{id}/complete", variables: serialize_variables(vars))[:response]
         .tap do |response|
-      raise MissingTask unless response.success?
+      raise SubmissionError, response.body[:data][:message] unless response.success?
     end
   end
 
   class MissingTask < StandardError
+  end
+
+  class SubmissionError < StandardError
   end
 end
