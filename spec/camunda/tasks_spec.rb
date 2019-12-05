@@ -1,6 +1,7 @@
 RSpec.describe Camunda::Task, :vcr, :deployment do
   let(:business_key) { 'WorkflowBusinessKey' }
   let(:task_key) { "UserTask" }
+  let(:result) { task.complete! }
 
   before { Camunda::ProcessDefinition.start_by_key definition_key, businessKey: business_key }
 
@@ -9,11 +10,21 @@ RSpec.describe Camunda::Task, :vcr, :deployment do
     Camunda::Task.find_by_business_key_and_task_definition_key! business_key, task_key
   end
   describe 'mark user tasks completed' do
-    let(:result) { task.complete! }
-
     it('can mark task complete') do
       expect(result).to be_success
       expect { task }.to raise_error(Camunda::Task::MissingTask)
+    end
+  end
+
+  describe 'user task with error' do
+    let(:task_key) { "UserTaskWithError" }
+
+    it('bpmn error in submitting gives an error description') do
+      expect { result }
+        .to raise_error(
+          Camunda::Task::SubmissionError,
+          /Unknown property used in expression: \${missingVariable}. Cause: Cannot resolve identifier 'missingVariable'/
+        )
     end
   end
 

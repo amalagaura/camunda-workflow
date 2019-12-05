@@ -1,6 +1,8 @@
-##
 # A process instance is an individual execution of a process definition. The relation of the process instance to the process
-# definition is the same as the relation between Object and Class in OOP.
+# definition is the same as the relation between Object and Class in OOP. When a process definition is started, a process instance
+# is created.
+# @see https://docs.camunda.org/manual/7.4/user-guide/process-engine/process-engine-concepts/
+# @see Camunda::ProcessDefinition
 class Camunda::ProcessInstance < Camunda::Model
   collection_path 'process-instance'
   # GETs the process instance and deserializes the variables
@@ -11,7 +13,7 @@ class Camunda::ProcessInstance < Camunda::Model
 
   private
 
-  # deserialize variables from CamelCase to snake_case
+  # Deserialize variables from CamelCase to snake_case.
   # @param [Hash] hash takes the process instance variables and deserializes them back to snake_case
   def deserialize_variables(hash)
     hash.transform_values do |value_hash|

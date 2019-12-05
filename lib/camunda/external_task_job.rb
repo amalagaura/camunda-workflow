@@ -1,9 +1,15 @@
 ##
 # Camunda::ExternalTaskJob module is included in the generated bpmn_classes for ActiveJob and handles
-# the task completion or failure for a given worker that has fetched work to be performed.
+# the task completion or failure for a given worker that has been locked to be performed.
+# @see Camunda::ExternalTask
 module Camunda::ExternalTaskJob
-  # performs the external task for the process definition and processes completion or an error
-  # @param [Integer] id of the worker for the fetched task
+  # Performs the external task for the process definition and processes completion or throws an error. The below example
+  # shows how to run a task based off of our generated classes from the bpmn_classes generator from the sample.bpmn file
+  # provided.
+  # @example
+  #   task = Camunda::ExternalTask.fetch_and_lock('CamundaWorkflow').first
+  #   CamundaWorkflow::DoSomething.new.perform(task.id, x: 'abcd')
+  # @param [Integer] id of the worker for the locked task
   # @param [Hash] input_variables
   def perform(id, input_variables)
     output_variables = bpmn_perform(input_variables)
@@ -13,11 +19,14 @@ module Camunda::ExternalTaskJob
     report_completion id, output_variables
   rescue Camunda::BpmnError => e
     report_bpmn_error id, e
+  rescue Camunda::ExternalTask::SubmissionError => e
+    # We re-raise this so it is not rescued below
+    raise e
   rescue StandardError => e
     report_failure id, e, input_variables
   end
 
-  # Reports completion for an external task with output variable set in bpmn_perform
+  # Reports completion for an external task with output variable set in bpmn_perform.
   # @param [Integer] id of the worker
   # @param [Hash] variables output variables declared in bpmn_perform
   def report_completion(id, variables)
@@ -35,6 +44,7 @@ module Camunda::ExternalTaskJob
     # POST /external-task/{id}/failure
     Camunda::ExternalTask.new(id: id).failure(exception, input_variables)
   end
+
   # Reports an error if there is a problem with bpmn_perform
   # @param [Integer] id of the process instance
   # @param [Camunda::BpmnError] exception instance of Camunda::BpmnError

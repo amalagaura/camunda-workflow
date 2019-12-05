@@ -1,12 +1,21 @@
-# Deployment inherits from the Model class and is responsible for creating BPMN, DMN, add CMMN processes within Camunda.
+# Deployment is responsible for creating BPMN, DMN, add CMMN processes within Camunda. Before a process (or case, or decision)
+# can be executed by the process engine, it has to be deployed. A deployment is a logical entity that groups multiple resources
+# that are deployed together. Camunda offers an application called Modeler(https://camunda.com/download/modeler/) that allows you
+# to create and edit BPMN diagrams and BPMN decision tables.
+# @see https://docs.camunda.org/manual/7.4/user-guide/process-engine/deployments/
+# @note You must supply the paths of the BPMN files as a param titled file_names to deploy the BPMN file
+# and create a process definition in the Camunda engine.
 class Camunda::Deployment < Camunda::Model
   collection_path 'deployment'
-  # Only supporting .create which uses a POST on deployment/create.
+  # Deploys a new process definition to Camunda and returns an instance of Camunda::ProcessDefinition.
+  # @note Only supporting .create which uses a POST on deployment/create.
+  # @example
+  #   pd = Camunda::Deployment.create(file_names: ['bpmn/diagrams/sample.bpmn']).first
   # @param [Array<String>] file_names file paths of the bpmn file for deployment
   # @param [String] tenant_id supplied when a single Camunda installation should serve more than one tenant
   # @param [String] deployment_source the source of where the deployment occurred.
   # @param [String] deployment_name provide the name of the deployment, otherwise the deployment name will be the bpmn file name.
-  # @return [Object] instance of class Camunda::ProcessDefinition
+  # @return [Camunda::ProcessDefinition]
   def self.create(file_names:, tenant_id: nil, deployment_source: 'Camunda Workflow Gem', deployment_name: nil)
     deployment_name ||= file_names.map { |file_name| File.basename(file_name) }.join(", ")
     tenant_id ||= Camunda::Workflow.configuration.tenant_id

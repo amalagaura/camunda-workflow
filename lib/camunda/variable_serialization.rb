@@ -1,7 +1,8 @@
 require 'active_support/concern'
 module Camunda
-  # Camunda engine doesn't handle snake_case variables, the VariableSerialization module
-  # serializes variables sent to Camunda engine and transforms them to CamelCase.
+  # Camunda engine doesn't handle snake_case variables, the VariableSerialization module serializes variables
+  # sent to Camunda engine when creating a process instance and transforms them to CamelCase.
+  # @see Camunda::ProcessDefinition
   module VariableSerialization
     extend ActiveSupport::Concern
     # serializes the variables before a requst is sent to Camunda. Camunda can not take snake_case variables
@@ -31,7 +32,8 @@ module Camunda
           end
         end
         camelcase_keys(hash)
-    end
+      end
+
       # rubocop:enable Metrics/MethodLength
       # Method that transforms variables from snake_case to CamelCase
       # @param [Array,Hash] json
