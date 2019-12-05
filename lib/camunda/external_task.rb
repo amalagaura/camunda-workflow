@@ -32,7 +32,9 @@ class Camunda::ExternalTask < Camunda::Model
   def self.lock_duration
     Camunda::Workflow.configuration.lock_duration.in_milliseconds
   end
-
+  # Reports failure to Camunda process definition
+  # @param [Hash] exception
+  # @param [Hash] input_variables input variables for
   def failure(exception, input_variables={})
     variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
     self.class.post_raw("#{collection_path}/#{id}/failure",

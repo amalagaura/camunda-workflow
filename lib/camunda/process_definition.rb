@@ -21,7 +21,8 @@ class Camunda::ProcessDefinition < Camunda::Model
 
     Camunda::ProcessInstance.new response[:parsed_data][:data]
   end
-
+  # Starts the process instance by sending a request to the Camunda engine
+  # @param [Hash] hash defaults to {} if no variables are provided
   def start(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
     response = self.class.post_raw "process-definition/#{id}/start", hash

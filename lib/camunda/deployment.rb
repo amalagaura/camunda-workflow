@@ -26,6 +26,8 @@ class Camunda::Deployment < Camunda::Model
   end
 
   # Creates a new instance of Camunda::ProcessDefinition for each definition uploaded
+  # @raise  [ProcessEngineException] raises error if process definition is nil
+  # @param [Hash] definitions_hash
   def self.deployed_process_definitions(definitions_hash)
     # Currently only returning the process definitions. But this Deployment.create can create a DMN, CMMN also
     # It returns :deployed_process_definitions, :deployed_case_definitions, :deployed_decision_definitions,
