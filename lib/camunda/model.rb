@@ -5,6 +5,7 @@ class Camunda::Model
   include Her::Model
 
   api = lambda do
+    # Configuration for Her and Faraday requests and responses
     Her::API.new(url: File.join(Camunda::Workflow.configuration.engine_url)) do |c|
       c.path_prefix = Camunda::Workflow.configuration.engine_route_prefix
       # Request

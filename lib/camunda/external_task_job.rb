@@ -35,7 +35,9 @@ module Camunda::ExternalTaskJob
     # POST /external-task/{id}/failure
     Camunda::ExternalTask.new(id: id).failure(exception, input_variables)
   end
-
+  # Reports an error if there is a problem with bpmn_perform
+  # @param [Integer] id of the process instance
+  # @param [Camunda::BpmnError] exception instance of Camunda::BpmnError
   def report_bpmn_error(id, exception)
     # Submit bpmn error state to Camunda using
     # POST /external-task/{id}/bpmnError

@@ -4,7 +4,7 @@ module Camunda
   # serializes variables sent to Camunda engine and transforms them to CamelCase.
   module VariableSerialization
     extend ActiveSupport::Concern
-
+    # serializes the variables before a requst is sent to Camunda. Camunda can not take snake_case variables
     def serialize_variables(variables)
       self.class.serialize_variables(variables)
     end
@@ -33,7 +33,9 @@ module Camunda
         camelcase_keys(hash)
     end
       # rubocop:enable Metrics/MethodLength
-
+      # Method that transforms variables from snake_case to CamelCase
+      # @param [Array,Hash] json
+      # @return [Hash] returns hash with camelCase variables
       def transform_json(json)
         if json.is_a?(Array)
           json.map { |element| transform_json(element) }

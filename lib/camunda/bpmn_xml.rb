@@ -46,8 +46,9 @@ class Camunda::BpmnXML
   def tasks_with_same_bpmn_id_as_topic
     external_tasks.select { |task| task.topic == module_name }
   end
-  # Used to set the Task name for ActiveJob
+  # Sets the Task name for ActiveJob
   class Task
+    # Initilizer for class Task
     def initialize(task)
       @task = task
     end
