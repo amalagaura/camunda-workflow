@@ -33,6 +33,9 @@ class Camunda::ExternalTask < Camunda::Model
   def complete(variables={})
     self.class.post_raw("#{collection_path}/#{id}/complete",
                         workerId: worker_id, variables: serialize_variables(variables))[:response]
+        .tap do |response|
+      raise SubmissionError, response.body[:data][:message] unless response.success?
+    end
   end
 
   def worker_id
@@ -79,5 +82,8 @@ class Camunda::ExternalTask < Camunda::Model
     task_class_name.safe_constantize.tap do |klass|
       raise Camunda::MissingImplementationClass, task_class_name unless klass
     end
+  end
+
+  class SubmissionError < StandardError
   end
 end

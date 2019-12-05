@@ -7,6 +7,9 @@ module Camunda::ExternalTaskJob
     report_completion id, output_variables
   rescue Camunda::BpmnError => e
     report_bpmn_error id, e
+  rescue Camunda::ExternalTask::SubmissionError => e
+    # We re-raise this so it is not rescued below
+    raise e
   rescue StandardError => e
     report_failure id, e, input_variables
   end

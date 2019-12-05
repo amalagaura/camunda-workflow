@@ -23,6 +23,18 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
       # Expect the process instance to have it's variables updated
       expect(process_instance.variables).to eq(x: 'abcd')
     end
+
+    context 'when submission error' do
+      let(:task) { Camunda::ExternalTask.fetch_and_lock("CamundaWorkflowErrors").first }
+
+      it('bpmn error in submitting gives an error description') do
+        expect { external_task_job }
+          .to raise_error(
+            Camunda::ExternalTask::SubmissionError,
+            /Unknown property used in expression: \${missingVariable}. Cause: Cannot resolve identifier 'missingVariable'/
+          )
+      end
+    end
   end
 
   context 'when incident with error' do
