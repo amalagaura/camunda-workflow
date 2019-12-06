@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry-stack_explorer', '~> 0.4.9.3'
   spec.add_development_dependency 'rails', '~> 6.0.1'
   spec.add_development_dependency 'rspec', '~> 3.9.0'
-  spec.add_development_dependency 'rubocop', '~> 0.75.1'
+  spec.add_development_dependency 'rubocop', '~> 0.77'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.37.0'
   spec.add_development_dependency 'simplecov', '~> 0.17.1'
   spec.add_development_dependency 'vcr', '~> 5.0.0'
