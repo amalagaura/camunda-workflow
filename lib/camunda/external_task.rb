@@ -1,6 +1,6 @@
 require 'active_support/core_ext/string/inflections.rb'
 ##
-# External Task is created and then added to a topic. External Task queries the topic and locks the task. After the task
+# External Tasks are the task entity for camunda. We can query the topic and lock the task. After the task
 # is locked, the external task of the process instance can be worked and completed. Below is an excerpt from the Camunda
 # documentation regarding the ExternalTask process.
 # @see https://docs.camunda.org/manual/7.7/user-guide/process-engine/external-tasks/
@@ -13,7 +13,7 @@ require 'active_support/core_ext/string/inflections.rb'
 # task (step 3)."
 class Camunda::ExternalTask < Camunda::Model
   # VeriableSerialization is included to transform variables from snake_case to camelCase.
-  # Camunda engine dosn't allow for snake_case variables.
+  # Camunda engine doesn't searching on snake_case variables.
   include Camunda::VariableSerialization
   # collection_path sets the path for Her in Camunda::Model
   collection_path 'external-task'
@@ -39,7 +39,6 @@ class Camunda::ExternalTask < Camunda::Model
 
   # Reports a failure to Camunda process definition and creates an incident for a process instance.
   # @param [Hash] input_variables process variables
-  # @return [Camunda::MissingImplementationClass]
   def failure(exception, input_variables={})
     variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
     self.class.post_raw("#{collection_path}/#{id}/failure",
@@ -67,18 +66,18 @@ class Camunda::ExternalTask < Camunda::Model
 
   # Returns the worker id for an external task
   # @note default is set to '0' in Camunda::Workflow.configuration
-  # @return [String] returns the worker ID
+  # @return [String]
   def worker_id
     self.class.worker_id
   end
 
-  # Returns the collection path for external task
+  # Helper method for instances since collection_path is a class method 
   # @return [String]
   def collection_path
     self.class.collection_path
   end
 
-  # Converts output variables from JSON to a Hash.
+  # deserializes JSON attributes from variables returned by Camunda API
   def variables
     super.transform_values do |details|
       if details['type'] == 'Json'
@@ -132,8 +131,8 @@ class Camunda::ExternalTask < Camunda::Model
                  topics: topic_details
   end
 
-  # Returns the class name of the process definition
-  # @return [String] class name of definition
+  # Returns the class name which is supposed to implement this task
+  # @return [String] modularized class name of bpmn task implementation
   def task_class_name
     "#{process_definition_key}::#{activity_id}"
   end

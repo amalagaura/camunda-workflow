@@ -13,7 +13,7 @@ class Camunda::BpmnXML
     module_name
   end
 
-  # @return [String] of module name
+  # @return [String] Id (process definition key) of the BPMN process
   # @example
   #   "CamundaWorkflow"
   def module_name
@@ -52,19 +52,19 @@ class Camunda::BpmnXML
   def tasks_with_same_bpmn_id_as_topic
     external_tasks.select { |task| task.topic == module_name }
   end
-  # Sets the Task name and topic for ActiveJob.
+  # Wrapper for BPMN task XML node 
   class Task
-    # Initilizer for class Task
+    # Stores XML node about a task
     def initialize(task)
       @task = task
     end
 
-    # Sets class name for Task
+    # Extracts class name from Task XML node
     def class_name
       @task.attribute('id').value
     end
 
-    # Sets topic name for Task
+    # Extracts topic name from Task XML node
     def topic
       @task.attribute('topic').value
     end

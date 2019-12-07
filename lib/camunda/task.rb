@@ -17,8 +17,8 @@ class Camunda::Task < Camunda::Model
 
   # @example
   #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!('WorkflowBusinessKey','UserTask')
-  # @param [String] instance_business_key searches for tasks by business key
-  # @param [String] task_key searches for tasks by task key (e.g. UserTask)
+  # @param instance_business_key [String] the process instance business key
+  # @param task_key [String] id/key of the user task
   # @return [Camunda::Task]
   def self.find_by_business_key_and_task_definition_key!(instance_business_key, task_key)
     find_by(processInstanceBusinessKey: instance_business_key, taskDefinitionKey: task_key).tap do |ct|
@@ -33,19 +33,18 @@ class Camunda::Task < Camunda::Model
   # @example
   #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!('WorkflowBusinessKey','UserTask')
   #   user_task.complete!
-  # @param [Hash] vars serialize and updates variables
+  # @param vars [Hash] variables to be submitted as part of task completion
   def complete!(vars={})
     self.class.post_raw("#{self.class.collection_path}/#{id}/complete", variables: serialize_variables(vars))[:response]
         .tap do |response|
       raise SubmissionError, response.body[:data][:message] unless response.success?
     end
   end
-  # Throws an error if task is missing or doesn't exist.
+  # Error class when task is missing or doesn't exist.
   class MissingTask < StandardError
   end
 
-  # If the BPMN file expects a variable and the variable isn't supplied, a SubmissionError will be raised
-  # indicating that the variable does not exist.
+  # Error class when the task cannot be submitted. For instance if the bpmn process expects a variable and the variable isn't supplied, Camunda will not accept the task
   class SubmissionError < StandardError
   end
 end
