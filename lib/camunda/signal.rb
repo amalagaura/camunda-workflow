@@ -8,7 +8,7 @@ class Camunda::Signal < Camunda::Model
   collection_path 'signal'
   # Creates a signal within the process definition on the Camunda engine
   # @param [Hash] hash variables that are sent to Camunda engine
-  # @return [Hash] empty hash is returned
+  # @return [{Symbol => Hash,Faraday::Response}]
   def self.create(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
     post_raw collection_path, hash

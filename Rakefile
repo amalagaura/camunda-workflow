@@ -5,7 +5,6 @@ rescue LoadError
 end
 
 require 'rdoc/task'
-require ''
 
 YARD::Rake::YardocTask.new do |t|
   t.files   = ['lib/**/*.rb'] # optional
