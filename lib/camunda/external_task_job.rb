@@ -1,4 +1,3 @@
-##
 # Camunda::ExternalTaskJob module is included in the generated bpmn_classes for ActiveJob and handles
 # the task completion or failure for a given worker that has been locked to be performed.
 # @see Camunda::ExternalTask
@@ -9,8 +8,8 @@ module Camunda::ExternalTaskJob
   # @example
   #   task = Camunda::ExternalTask.fetch_and_lock('CamundaWorkflow').first
   #   CamundaWorkflow::DoSomething.new.perform(task.id, x: 'abcd')
-  # @param [Integer] id of the worker for the locked task
-  # @param [Hash] input_variables
+  # @param id [Integer] of the worker for the locked task
+  # @param input_variables [Hash]
   def perform(id, input_variables)
     output_variables = bpmn_perform(input_variables)
     output_variables = {} if output_variables.nil?
@@ -27,8 +26,8 @@ module Camunda::ExternalTaskJob
   end
 
   # Reports completion for an external task with output variable set in bpmn_perform.
-  # @param [Integer] id of the worker
-  # @param [Hash] variables output variables declared in bpmn_perform
+  # @param id [Integer] of the worker
+  # @param variables [Hash] output variables declared in bpmn_perform
   def report_completion(id, variables)
     # Submit to Camunda using
     # POST /external-task/{id}/complete
@@ -36,9 +35,9 @@ module Camunda::ExternalTaskJob
   end
 
   # Reports external task failure to the Camunda process definition and creates an incident report
-  # @param [Integer] id of the worker for the process instance
-  # @param [Object] exception the exception for the failed task
-  # @param [Hash] input_variables given to the process definition
+  # @param id [Integer] of the worker for the process instance
+  # @param exception [Object] the exception for the failed task
+  # @param input_variables [Hash] given to the process definition
   def report_failure(id, exception, input_variables)
     # Submit error state to Camunda using
     # POST /external-task/{id}/failure
@@ -46,8 +45,8 @@ module Camunda::ExternalTaskJob
   end
 
   # Reports an error if there is a problem with bpmn_perform
-  # @param [Integer] id of the process instance
-  # @param [Camunda::BpmnError] exception instance of Camunda::BpmnError
+  # @param id [Integer] of the process instance
+  # @param exception [Camunda::BpmnError] instance of Camunda::BpmnError
   def report_bpmn_error(id, exception)
     # Submit bpmn error state to Camunda using
     # POST /external-task/{id}/bpmnError

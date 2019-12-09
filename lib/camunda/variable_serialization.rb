@@ -1,18 +1,19 @@
 require 'active_support/concern'
 module Camunda
-  # The VariableSerialization module adds information to variables so Camunda can parse them. It adds types annotations and serializes hashes and array to JSON. Camunda engine cannot search on snake_case variables so it changes variable names to camelCase. 
-  # sent to Camunda engine when creating a process instance and transforms them to CamelCase.
+  # The VariableSerialization module adds information to variables so Camunda can parse them. It adds types annotations and
+  # serializes hashes and array to JSON. Camunda engine cannot search on snake_case variables so it changes variable names
+  # to camelCase.
   # @see Camunda::ProcessDefinition
   module VariableSerialization
     extend ActiveSupport::Concern
-    # serializes the variables before a requst is sent to Camunda. Camunda can not take snake_case variables
+    # Serializes the variables before a request is sent to Camunda.
     def serialize_variables(variables)
       self.class.serialize_variables(variables)
     end
 
     class_methods do
       # rubocop:disable Metrics/MethodLength
-      # @param [Hash] variables
+      # @param variables [Hash]
       # @return {String,Symbol => {String,Symbol => Object}}
       def serialize_variables(variables)
         hash = variables.transform_values do |value|
@@ -36,7 +37,7 @@ module Camunda
 
       # rubocop:enable Metrics/MethodLength
       # Transforms keys of a JSON like object (Array,Hash) from snake_case to CamelCase
-      # @param [Array,Hash] json
+      # @param json [Array,Hash]
       # @return [Hash] returns hash with camelCase keys
       def transform_json(json)
         if json.is_a?(Array)

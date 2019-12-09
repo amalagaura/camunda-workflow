@@ -1,3 +1,4 @@
+# Used to parse bpmn file during bpmn_classes generator to create Camunda job class based on process id
 class Camunda::BpmnXML
   attr_reader :doc
 

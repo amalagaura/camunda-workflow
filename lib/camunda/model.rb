@@ -1,5 +1,4 @@
 require 'her/model'
-##
 # This class in the main element of Her. It defines which API models will be bound to.
 class Camunda::Model
   include Her::Model
