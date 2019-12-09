@@ -17,8 +17,8 @@ class Camunda::Task < Camunda::Model
 
   # @example
   #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!('WorkflowBusinessKey','UserTask')
-  # @param [String] instance_business_key searches for tasks by business key
-  # @param [String] task_key searches for tasks by task key (e.g. UserTask)
+  # @param  instance_business_key [String] searches for tasks by business key.
+  # @param task_key [String] searches for tasks by task key (e.g. UserTask)
   # @return [Camunda::Task]
   def self.find_by_business_key_and_task_definition_key!(instance_business_key, task_key)
     find_by(processInstanceBusinessKey: instance_business_key, taskDefinitionKey: task_key).tap do |ct|
@@ -33,7 +33,7 @@ class Camunda::Task < Camunda::Model
   # @example
   #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!('WorkflowBusinessKey','UserTask')
   #   user_task.complete!
-  # @param [Hash] vars serialize and updates variables
+  # @param vars [Hash] serialize and updates variables
   def complete!(vars={})
     self.class.post_raw("#{self.class.collection_path}/#{id}/complete", variables: serialize_variables(vars))[:response]
         .tap do |response|

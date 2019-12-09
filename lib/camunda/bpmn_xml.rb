@@ -3,7 +3,7 @@
 class Camunda::BpmnXML
   attr_reader :doc
 
-  # @param [IO,String] io_or_string
+  # @param io_or_string [IO,String] valid xml string for bpmn file
   def initialize(io_or_string)
     @doc = Nokogiri::XML(io_or_string)
   end

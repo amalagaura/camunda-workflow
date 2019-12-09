@@ -11,9 +11,9 @@ class Camunda::Deployment < Camunda::Model
   # @note Only supporting .create which uses a POST on deployment/create.
   # @example
   #   pd = Camunda::Deployment.create(file_names: ['bpmn/diagrams/sample.bpmn']).first
-  # @param [Array<String>] file_names file paths of the bpmn file for deployment
-  # @param [String] tenant_id supplied when a single Camunda installation should serve more than one tenant
-  # @param [String] deployment_source the source of where the deployment occurred.
+  # @param file_names [Array<String>] file paths of the bpmn file for deployment
+  # @param tenant_id [String] supplied when a single Camunda installation should serve more than one tenant
+  # @param deployment_source [String] the source of where the deployment occurred.
   # @param [String] deployment_name provide the name of the deployment, otherwise the deployment name will be the bpmn file name.
   # @return [Camunda::ProcessDefinition]
   def self.create(file_names:, tenant_id: nil, deployment_source: 'Camunda Workflow Gem', deployment_name: nil)
