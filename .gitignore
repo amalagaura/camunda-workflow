@@ -24,7 +24,9 @@
 
 #Ignore Documentation
 /code/
-.yardoc/*
+/doc/
+.yardoc
+/deep_cover
 
 # persists some state between rspec runs
 spec/spec_failures.txt

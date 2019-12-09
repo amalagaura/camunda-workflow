@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'her', '~> 1.1'
   # We use .camelcase, .underscore and ActiveSupport::Concern
   spec.add_dependency 'activesupport', '>= 3.2.0'
-  spec.add_development_dependency 'deep-cover', '~> 0.7'
   spec.add_development_dependency 'pry-rescue', '~> 1.5.0'
   spec.add_development_dependency 'pry-stack_explorer', '~> 0.4.9.3'
   spec.add_development_dependency 'rails', '~> 6.0.1'

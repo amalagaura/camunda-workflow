@@ -14,6 +14,7 @@ module Camunda
         validate_constant_name(module_name)
       end
 
+      # Creates a class name to be used for the task classes created to perform external tasks.
       def validate_class_names
         bpmn_xml.modularized_class_names.each do |class_name|
           validate_constant_name(class_name.demodulize, module_name)
@@ -23,10 +24,13 @@ module Camunda
         puts colorized_class_names.join("\n")
       end
 
+      # Creates module names to be used for the task classes to perform external tasks.
       def create_module
         template 'bpmn_module.rb.template', File.join(model_path, "#{module_name.underscore}.rb")
       end
 
+      # Creates the correct classes from the bpmn file to be used in the provided generator template for the classes
+      # needed to run external tasks.
       def create_classes
         bpmn_xml.class_names_with_same_bpmn_id_as_topic.each do |class_name|
           template 'bpmn_class.rb.template',
@@ -36,6 +40,7 @@ module Camunda
 
       private
 
+      # Validates constant name
       def validate_constant_name(name, module_name=nil)
         top_level = module_name.nil? ? Module.new : module_name.constantize
         colorized_name = set_color name, :red
