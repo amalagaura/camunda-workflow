@@ -44,7 +44,7 @@ class Camunda::Task < Camunda::Model
   end
 
   # Error class when the task cannot be submitted. For instance if the bpmn process expects a variable and the variable
-  # isn't supplied, Camunda will not accept the task.
+  # isn't supplied, Camunda will not accept the task
   class SubmissionError < StandardError
   end
 end

@@ -7,7 +7,7 @@ module Camunda
       source_root File.expand_path('templates', __dir__)
       class_option :app_path, type: :string, default: 'bpmn/java_app'
       class_option :diagram_path, type: :string, default: 'bpmn/diagrams'
-
+      # Copys all spring boot files into a rails application and provides a Camunda engine for testing.
       def copy_java_app_files
         copy_file 'pom.xml', File.join(bpmn_app_path, 'pom.xml')
         copy_file 'camunda.cfg.xml', File.join(bpmn_app_path, 'src/test/resources/camunda.cfg.xml')
@@ -16,10 +16,12 @@ module Camunda
         copy_file 'Camunda.java', File.join(bpmn_app_path, 'src/main/java/camunda/Camunda.java')
       end
 
+      # Copys a sample bpmn file to help demonstrate the usage for camunda-workflow
       def link_resources_folder
         copy_file 'sample.bpmn', File.join(diagram_path, 'sample.bpmn'), ''
       end
 
+      # Add spring boot files to .gitignore
       def add_to_ignores
         %w[.gitignore .cfignore].each do |file|
           append_to_file file do
@@ -30,6 +32,7 @@ module Camunda
         end
       end
 
+      # Provides instruction regarding an error with EventedFileChecker listening on the entire Rails folder.
       def output_error_instructions
         puts <<~DOC
           If you get an error when starting your Rails app
