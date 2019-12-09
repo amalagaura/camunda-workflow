@@ -70,7 +70,7 @@ class Camunda::ExternalTask < Camunda::Model
     self.class.worker_id
   end
 
-  # Helper method for instances since collection_path is a class method
+  # Helper method for instances since collection_path is a class method 
   # @return [String]
   def collection_path
     self.class.collection_path
