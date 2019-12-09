@@ -13,8 +13,8 @@ class Camunda::ProcessDefinition < Camunda::Model
   # @see https://blog.camunda.com/post/2018/10/business-key/
   # @example
   #   pd = Camunda::ProcessDefinition.start_by_key 'CamundaWorkflow', variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'
-  # @param [String] key process definition identifier
-  # @param [Hash] hash sets variables to be included with starting a process definition
+  # @param key [String] process definition identifier
+  # @param hash [Hash] sets variables to be included with starting a process definition
   # @return [Camunda::ProcessInstance]
   def self.start_by_key(key, hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
@@ -33,7 +33,7 @@ class Camunda::ProcessDefinition < Camunda::Model
   #   pd = Camunda::Deployment.create(file_names: ['bpmn/diagrams/sample.bpmn']).first
   #   pd.start
   # Starts the process instance by sending a request to the Camunda engine
-  # @param [Hash] hash defaults to {} if no variables are provided
+  # @param hash [Hash] defaults to {} if no variables are provided
   # @return [Camunda::ProcessInstance]
   def start(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]

@@ -14,7 +14,7 @@ class Camunda::ProcessInstance < Camunda::Model
   private
 
   # Deserialize variables from CamelCase to snake_case.
-  # @param [Hash] hash takes the process instance variables and deserializes them back to snake_case
+  # @param hash [Hash] takes the process instance variables and deserializes them back to snake_case
   def deserialize_variables(hash)
     hash.transform_values do |value_hash|
       case value_hash[:type]

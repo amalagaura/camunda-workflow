@@ -1,5 +1,4 @@
 require 'active_support/core_ext/string/inflections.rb'
-##
 # External Tasks are the task entity for camunda. We can query the topic and lock the task. After the task
 # is locked, the external task of the process instance can be worked and completed. Below is an excerpt from the Camunda
 # documentation regarding the ExternalTask process.
@@ -38,7 +37,7 @@ class Camunda::ExternalTask < Camunda::Model
   end
 
   # Reports a failure to Camunda process definition and creates an incident for a process instance.
-  # @param [Hash] input_variables process variables
+  # @param input_variables [Hash] process variables
   def failure(exception, input_variables={})
     variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
     self.class.post_raw("#{collection_path}/#{id}/failure",
@@ -47,7 +46,7 @@ class Camunda::ExternalTask < Camunda::Model
   end
 
   # Reports the error to Camunda and creates an incident for the process instance.
-  # @param [Camunda::BpmnError] bpmn_exception
+  # @param bpmn_exception [Camunda::BpmnError]
   def bpmn_error(bpmn_exception)
     self.class.post_raw("#{collection_path}/#{id}/bpmnError",
                         workerId: worker_id, variables: serialize_variables(bpmn_exception.variables),
@@ -55,7 +54,7 @@ class Camunda::ExternalTask < Camunda::Model
   end
 
   # Completes the process instance of a fetched task
-  # @param [Hash] variables submitted when starting the process definition
+  # @param variables [Hash] submitted when starting the process definition
   def complete(variables={})
     self.class.post_raw("#{collection_path}/#{id}/complete",
                         workerId: worker_id, variables: serialize_variables(variables))[:response]
@@ -117,9 +116,9 @@ class Camunda::ExternalTask < Camunda::Model
   # Camunda::Workflow configuration. Before an external task can be completed, it must be locked.
   # @example
   #   task = Camunda::ExternalTask.fetch_and_lock("CamundaWorkflow")
-  # @param [Array<String>] topics definition keys
-  # @param [Integer] lock_duration
-  # @param [Integer] long_polling_duration
+  # @param topics [Array<String>] definition keys
+  # @param lock_duration [Integer]
+  # @param long_polling_duration [Integer]
   # @return [Camunda::ExternalTask]
   def self.fetch_and_lock(topics, lock_duration: nil, long_polling_duration: nil)
     long_polling_duration ||= long_polling_duration()

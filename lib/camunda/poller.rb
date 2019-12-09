@@ -4,9 +4,9 @@
 # @example
 #   Camunda::Poller.fetch_and_execute %w[CamundaWorkflow]
 class Camunda::Poller
-  # @param [Array] topics process definition keys
-  # @param [Integer] lock_duration lock duration time, default time is set in Camunda::Workflow.configuration
-  # @param [Integer] long_polling_duration long polling time, default is set to Camunda::Workflow.configuration
+  # @param topics [Array] process definition keys
+  # @param lock_duration [Integer] lock duration time, default time is set in Camunda::Workflow.configuration
+  # @param long_polling_duration [Integer] long polling time, default is set to Camunda::Workflow.configuration
   def self.fetch_and_execute(topics, lock_duration: nil, long_polling_duration: nil)
     loop do
       Camunda::ExternalTask
