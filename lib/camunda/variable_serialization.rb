@@ -6,7 +6,7 @@ module Camunda
   # @see Camunda::ProcessDefinition
   module VariableSerialization
     extend ActiveSupport::Concern
-    # Serializes the variables before a request is sent to Camunda.
+    # Wrapper for class level method
     def serialize_variables(variables)
       self.class.serialize_variables(variables)
     end

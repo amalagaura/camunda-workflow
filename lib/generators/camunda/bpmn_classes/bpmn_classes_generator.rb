@@ -40,7 +40,7 @@ module Camunda
 
       private
 
-      # Validates constant name
+      # Validates constant names by attempting to create a Ruby constant
       def validate_constant_name(name, module_name=nil)
         top_level = module_name.nil? ? Module.new : module_name.constantize
         colorized_name = set_color name, :red

@@ -20,7 +20,7 @@ module Camunda
   ##
   # Responsible for handling deserialization of variables.
   class Her::Middleware::SnakeCase < Faraday::Response::Middleware
-    # Check if variables are an Array or JSON and ensure variables are transformed back from camelCase to snake_case.
+    # Check if variables are an Array or JSON and ensure variable names are transformed back from camelCase to snake_case.
     # @param env [Array,Hash]
     def on_complete(env)
       return if env[:body].blank?

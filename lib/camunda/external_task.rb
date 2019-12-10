@@ -11,7 +11,6 @@ require 'active_support/core_ext/string/inflections.rb'
 # worker has completed the desired work, it can signal the process engine to continue process execution after the service
 # task (step 3)."
 class Camunda::ExternalTask < Camunda::Model
-  # VeriableSerialization is included to transform variables from snake_case to camelCase.
   # Camunda engine doesn't searching on snake_case variables.
   include Camunda::VariableSerialization
   # collection_path sets the path for Her in Camunda::Model
