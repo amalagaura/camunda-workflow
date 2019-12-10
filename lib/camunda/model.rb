@@ -1,8 +1,10 @@
 require 'her/model'
+# This class in the main element of Her. It defines which API models will be bound to.
 class Camunda::Model
   include Her::Model
 
   api = lambda do
+    # Configuration for Her and Faraday requests and responses
     Her::API.new(url: File.join(Camunda::Workflow.configuration.engine_url)) do |c|
       c.path_prefix = Camunda::Workflow.configuration.engine_route_prefix
       # Request
@@ -21,7 +23,9 @@ class Camunda::Model
   end
 
   use_api api
-
+  # Returns the worker id
+  # @note default worker id is set in Camunda::Workflow.configuration
+  # @return [String] id of worker
   def self.worker_id
     Camunda::Workflow.configuration.worker_id
   end
