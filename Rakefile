@@ -5,31 +5,6 @@ rescue LoadError
 end
 
 require 'rdoc/task'
-require ''
-
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb'] # optional
-  t.options = ['--any', '--extra', '--opts'] # optional
-  t.stats_options = ['--list-undoc']         # optional
-end
-
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb'] # optional
-  t.options = ['--any', '--extra', '--opts'] # optional
-  t.stats_options = ['--list-undoc']         # optional
-end
-
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb'] # optional
-  t.options = ['--any', '--extra', '--opts'] # optional
-  t.stats_options = ['--list-undoc']         # optional
-end
-
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb'] # optional
-  t.options = ['--any', '--extra', '--opts'] # optional
-  t.stats_options = ['--list-undoc']         # optional
-end
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
