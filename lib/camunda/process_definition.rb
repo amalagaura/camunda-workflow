@@ -16,6 +16,7 @@ class Camunda::ProcessDefinition < Camunda::Model
   # @param key [String] process definition identifier
   # @param hash [Hash] sets variables to be included with starting a process definition
   # @return [Camunda::ProcessInstance]
+  # @raise [Camunda::ProcessEngineException] if submission was unsuccessful
   def self.start_by_key(key, hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
     tenant_id = hash.delete(:tenant_id)
@@ -35,6 +36,7 @@ class Camunda::ProcessDefinition < Camunda::Model
   # Starts the process instance by sending a request to the Camunda engine
   # @param hash [Hash] defaults to {} if no variables are provided
   # @return [Camunda::ProcessInstance]
+  # @raise [Camunda::ProcessEngineException] if submission was unsuccessful
   def start(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
     response = self.class.post_raw "process-definition/#{id}/start", hash

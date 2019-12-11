@@ -54,6 +54,7 @@ class Camunda::ExternalTask < Camunda::Model
 
   # Completes the process instance of a fetched task
   # @param variables [Hash] submitted when starting the process definition
+  # @raise [Camunda::ExternalTask::SubmissionError] if Camunda does not accept the task submission
   def complete(variables={})
     self.class.post_raw("#{collection_path}/#{id}/complete",
                         workerId: worker_id, variables: serialize_variables(variables))[:response]
@@ -135,8 +136,9 @@ class Camunda::ExternalTask < Camunda::Model
     "#{process_definition_key}::#{activity_id}"
   end
 
-  # Checks to make sure an implementation class is available, if the class hasn't been created, an error is thrown.
+  # Checks to make sure an implementation class is available
   # @return [Module] return class name
+  # @raise [Camunda::MissingImplementationClass] if the class does not exist
   def task_class
     task_class_name.safe_constantize.tap do |klass|
       raise Camunda::MissingImplementationClass, task_class_name unless klass

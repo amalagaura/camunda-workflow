@@ -15,6 +15,7 @@ module Camunda
       # rubocop:disable Metrics/MethodLength
       # @param variables [Hash]
       # @return {String,Symbol => {String,Symbol => Object}}
+      # @raise [ArgumentError] if a class instance is passed
       def serialize_variables(variables)
         hash = variables.transform_values do |value|
           case value
@@ -34,8 +35,8 @@ module Camunda
         end
         camelcase_keys(hash)
       end
-
       # rubocop:enable Metrics/MethodLength
+
       # Transforms keys of a JSON like object (Array,Hash) from snake_case to CamelCase
       # @param json [Array,Hash]
       # @return [Hash] returns hash with camelCase keys

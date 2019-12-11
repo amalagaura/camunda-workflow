@@ -8,10 +8,6 @@ module Camunda
   #     config.engine_route_prefix = 'rest'
   #   end
   module Workflow
-    def self.configure
-      yield(configuration)
-    end
-
     # Implements Configuration class and sets default instance variables. The default variables can be overridden by creating an
     # initializer file within your rails application and setting the variables like in the example below.
     # @note if HTTP Basic Auth is used with the Camunda engine, this is where you would set a camunda_user and camunda_password
@@ -21,6 +17,12 @@ module Camunda
     #     config.engine_url = 'http://localhost:8080'
     #     config.engine_route_prefix = 'rest'
     #   end'
+    def self.configure
+      yield(configuration)
+    end
+
+    # Access the Configuration class
+    # @return [Configuration]
     def self.configuration
       @configuration ||= Configuration.new
     end
@@ -34,8 +36,10 @@ module Camunda
       # Default route for Camunda deployment is `/rest-engine`
       # @return [String] the prefix for Camunda REST Api
       attr_accessor :engine_route_prefix
+      # Name of worker, defaults to '0'
+      # @return [String] name of worker
       attr_accessor :worker_id
-      # The defult fetch_and_lock time duration when fetching a task
+      # The default fetch_and_lock time duration when fetching a task
       # @return [Integer] time in days to lock task
       attr_accessor :lock_duration
       # Max polling tasks when using the command line to fetch and lock tasks
@@ -44,6 +48,7 @@ module Camunda
       # With the aid of log polling, a request is suspended by the server if no external tasks are available.
       # Long polling significantly reduces the number of request and enables using resources more
       # efficiently on both the server and client.
+      # @return [Integer]
       attr_accessor :long_polling_duration
       # The tenant identifier is specified on the deployment and is propagated to all data
       # that is created from the deployment(e.g. process definitions, process instances, tacks).

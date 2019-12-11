@@ -25,6 +25,10 @@ class Camunda::Model
 
   use_api api
 
+  # Returns result of find_by but raises an exception instead of returning nil
+  # @param params [Hash] query parameters
+  # @return [Camunda::Model]
+  # @raise [Camunda::Model::RecordNotFound] if query returns no results
   def self.find_by!(params)
     find_by(params).tap do |result|
       raise Camunda::Model::RecordNotFound unless result

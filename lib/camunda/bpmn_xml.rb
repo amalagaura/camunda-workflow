@@ -1,13 +1,12 @@
 # Used to parse bpmn file during bpmn_classes generator to create Camunda job class based on process id
 class Camunda::BpmnXML
-  attr_reader :doc
-
   # @param io_or_string [IO,String] valid xml string for bpmn file
   def initialize(io_or_string)
     @doc = Nokogiri::XML(io_or_string)
   end
 
-  # @return [String]
+  # Friendly name of this BPMN file is the module name
+  # @return [String] module name
   def to_s
     module_name
   end
@@ -26,31 +25,34 @@ class Camunda::BpmnXML
     end
   end
 
-  # @return [Array<String>] returns an array with the topic as a string
+  # We may have tasks with different topics. Returns classes with topics which are the same as the BPMN process id
+  # @return [Array<String>] class names which should be implemented
   # @example
   #   ["DoSomething"]
   def class_names_with_same_bpmn_id_as_topic
     tasks_with_same_bpmn_id_as_topic.map(&:class_name)
   end
 
-  # @return [Array<String>] returns an array with a modularized class name as a string
+  # @return [Array<String>] array of modularized class names
   # @example
   #   ["CamundaWorkflow::DoSomething"]
   def modularized_class_names
     class_names_with_same_bpmn_id_as_topic.map { |name| "#{module_name}::#{name}" }
   end
 
-  # @return [Array]
+  # @return [Array<String>] topics in this BPMN file
   def topics
     @doc.xpath('//*[@camunda:topic]').map { |node| node.attribute('topic').value }.uniq
   end
 
   private
 
-  # @return [Object] returns an instance of Camunda::BpmnXML::Task
+  # We may have tasks with different topics.
+  # @return [Array<Camunda::BpmnXML::Task>] tasks with topics which are the same as the BPMN process id
   def tasks_with_same_bpmn_id_as_topic
     external_tasks.select { |task| task.topic == module_name }
   end
+
   # Wrapper for BPMN task XML node
   class Task
     # Stores XML node about a task
