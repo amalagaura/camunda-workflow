@@ -39,7 +39,7 @@ class Camunda::Task < Camunda::Model
       raise SubmissionError, response.body[:data][:message] unless response.success?
     end
   end
-  # Error class when task is missing or doesn't exist.
+
   class MissingTask < StandardError
   end
 
