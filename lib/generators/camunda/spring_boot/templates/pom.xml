@@ -20,7 +20,7 @@
     and EE repository below
     -->
     <camundaSpringBoot.version>3.3.1</camundaSpringBoot.version>
-    <springBoot.version>2.1.5.RELEASE</springBoot.version>
+    <springBoot.version>2.2.1.RELEASE</springBoot.version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -124,6 +124,12 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <scope>test</scope>
+    </dependency>
+    <!-- Logback logging for better camunda-bpm-assert-scenario tests -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
     </dependency>
 
     <!-- Add your own dependencies here, if in compile scope, they are added to the jar -->
