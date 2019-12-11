@@ -1,11 +1,16 @@
 # Changelog
 
-## [Unreleased](https://github.com/amalagaura/camunda-workflow/tree/HEAD)
+## [v0.1.4](https://github.com/amalagaura/camunda-workflow/tree/v0.1.4) (2019-12-11)
 
-[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.1.3...HEAD)
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.1.3...v0.1.4)
+
+**Closed issues:**
+
+- add find\_by! [\#13](https://github.com/amalagaura/camunda-workflow/issues/13)
 
 **Merged pull requests:**
 
+- Add find\_by! to all Camunda Her models [\#14](https://github.com/amalagaura/camunda-workflow/pull/14) ([amalagaura](https://github.com/amalagaura))
 - Yarddoc documentation [\#12](https://github.com/amalagaura/camunda-workflow/pull/12) ([curatingbits](https://github.com/curatingbits))
 
 ## [v0.1.3](https://github.com/amalagaura/camunda-workflow/tree/v0.1.3) (2019-12-06)
@@ -21,7 +26,6 @@
 
 - Raise Submission errors if Camunda does not accept completion [\#11](https://github.com/amalagaura/camunda-workflow/pull/11) ([amalagaura](https://github.com/amalagaura))
 - Allow Poller to not exit its loop when there is a missing class and report error [\#8](https://github.com/amalagaura/camunda-workflow/pull/8) ([amalagaura](https://github.com/amalagaura))
-- Add rubocop rspec [\#6](https://github.com/amalagaura/camunda-workflow/pull/6) ([amalagaura](https://github.com/amalagaura))
 
 ## [v0.1.2](https://github.com/amalagaura/camunda-workflow/tree/v0.1.2) (2019-11-27)
 
@@ -29,6 +33,7 @@
 
 **Merged pull requests:**
 
+- Add rubocop rspec [\#6](https://github.com/amalagaura/camunda-workflow/pull/6) ([amalagaura](https://github.com/amalagaura))
 - Correct find\_by\_business\_key\_and\_task\_definition\_key! [\#5](https://github.com/amalagaura/camunda-workflow/pull/5) ([amalagaura](https://github.com/amalagaura))
 - added authentication via templates for spring\\_boot generator and Her [\#4](https://github.com/amalagaura/camunda-workflow/pull/4) ([curatingbits](https://github.com/curatingbits))
 - Refactor to return proper Her models after responses [\#3](https://github.com/amalagaura/camunda-workflow/pull/3) ([amalagaura](https://github.com/amalagaura))
