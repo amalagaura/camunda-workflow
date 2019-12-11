@@ -20,12 +20,7 @@ class Camunda::Task < Camunda::Model
   # @param task_key [String] id/key of the user task
   # @return [Camunda::Task]
   def self.find_by_business_key_and_task_definition_key!(instance_business_key, task_key)
-    find_by(processInstanceBusinessKey: instance_business_key, taskDefinitionKey: task_key).tap do |ct|
-      unless ct
-        raise MissingTask, "Could not find Camunda Task with processInstanceBusinessKey: #{instance_business_key} " \
-              "and taskDefinitionKey #{task_key}"
-      end
-    end
+    find_by!(processInstanceBusinessKey: instance_business_key, taskDefinitionKey: task_key)
   end
 
   # Complete a task and updates process variables.
@@ -38,9 +33,6 @@ class Camunda::Task < Camunda::Model
         .tap do |response|
       raise SubmissionError, response.body[:data][:message] unless response.success?
     end
-  end
-  # Error class when task is missing or doesn't exist.
-  class MissingTask < StandardError
   end
 
   # Error class when the task cannot be submitted. For instance if the bpmn process expects a variable and the variable

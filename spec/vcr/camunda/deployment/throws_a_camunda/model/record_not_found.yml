@@ -1,0 +1,119 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8080/rest/deployment?id=doesnt-exist
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.1
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Wed, 11 Dec 2019 16:20:58 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 11 Dec 2019 16:20:58 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.1
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Wed, 11 Dec 2019 16:20:58 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 11 Dec 2019 16:20:59 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/process-definition?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.1
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Wed, 11 Dec 2019 16:20:58 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 11 Dec 2019 16:20:59 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/rest/deployment?tenantIdIn=test-environment
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.1
+      Authorization:
+      - Basic Og==
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '2'
+      date:
+      - Wed, 11 Dec 2019 16:20:58 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Wed, 11 Dec 2019 16:20:59 GMT
+recorded_with: VCR 5.0.0

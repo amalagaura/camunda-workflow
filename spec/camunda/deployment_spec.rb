@@ -11,4 +11,8 @@ RSpec.describe Camunda::Deployment, :vcr do
   it 'throws an error with invalid bpmn' do
     expect { described_class.create file_names: ['README.md'] }.to raise_error(Camunda::ProcessEngineException)
   end
+
+  it 'throws a Camunda::Model::RecordNotFound' do
+    expect { described_class.find_by!(id: 'doesnt-exist') }.to raise_error(Camunda::Model::RecordNotFound)
+  end
 end

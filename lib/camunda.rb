@@ -7,11 +7,11 @@ require 'faraday_middleware'
 module Camunda
   # Camunda class
   class << self
-    # attr_writer used for logger
+    # Allows setting the logger to a custom logger
     attr_writer :logger
-    # logger for camunda-workflow
+    # Default is output to the standard output stream.
+    # @return [Object] instance which is used for logging
     def logger
-      # creates a Logger that outputs to the standard output stream.
       @logger ||= Logger.new($stdout).tap do |log|
         log.progname = name
       end
@@ -34,6 +34,8 @@ module Camunda
       env[:body] = JSON.generate(json)
     end
 
+    private
+
     # Return a new hash with all keys converted by the block operation.
     def transform_hash!(hash)
       hash.deep_transform_keys!(&:underscore)
@@ -51,7 +53,13 @@ module Camunda
   end
   # Error when BPMN process cannot be deployed.
   class BpmnError < StandardError
-    attr_reader :error_code, :variables
+    # Camunda BPMN error code
+    # @return [String]
+    attr_reader :error_code
+    # variables to send to Camunda along with the error
+    # @return [Hash]
+    attr_reader :variables
+
     # @param message [String]
     # @param error_code [String]
     # @param variables [Hash]

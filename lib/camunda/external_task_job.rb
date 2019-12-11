@@ -10,6 +10,7 @@ module Camunda::ExternalTaskJob
   #   CamundaWorkflow::DoSomething.new.perform(task.id, x: 'abcd')
   # @param id [Integer] of the worker for the locked task
   # @param input_variables [Hash]
+  # @raise [Camunda::ExternalTask::SubmissionError] if Camunda does not accept the submission of the task
   def perform(id, input_variables)
     output_variables = bpmn_perform(input_variables)
     output_variables = {} if output_variables.nil?
@@ -53,7 +54,7 @@ module Camunda::ExternalTaskJob
     Camunda::ExternalTask.new(id: id).bpmn_error(exception)
   end
 
-  # Reports a bpmn error when variables haven't been set in the bpmn_variables method of the process definition class
+  # Default bpmn_perform which raises an error. Forces user to create their own implementation
   def bpmn_perform(_variables)
     raise StandardError, "Please define this method which takes a hash of variables and returns a hash of variables"
   end

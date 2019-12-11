@@ -3,6 +3,7 @@ require 'her/model'
 class Camunda::Model
   include Her::Model
 
+  # We use a lambda so that this is evaluated after Camunda::Workflow.configuration is set
   api = lambda do
     # Configuration for Her and Faraday requests and responses
     Her::API.new(url: File.join(Camunda::Workflow.configuration.engine_url)) do |c|
@@ -23,10 +24,24 @@ class Camunda::Model
   end
 
   use_api api
+
+  # Returns result of find_by but raises an exception instead of returning nil
+  # @param params [Hash] query parameters
+  # @return [Camunda::Model]
+  # @raise [Camunda::Model::RecordNotFound] if query returns no results
+  def self.find_by!(params)
+    find_by(params).tap do |result|
+      raise Camunda::Model::RecordNotFound unless result
+    end
+  end
+
   # Returns the worker id
   # @note default worker id is set in Camunda::Workflow.configuration
   # @return [String] id of worker
   def self.worker_id
     Camunda::Workflow.configuration.worker_id
+  end
+
+  class RecordNotFound < StandardError
   end
 end
