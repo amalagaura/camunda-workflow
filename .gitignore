@@ -83,13 +83,7 @@ rails_best_practices_output.html
 
 .env.development
 
-solr/data
-solr/test/data
-solr/development/data
-solr/default/data
-solr/pids
-
-data
+/spec/camunda/dummy/
 
 # files added by RubyMine
 .rakeTasks
