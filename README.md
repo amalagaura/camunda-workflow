@@ -13,9 +13,16 @@
 ```
 
 ## Camunda Integration with Ruby
-The process definitions key becomes the module name of your implementation classes and must be set to the name of a ruby style constant (screenshot example provided below). This same process definition key should be set as the topic name for external tasks. Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
+The process definitions key becomes the module name of your implementation classes and must be set to the name of a ruby style constant. 
     
-![image](https://www.evernote.com/l/Ajnoawx6CYhKha7OXUPkyeo6CjrxvSoTgOUB/image.png)
+![image](https://user-images.githubusercontent.com/498234/70742441-899ecf00-1ceb-11ea-9eb8-42dbb08dbd2d.png)
+
+
+An external task is created with a Ruby class name for the id. And the process definition key should be set as the topic name. 
+
+![image](https://user-images.githubusercontent.com/498234/70742635-fd40dc00-1ceb-11ea-8518-0fa5f6ea8028.png)
+
+Tasks are pulled and fetched and locked and then run. We expect classes (ActiveJob) to implement each external task.
 
 ### Integration with your worker classes
 
