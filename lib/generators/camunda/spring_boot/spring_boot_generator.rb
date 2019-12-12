@@ -7,25 +7,32 @@ module Camunda
       source_root File.expand_path('templates', __dir__)
       class_option :app_path, type: :string, default: 'bpmn/java_app'
       class_option :diagram_path, type: :string, default: 'bpmn/diagrams'
-      # Copys all spring boot files into a rails application and provides a Camunda engine for testing.
+
+      # Links resources to a top level diagrams folder
+      def link_resources_folder
+        create_link File.join(bpmn_app_path, 'src/main/resources/'), File.join('../../../diagrams')
+      end
+
+      # Copies a sample bpmn file to help demonstrate the usage for camunda-workflow
+      def copy_sample_bpmn
+        copy_file 'sample.bpmn', File.join(diagram_path, 'sample.bpmn'), ''
+        copy_file 'ProcessScenarioTest.java', File.join(bpmn_app_path, 'src/test/java/unittest/ProcessScenarioTest.java')
+      end
+
+      # Copies all spring boot files into a rails application and provides a Camunda engine for testing.
       def copy_java_app_files
         copy_file 'pom.xml', File.join(bpmn_app_path, 'pom.xml')
         copy_file 'camunda.cfg.xml', File.join(bpmn_app_path, 'src/test/resources/camunda.cfg.xml')
         copy_file 'logback.xml', File.join(bpmn_app_path, 'src/main/resources/logback.xml')
         copy_file 'application.properties', File.join(bpmn_app_path, 'src/main/resources/application.properties')
-        copy_file 'ProcessScenarioTest.java', File.join(bpmn_app_path, 'src/test/java/unittest/ProcessScenarioTest.java')
         copy_file 'Camunda.java', File.join(bpmn_app_path, 'src/main/java/camunda/Camunda.java')
-      end
-
-      # Copys a sample bpmn file to help demonstrate the usage for camunda-workflow
-      def link_resources_folder
-        copy_file 'sample.bpmn', File.join(diagram_path, 'sample.bpmn'), ''
-        copy_file 'sample.bpmn', File.join(bpmn_app_path, '/src/main/resources/sample.bpmn')
       end
 
       # Add spring boot files to .gitignore
       def add_to_ignores
-        %w[.gitignore .cfignore].each do |file|
+        ignores = %w[.gitignore]
+        ignores << '.cfignore' if File.exist?('.cfignore')
+        ignores.each do |file|
           append_to_file file do
             "\n# BPMN Java app\n" +
               File.join(bpmn_app_path, 'target') +
