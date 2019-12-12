@@ -12,6 +12,11 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/StringLiterals:
   Enabled: false
+Style/BlockDelimiters:
+  IgnoredMethods:
+    - lambda
+    - proc
+
 Metrics/BlockLength:
   ExcludedMethods:
     - class_methods
@@ -32,3 +37,5 @@ Layout/SpaceAroundEqualsInParameterDefault:
 
 RSpec/MultipleExpectations:
   Enabled: false
+RSpec/ExampleLength:
+  Max: 10
