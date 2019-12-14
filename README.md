@@ -71,7 +71,17 @@ allows one to have some tasks be handled outside the Rails app. It confirms that
 
 #### Starting the Camunda server for development
 
-Start the application: `mvn spring-boot:run`
+Start the application: 
+```bash
+ cd bpmn/java_app
+```
+```bash 
+mvn spring-boot:run
+```
+Or use the rake command:
+```bash
+rake camunda:run
+```
 
 Camunda-workflow defaults to an in-memory, h2 database engine. If you rather use a Postgres database engine, comment out the 
 h2 database engine settings in the `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 

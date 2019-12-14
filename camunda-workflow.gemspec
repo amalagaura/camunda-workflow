@@ -26,4 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-rspec', '~> 1.37.0'
   spec.add_development_dependency 'simplecov', '~> 0.17.1'
   spec.add_development_dependency 'vcr', '~> 5.0.0'
+  # Needs to be included for rake file
+  spec.add_development_dependency 'yard', '~> 0.9.20'
 end

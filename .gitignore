@@ -24,7 +24,9 @@
 
 #Ignore Documentation
 /code/
-.yardoc/*
+/.yardoc/
+/doc/
+/rdoc/
 
 # persists some state between rspec runs
 spec/spec_failures.txt
