@@ -71,7 +71,36 @@ allows one to have some tasks be handled outside the Rails app. It confirms that
 
 #### Starting the Camunda server for development
 
-Start the application: `mvn spring-boot:run`
+[Java 7](https://www.java.com/en/) and [Apache Maven](https://maven.apache.org/install.html) are requirements to run 
+[Spring](https://docs.spring.io/spring-boot/docs/1.5.21.RELEASE/reference/html/getting-started-system-requirements.html). 
+Make sure all requirements for Spring are satisfied before starting Camunda engine via spring boot.
+
+Start the application: 
+```bash
+ cd bpmn/java_app
+```
+```bash 
+mvn spring-boot:run
+```
+The following Rake commands are available to maintain the spring boot server. 
+
+```Bash
+# Install the spring-boot app dependencies. 
+rake camunda:install
+```
+We suggest (not required) running the install command before running the spring boot server for the first time or if the pom.xml file is updated. The 
+install cleans up artifacts created by prior builds and installs the package dependencies into the local repository.
+
+```bash
+# Start the Camunda spring boot app
+rake camunda:run
+```
+
+```bash
+# Runs spring boot test suite
+rake camunda:test
+```
+ 
 
 Camunda-workflow defaults to an in-memory, h2 database engine. If you rather use a Postgres database engine, comment out the 
 h2 database engine settings in the `pom.xml` file located in `bpmn/java_app`. Default settings for using Postgres are available in the `pom.xml` file. 
@@ -117,7 +146,10 @@ The jar is in `target/camunda-bpm-springboot.jar`
 It will fail to start. Create a postgres database as a service in PCF and bind it to the application. The Springboot application is configured for Postgres and will then be able to start.
 
 #### Running java unit tests
-`mvn clean test`
+```bash
+# Run in bpmn/java_app directory
+mvn clean test
+```
 
 ## Usage
 ### Deploying a model

@@ -26,6 +26,7 @@ module Camunda
         copy_file 'logback.xml', File.join(bpmn_app_path, 'src/main/resources/logback.xml')
         copy_file 'application.properties', File.join(bpmn_app_path, 'src/main/resources/application.properties')
         copy_file 'Camunda.java', File.join(bpmn_app_path, 'src/main/java/camunda/Camunda.java')
+        copy_file 'camunda.rake', 'lib/tasks/camunda.rake'
       end
 
       # Add spring boot files to .gitignore

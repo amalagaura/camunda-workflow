@@ -21,6 +21,7 @@ describe Camunda::Generators::SpringBootGenerator do
       expect(spring_app.join("src/main/resources/application.properties")).to be_file
       expect(spring_app.join("src/main/resources/sample.bpmn")).to be_file
       expect(spring_app.join("src/main/resources/logback.xml")).to be_file
+      expect(dummy_app_dir.join("lib/tasks/camunda.rake")).to be_file
     end
   end
 
