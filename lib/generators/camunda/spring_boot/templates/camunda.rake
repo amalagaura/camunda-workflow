@@ -20,6 +20,6 @@ namespace :camunda do
   # Installs the spring-boot app dependencies mvn clean install.
   desc 'Installs spring-boot dependencies for Camunda spring-boot app.'
   task :install do
-    system('mvn clean install', chdir: mvn_path)
+    system('mvn clean install -DskipTests=true', chdir: mvn_path)
   end
 end
