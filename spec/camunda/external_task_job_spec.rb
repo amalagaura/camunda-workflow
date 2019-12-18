@@ -68,6 +68,28 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
     end
   end
 
+  context "when bpmn_perform doesn't return variables" do
+    let(:klass) do
+      Class.new do
+        include Camunda::ExternalTaskJob
+
+        def bpmn_perform(_variables)
+          []
+        end
+      end
+    end
+
+    it '#bpmn_perform' do
+      incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
+
+      expect(incident).to be_nil
+      expect(external_task_job).to be_success
+      incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
+      expect(incident).to be_an_instance_of(Camunda::Incident)
+      expect(incident.incident_message).to eq("Hash of variables not returned from bpmn_perform. Received []")
+    end
+  end
+
   context 'when has bpmn error' do
     let(:klass) do
       Class.new do

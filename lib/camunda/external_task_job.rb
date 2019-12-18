@@ -15,7 +15,7 @@ module Camunda::ExternalTaskJob
     output_variables = bpmn_perform(input_variables)
     output_variables = {} if output_variables.nil?
     unless output_variables.is_a?(Hash)
-      raise ArgumentError, "Hash of variables not returned from bpmn_perform. Received #{output_variables}"
+      raise ArgumentError, "Hash of variables not returned from bpmn_perform. Received #{output_variables.inspect}"
     end
 
     report_completion id, output_variables

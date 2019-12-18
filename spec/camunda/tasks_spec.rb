@@ -17,7 +17,7 @@ RSpec.describe Camunda::Task, :vcr, :deployment do
   end
 
   describe 'user task with error' do
-    let(:task_key) { "UserTaskWithError" }
+    let(:task_key) { "UserTaskForError" }
 
     it('bpmn error in submitting gives an error description') do
       expect { result }

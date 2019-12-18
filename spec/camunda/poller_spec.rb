@@ -21,15 +21,15 @@ RSpec.describe Camunda::Poller, :vcr, :deployment do
 
   describe '#fetch_and_execute' do
     it 'completes a task' do
-      expect(Camunda::ExternalTask.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).count).to eq(1)
+      expect(Camunda::ExternalTask.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).count).to eq(2)
       stub_const('CamundaWorkflow::DoSomething', klass)
       described_class.fetch_and_execute(%w[CamundaWorkflow])
-      expect(Camunda::ExternalTask.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).count).to eq(0)
+      expect(Camunda::ExternalTask.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).count).to eq(1)
     end
 
     it 'reports missing classes' do
       expect(Camunda::Incident.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).count).to eq(0)
-      expect(Camunda::ExternalTask.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id, notLocked: true).count).to eq(1)
+      expect(Camunda::ExternalTask.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id, notLocked: true).count).to eq(2)
       described_class.fetch_and_execute(%w[CamundaWorkflow])
       expect(Camunda::Incident.where(tenantIdIn: Camunda::Workflow.configuration.tenant_id).count).to eq(1)
     end
