@@ -5,7 +5,7 @@
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
 
-[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). 
+[Her](https://github.com/remiprev/her) is used to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/) with a Ruby class corresponding to a Camunda external task.  
 
 ### Add to your Gemfile
 ```ruby
