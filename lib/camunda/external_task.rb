@@ -1,4 +1,5 @@
 require 'active_support/core_ext/string/inflections.rb'
+require 'active_support/backtrace_cleaner'
 # External Tasks are the task entity for camunda. We can query the topic and lock the task. After the task
 # is locked, the external task of the process instance can be worked and completed. Below is an excerpt from the Camunda
 # documentation regarding the ExternalTask process.
@@ -41,7 +42,9 @@ class Camunda::ExternalTask < Camunda::Model
     variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
     self.class.post_raw("#{collection_path}/#{id}/failure",
                         workerId: worker_id, errorMessage: exception.message,
-                        errorDetails: variables_information.to_s + exception.full_message)[:response]
+                        errorDetails:
+                          variables_information.to_s +
+                          backtrace_cleaner.clean(exception.backtrace).join("\n"))[:response]
   end
 
   # Reports the error to Camunda and creates an incident for the process instance.
@@ -144,6 +147,17 @@ class Camunda::ExternalTask < Camunda::Model
       raise Camunda::MissingImplementationClass, task_class_name unless klass
     end
   end
+
+  private
+
+  def backtrace_cleaner
+    @backtrace_cleaner ||= ActiveSupport::BacktraceCleaner.new.tap do |bc|
+      Camunda::Workflow.configuration.backtrace_silencer_lines.each do |line|
+        bc.add_silencer { |exception_line| exception_line =~ /#{line}/ }
+      end
+    end
+  end
+
   # If the BPMN file expects a variable and the variable isn't supplied with an SubmissionError will be raised
   # indicating that the variable does not exist.
   class SubmissionError < StandardError

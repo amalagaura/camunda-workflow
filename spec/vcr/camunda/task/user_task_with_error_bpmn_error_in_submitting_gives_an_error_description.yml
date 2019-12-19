@@ -21,14 +21,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/incident?tenantIdIn=test-environment
@@ -50,14 +50,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: post
     uri: http://localhost:8080/rest/process-definition/key/CamundaWorkflow/tenant-id/test-environment/start
@@ -81,14 +81,14 @@ http_interactions:
       content-length:
       - '367'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/af5f56d2-21f0-11ea-b6c7-acde48001122","rel":"self"}],"id":"af5f56d2-21f0-11ea-b6c7-acde48001122","definitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/c4dd5ff9-22a2-11ea-a44e-acde48001122","rel":"self"}],"id":"c4dd5ff9-22a2-11ea-a44e-acde48001122","definitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/task?processInstanceBusinessKey=WorkflowBusinessKey&taskDefinitionKey=UserTaskForError
@@ -112,18 +112,18 @@ http_interactions:
       content-length:
       - '611'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"id":"af5f7df0-21f0-11ea-b6c7-acde48001122","name":"User Task for
-        Error","assignee":null,"created":"2019-12-18T18:47:00.636-0500","due":null,"followUp":null,"delegationState":null,"description":null,"executionId":"af5f7de7-21f0-11ea-b6c7-acde48001122","owner":null,"parentTaskId":null,"priority":50,"processDefinitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","processInstanceId":"af5f56d2-21f0-11ea-b6c7-acde48001122","taskDefinitionKey":"UserTaskForError","caseExecutionId":null,"caseInstanceId":null,"caseDefinitionId":null,"suspended":false,"formKey":null,"tenantId":"test-environment"}]'
+      string: '[{"id":"c4dd8717-22a2-11ea-a44e-acde48001122","name":"User Task for
+        Error","assignee":null,"created":"2019-12-19T16:01:47.112-0500","due":null,"followUp":null,"delegationState":null,"description":null,"executionId":"c4dd5ffe-22a2-11ea-a44e-acde48001122","owner":null,"parentTaskId":null,"priority":50,"processDefinitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","processInstanceId":"c4dd5ff9-22a2-11ea-a44e-acde48001122","taskDefinitionKey":"UserTaskForError","caseExecutionId":null,"caseInstanceId":null,"caseDefinitionId":null,"suspended":false,"formKey":null,"tenantId":"test-environment"}]'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: post
-    uri: http://localhost:8080/rest/task/af5f7df0-21f0-11ea-b6c7-acde48001122/complete
+    uri: http://localhost:8080/rest/task/c4dd8717-22a2-11ea-a44e-acde48001122/complete
     body:
       encoding: UTF-8
       string: '{"variables":{}}'
@@ -144,16 +144,16 @@ http_interactions:
       content-length:
       - '203'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"type":"RestException","message":"Cannot complete task af5f7df0-21f0-11ea-b6c7-acde48001122:
+      string: '{"type":"RestException","message":"Cannot complete task c4dd8717-22a2-11ea-a44e-acde48001122:
         Unknown property used in expression: ${missingVariable}. Cause: Cannot resolve
         identifier ''missingVariable''"}'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
@@ -175,17 +175,17 @@ http_interactions:
       content-length:
       - '250'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"links":[],"id":"af5f56d2-21f0-11ea-b6c7-acde48001122","definitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
+      string: '[{"links":[],"id":"c4dd5ff9-22a2-11ea-a44e-acde48001122","definitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","businessKey":"WorkflowBusinessKey","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: delete
-    uri: http://localhost:8080/rest/process-instance/af5f56d2-21f0-11ea-b6c7-acde48001122
+    uri: http://localhost:8080/rest/process-instance/c4dd5ff9-22a2-11ea-a44e-acde48001122
     body:
       encoding: UTF-8
       string: "{}"
@@ -202,14 +202,14 @@ http_interactions:
       message: ''
     headers:
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:47 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/incident?tenantIdIn=test-environment
@@ -231,12 +231,12 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:47:00 GMT
+      - Thu, 19 Dec 2019 21:01:47 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:47 GMT
 recorded_with: VCR 5.0.0

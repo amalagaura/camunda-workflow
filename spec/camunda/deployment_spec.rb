@@ -9,7 +9,7 @@ RSpec.describe Camunda::Deployment, :vcr do
   end
 
   it 'throws an error with invalid bpmn' do
-    expect { described_class.create file_names: ['README.md'] }.to raise_error(Camunda::ProcessEngineException)
+    expect { described_class.create file_names: ['Gemfile'] }.to raise_error(Camunda::ProcessEngineException)
   end
 
   it 'throws a Camunda::Model::RecordNotFound' do

@@ -21,14 +21,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:59 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/incident?tenantIdIn=test-environment
@@ -50,14 +50,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:59 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: post
     uri: http://localhost:8080/rest/process-definition/key/CamundaWorkflow/tenant-id/test-environment/start
@@ -81,14 +81,14 @@ http_interactions:
       content-length:
       - '351'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/aeff0f09-21f0-11ea-b6c7-acde48001122","rel":"self"}],"id":"aeff0f09-21f0-11ea-b6c7-acde48001122","definitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","businessKey":"Key","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/process-instance/c4a5fc15-22a2-11ea-a44e-acde48001122","rel":"self"}],"id":"c4a5fc15-22a2-11ea-a44e-acde48001122","definitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","businessKey":"Key","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/external-task?tenantIdIn=test-environment
@@ -110,14 +110,14 @@ http_interactions:
       content-length:
       - '1263'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:aeff3625-21f0-11ea-b6c7-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"aeff3624-21f0-11ea-b6c7-acde48001122","id":"aeff3626-21f0-11ea-b6c7-acde48001122","lockExpirationTime":null,"processDefinitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"aeff0f09-21f0-11ea-b6c7-acde48001122","retries":null,"suspended":false,"workerId":null,"topicName":"CamundaWorkflow","tenantId":"test-environment","priority":0,"businessKey":"Key"},{"activityId":"ServiceTaskForError","activityInstanceId":"ServiceTaskForError:aeff362b-21f0-11ea-b6c7-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"aeff362a-21f0-11ea-b6c7-acde48001122","id":"aeff362c-21f0-11ea-b6c7-acde48001122","lockExpirationTime":null,"processDefinitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"aeff0f09-21f0-11ea-b6c7-acde48001122","retries":null,"suspended":false,"workerId":null,"topicName":"CamundaWorkflowErrors","tenantId":"test-environment","priority":0,"businessKey":"Key"}]'
+      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:c4a62331-22a2-11ea-a44e-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"c4a62330-22a2-11ea-a44e-acde48001122","id":"c4a62332-22a2-11ea-a44e-acde48001122","lockExpirationTime":null,"processDefinitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"c4a5fc15-22a2-11ea-a44e-acde48001122","retries":null,"suspended":false,"workerId":null,"topicName":"CamundaWorkflow","tenantId":"test-environment","priority":0,"businessKey":"Key"},{"activityId":"ServiceTaskForError","activityInstanceId":"ServiceTaskForError:c4a62337-22a2-11ea-a44e-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"c4a62336-22a2-11ea-a44e-acde48001122","id":"c4a62338-22a2-11ea-a44e-acde48001122","lockExpirationTime":null,"processDefinitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"c4a5fc15-22a2-11ea-a44e-acde48001122","retries":null,"suspended":false,"workerId":null,"topicName":"CamundaWorkflowErrors","tenantId":"test-environment","priority":0,"businessKey":"Key"}]'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: post
     uri: http://localhost:8080/rest/external-task/fetchAndLock
@@ -141,17 +141,17 @@ http_interactions:
       content-length:
       - '712'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:aeff3625-21f0-11ea-b6c7-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"aeff3624-21f0-11ea-b6c7-acde48001122","id":"aeff3626-21f0-11ea-b6c7-acde48001122","lockExpirationTime":"2020-01-01T18:47:00.070-0500","processDefinitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"aeff0f09-21f0-11ea-b6c7-acde48001122","retries":null,"suspended":false,"workerId":"0","topicName":"CamundaWorkflow","tenantId":"test-environment","variables":{"x":{"type":"String","value":"abcd","valueInfo":{}}},"priority":0,"businessKey":"Key"}]'
+      string: '[{"activityId":"DoSomething","activityInstanceId":"DoSomething:c4a62331-22a2-11ea-a44e-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"c4a62330-22a2-11ea-a44e-acde48001122","id":"c4a62332-22a2-11ea-a44e-acde48001122","lockExpirationTime":"2020-01-02T16:01:46.795-0500","processDefinitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"c4a5fc15-22a2-11ea-a44e-acde48001122","retries":null,"suspended":false,"workerId":"0","topicName":"CamundaWorkflow","tenantId":"test-environment","variables":{"x":{"type":"String","value":"abcd","valueInfo":{}}},"priority":0,"businessKey":"Key"}]'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: post
-    uri: http://localhost:8080/rest/external-task/aeff3626-21f0-11ea-b6c7-acde48001122/complete
+    uri: http://localhost:8080/rest/external-task/c4a62332-22a2-11ea-a44e-acde48001122/complete
     body:
       encoding: UTF-8
       string: '{"workerId":"0","variables":{"x":{"value":"abcd","type":"String"}}}'
@@ -168,14 +168,14 @@ http_interactions:
       message: ''
     headers:
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/external-task?tenantIdIn=test-environment
@@ -197,14 +197,14 @@ http_interactions:
       content-length:
       - '643'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"activityId":"ServiceTaskForError","activityInstanceId":"ServiceTaskForError:aeff362b-21f0-11ea-b6c7-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"aeff362a-21f0-11ea-b6c7-acde48001122","id":"aeff362c-21f0-11ea-b6c7-acde48001122","lockExpirationTime":null,"processDefinitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"aeff0f09-21f0-11ea-b6c7-acde48001122","retries":null,"suspended":false,"workerId":null,"topicName":"CamundaWorkflowErrors","tenantId":"test-environment","priority":0,"businessKey":"Key"}]'
+      string: '[{"activityId":"ServiceTaskForError","activityInstanceId":"ServiceTaskForError:c4a62337-22a2-11ea-a44e-acde48001122","errorMessage":null,"errorDetails":null,"executionId":"c4a62336-22a2-11ea-a44e-acde48001122","id":"c4a62338-22a2-11ea-a44e-acde48001122","lockExpirationTime":null,"processDefinitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","processDefinitionKey":"CamundaWorkflow","processDefinitionVersionTag":null,"processInstanceId":"c4a5fc15-22a2-11ea-a44e-acde48001122","retries":null,"suspended":false,"workerId":null,"topicName":"CamundaWorkflowErrors","tenantId":"test-environment","priority":0,"businessKey":"Key"}]'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
@@ -226,17 +226,17 @@ http_interactions:
       content-length:
       - '234'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"links":[],"id":"aeff0f09-21f0-11ea-b6c7-acde48001122","definitionId":"CamundaWorkflow:2:addc6035-21f0-11ea-b6c7-acde48001122","businessKey":"Key","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
+      string: '[{"links":[],"id":"c4a5fc15-22a2-11ea-a44e-acde48001122","definitionId":"CamundaWorkflow:2:c3da20c3-22a2-11ea-a44e-acde48001122","businessKey":"Key","caseInstanceId":null,"ended":false,"suspended":false,"tenantId":"test-environment"}]'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: delete
-    uri: http://localhost:8080/rest/process-instance/aeff0f09-21f0-11ea-b6c7-acde48001122
+    uri: http://localhost:8080/rest/process-instance/c4a5fc15-22a2-11ea-a44e-acde48001122
     body:
       encoding: UTF-8
       string: "{}"
@@ -253,14 +253,14 @@ http_interactions:
       message: ''
     headers:
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/incident?tenantIdIn=test-environment
@@ -282,12 +282,12 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:59 GMT
+      - Thu, 19 Dec 2019 21:01:46 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:47:00 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:46 GMT
 recorded_with: VCR 5.0.0

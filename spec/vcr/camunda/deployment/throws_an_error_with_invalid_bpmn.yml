@@ -21,14 +21,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:57 GMT
+      - Thu, 19 Dec 2019 21:01:45 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:57 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:45 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/incident?tenantIdIn=test-environment
@@ -50,166 +50,32 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:57 GMT
+      - Thu, 19 Dec 2019 21:01:45 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:57 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:45 GMT
 - request:
     method: post
     uri: http://localhost:8080/rest/deployment/create
     body:
       encoding: UTF-8
-      string: "-------------RubyMultipartPost-e4e2316167556788f42aad08a0852555\r\nContent-Disposition:
-        form-data; name=\"README.md\"; filename=\"README.md\"\r\nContent-Length: 10856\r\nContent-Type:
-        text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\n[![Build Status](https://travis-ci.com/amalagaura/camunda-workflow.svg?branch=master)](https://travis-ci.com/amalagaura/camunda-workflow)
-        \n[![Gem Version](https://badge.fury.io/rb/camunda-workflow.svg)](https://badge.fury.io/rb/camunda-workflow)\n[![Inline
-        docs](http://inch-ci.org/github/amalagaura/camunda-workflow.svg?branch=master)](http://inch-ci.org/github/amalagaura/camunda-workflow)\n#
-        Camunda Workflow\n\n## An opinionated interface to Camunda for Ruby/Rails
-        apps\n\n[Her](https://github.com/remiprev/her) is used to communicate with
-        the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/).
-        \n\n### Add to your Gemfile\n```ruby\n  gem 'camunda-workflow'\n```\n\n##
-        Camunda Integration with Ruby\nThe process definitions key becomes the module
-        name of your implementation classes and must be set to the name of a ruby
-        style constant. \n    \n![image](https://user-images.githubusercontent.com/498234/70742441-899ecf00-1ceb-11ea-9eb8-42dbb08dbd2d.png)\n\n\nAn
-        external task is created with a Ruby class name for the id. And the process
-        definition key should be set as the topic name. \n\n![image](https://user-images.githubusercontent.com/498234/70742635-fd40dc00-1ceb-11ea-8518-0fa5f6ea8028.png)\n\nTasks
-        are pulled and fetched and locked and then run. We expect classes (ActiveJob)
-        to implement each external task.\n\n### Integration with your worker classes\n\nThe
-        module `ExternalTaskJob` should be included in your job implementation classes.
-        The job implementation classes can inherit from `ActiveJob::Base`, or use
-        `Sidekiq::Worker` or use some other system for job queuing.\n\nCurrently we
-        call `perform_later` on job implementation classes. If we want to make this
-        more flexible, we need to make the method used to queue jobs configurable.
-        `perform_later` for ActiveJob, `perform_async` for Sidekiq, or `perform` if
-        no background task system is used.\n\n### Implementing `bpmn_perform`\n\n`bpmn_perform`
-        is your implementation of the service task.\n\n### Supporting bpmn exceptions\n\nCamunda
-        supports throwing bpmn exceptions on a service task to communicate logic errors
-        and not underlying code errors. These expected errors are thrown with \n```ruby\nraise
-        Camunda::BpmnError.new error_code: 'bpmn-error', message: \"Special BPMN error\",
-        variables: { bpmn: 'error' }\n```\n\n## Generators\n\n### BPMN ActiveJob install\n```bash\nrails
-        generate camunda:install\n```\n\nCreates `app/jobs/camunda_job.rb`. A class
-        which inherits from ApplicationJob and includes `ExternalTaskJob`. It can
-        be changed to include\n Sidekiq::Worker instead.  \n\nAll of the BPMN worker
-        classes will inherit from this class\n\n### Java Spring Boot App install\n```bash\nrails
-        generate camunda:spring_boot\n```\nCreates a skeleton Java Spring Boot app,
-        which also contains the minimal files to run unit tests on a BPMN file. This
-        can be used to\nstart a Camunda instance with a REST api. This can also be
-        deployed to PCF by generating a Spring Boot jar and pushing it.\n\n### BPMN
-        Classes\n```bash\nrails generate camunda:bpmn_classes\n```\n\nParses the BPMN
-        file and creates task classes according to the ID of the process file and
-        the ID of \neach task. It checks each task and only creates it if the topic
-        name is the same as the process ID. This \nallows one to have some tasks be
-        handled outside the Rails app. It confirms that the ID's are valid Ruby constant
-        names. \n\n#### Starting the Camunda server for development\n\n[Java 7](https://www.java.com/en/)
-        and [Apache Maven](https://maven.apache.org/install.html) are requirements
-        to run \n[Spring](https://docs.spring.io/spring-boot/docs/1.5.21.RELEASE/reference/html/getting-started-system-requirements.html).
-        \nMake sure all requirements for Spring are satisfied before starting Camunda
-        engine via spring boot.\n\nStart the application: \n```bash\n cd bpmn/java_app\n```\n```bash
-        \nmvn spring-boot:run\n```\nThe following Rake commands are available to maintain
-        the spring boot server. \n\n```Bash\n# Install the spring-boot app dependencies.
-        \nrake camunda:install\n```\nWe suggest (not required) running the install
-        command before running the spring boot server for the first time or if the
-        pom.xml file is updated. The \ninstall cleans up artifacts created by prior
-        builds and installs the package dependencies into the local repository.\n\n```bash\n#
-        Start the Camunda spring boot app\nrake camunda:run\n```\n\n```bash\n# Runs
-        spring boot test suite\nrake camunda:test\n```\n \n\nCamunda-workflow defaults
-        to an in-memory, h2 database engine. If you rather use a Postgres database
-        engine, comment out the \nh2 database engine settings in the `pom.xml` file
-        located in `bpmn/java_app`. Default settings for using Postgres are available
-        in the `pom.xml` file. \nYou will need to create a Postgres database on localhost
-        called `camunda`. \n\n#### Engine Route Prefix using the Java Spring Boot
-        app\nThe default engine route prefix for the provided Java Spring Boot app
-        is `rest`. If you choose to download and use the Camunda distribution,\nthe
-        engine prefix is `rest-engine`. Camunda-workflow is configured to use `rest-engine`.\n\nTo
-        override the default engine route prefix to allow your rails application to
-        use the route prefix of `rest`, you need to add an initializer file\nin your
-        rails app with the below code. \n\n\n```ruby\n# filename initializers/camunda.rb\nCamunda::Workflow.configure
-        do |config|\n  config.engine_route_prefix = 'rest'\nend\n```\n#### Enable
-        HTTP Basic Auth for Java Spring Boot app\nTo add authentication to Camunda's
-        REST API within the Java Spring Boot app change the `camunda.authentication`
-        variable located in the\n`application.properties` (bpmn/java_app/src/main/resources)
-        file to `true`. Creating an environment variable `ENV['CAMUNDA_AUTH']` and
-        setting a value of `true` or `false` will \nset the value as well. When HTTP
-        Basic Auth is enabled, it's required that a user with the appropriate permissions
-        is setup in Camunda. \nOtherwise, the request will return as `401 unauthorized`.
-        Users are set up within the admin dashboard of Camunda and used to authenticate
-        by passing an Authorization header during requests to the REST API. Below
-        is how to configure \nthe `camunda_user` and `camunda_password` to be used
-        in the header request to authenticate using HTTP Basic Auth. \n\n```ruby\n#
-        filename initializers/camunda.rb\nCamunda::Workflow.configure do |config|\n
-        \ config.engine_route_prefix = 'rest'\n  config.camunda_user = ENV['CAMUNDA_USER']\n
-        \ config.camunda_password = ENV['CAMUNDA_PASSWORD']\nend\n```\n#### Generating
-        a jar for deployment\n`mvn package spring-boot:repackage`\n\nThe jar is in
-        `target/camunda-bpm-springboot.jar`\n\n#### Deploying to PCF\n`cf push app_name
-        -p target/camunda-bpm-springboot.jar`\n\nIt will fail to start. Create a postgres
-        database as a service in PCF and bind it to the application. The Springboot
-        application is configured for Postgres and will then be able to start.\n\n####
-        Running java unit tests\n```bash\n# Run in bpmn/java_app directory\nmvn clean
-        test\n```\n\n## Usage\n### Deploying a model\nUses a default name, etc. Below
-        outlines how to deploy a process using the included sample.bpmn\nfile created
-        by the generator. Alternatively you can deploy using Camunda Modeler\n\n```ruby\n
-        \ Camunda::Deployment.create file_name: 'bpmn/diagrams/sample.bpmn'\n```\n###
-        Processes\n\n#### Starting a process\n\n```ruby\n  start_response = Camunda::ProcessDefinition.start_by_key'CamundaWorkflow',
-        variables: { x: 'abcd' }, businessKey: 'WorkflowBusinessKey'\n```\n**Camunda
-        cannot handle snake case variables, all snake_case variables are serialized
-        to camelCase before a request is sent to the REST api. Variables returned
-        back from the Camunda API will be deserialized back to snake_case.**\n\n`{
-        my_variable: \"xyz\" }`\n\nwill be converted to:\n\n`{ myVariable: \"xyz\"
-        }`\n\n#### Destroy a process\n```ruby\n  Camunda::ProcessInstance.destroy_existing
-        start_response.id\n```\n\n### Tasks\n\n#### Fetch tasks and queue with ActiveJob\n\nThe
-        poller will run as an infinite loop with long polling to fetch tasks, queue,
-        and run them. Topic is the process definition key, \nas show in the screenshot
-        example from the Camunda Modeler.\n\nBelow will run the poller to fetch, lock,
-        and run a task for the example process definition located in \nthe `starting
-        a process` detailed above.\n\n```ruby\n  Camunda::Poller.fetch_and_execute
-        %w[CamundaWorkflow]\n```\n\n#### Fetch tasks \nFor testing from the console\n\n```ruby\n
-        \ tasks = Camunda::ExternalTask.fetch_and_lock %w[CamundaWorkflow]\n``` \n\n####
-        Run a task\n\n```ruby\n  tasks.each(&:run_now)\n```\n\n\n### User Tasks\n####
-        Mark a user task complete\n```ruby\n  task = Camunda::Task.find_by_business_key_and_task_definition_key!(instance_business_key,
-        task_key)\n  # Or you can query Camunda::Task with other parameters like assignee
-        \n  task.complete!(var1: 'value')\n```\n\n### Rspec Helpers\nRSpec helpers
-        can will validate your application to make sure it has a class for every External
-        task in a given BPMN file.\n```ruby\nrequire 'camunda/matchers'\n\nRSpec.describe
-        \"BPMN Diagrams\" do\n  describe Camunda::BpmnXML.new(File.open(\"bpmn/diagrams/YourFile.bpmn\"))
-        do\n    it { is_expected.to have_module('YourModule') }\n    it { is_expected.to
-        have_topics(%w[YourModule]) }\n    it { is_expected.to have_defined_classes
-        }\n  end\nend\n```\n#### Note: \n\nIf you get an error\n  \n        ** ERROR:
-        directory is already being watched! **\n         \n        Directory: bpmn/java_app/src/main/resources\n
-        \       is already being watched through: bpmn/diagrams\n             \n        MORE
-        INFO: https://github.com/guard/listen/wiki/Duplicate-directory-errors\n        \nIt
-        is because ActionMailer preview causes test/mailers/previews to get added
-        to the Rails EventedFileChecker\nby default. RSpec is supposed to override
-        it, but it is not\nappropriately overridden for EventedFileChecker and/or
-        you don't have spec/mailers/preview existing. If that \ndirectory does not
-        exist, it goes to the first common directory that exists, which is your Rails
-        root folder. \nSo EventedFileChecker is listening to your entire Rails folder.
-        Not a big problem, but it causes a problem \nfor our created symlink.\n\nSo
-        add: \n      \n        config.action_mailer.show_previews = false\n              \nto
-        your `development.rb` file to solve listen errors about a symlink. Unless
-        you are using ActionMailer \npreviews, in which case you should have the directory
-        created already.\n\n## Contributing\n\nSee [CONTRIBUTING](CONTRIBUTING.md)
-        for additional information.\n\n## Public domain\n\nThis project is in the
-        worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):\n\n>
-        This project is in the public domain within the United States, and copyright
-        and related rights in the work worldwide are waived through the [CC0 1.0 Universal
-        public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).\n>\n>
-        All contributions to this project will be released under the CC0 dedication.
-        By submitting a pull request, you are agreeing to comply with this waiver
-        of copyright interest.\n\r\n-------------RubyMultipartPost-e4e2316167556788f42aad08a0852555\r\nContent-Disposition:
-        form-data; name=\"deployment-name\"\r\n\r\nREADME.md\r\n-------------RubyMultipartPost-e4e2316167556788f42aad08a0852555\r\nContent-Disposition:
-        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-e4e2316167556788f42aad08a0852555\r\nContent-Disposition:
-        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-e4e2316167556788f42aad08a0852555--\r\n"
+      string: "-------------RubyMultipartPost-d38ff9cfe98eb45bd39edba9b126324b\r\nContent-Disposition:
+        form-data; name=\"Gemfile\"; filename=\"Gemfile\"\r\nContent-Length: 38\r\nContent-Type:
+        text/plain\r\nContent-Transfer-Encoding: binary\r\n\r\nsource \"https://rubygems.org\"\ngemspec\n\r\n-------------RubyMultipartPost-d38ff9cfe98eb45bd39edba9b126324b\r\nContent-Disposition:
+        form-data; name=\"deployment-name\"\r\n\r\nGemfile\r\n-------------RubyMultipartPost-d38ff9cfe98eb45bd39edba9b126324b\r\nContent-Disposition:
+        form-data; name=\"deployment-source\"\r\n\r\nCamunda Workflow Gem\r\n-------------RubyMultipartPost-d38ff9cfe98eb45bd39edba9b126324b\r\nContent-Disposition:
+        form-data; name=\"tenant-id\"\r\n\r\ntest-environment\r\n-------------RubyMultipartPost-d38ff9cfe98eb45bd39edba9b126324b--\r\n"
     headers:
       User-Agent:
       - Faraday v0.17.1
       Content-Type:
-      - multipart/form-data; boundary=-----------RubyMultipartPost-e4e2316167556788f42aad08a0852555
+      - multipart/form-data; boundary=-----------RubyMultipartPost-d38ff9cfe98eb45bd39edba9b126324b
       Content-Length:
-      - '11564'
+      - '737'
       Authorization:
       - Basic Og==
   response:
@@ -220,17 +86,17 @@ http_interactions:
       content-type:
       - application/json
       content-length:
-      - '445'
+      - '443'
       date:
-      - Wed, 18 Dec 2019 23:46:57 GMT
+      - Thu, 19 Dec 2019 21:01:45 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/adbe02c1-21f0-11ea-b6c7-acde48001122","rel":"self"}],"id":"adbe02c1-21f0-11ea-b6c7-acde48001122","name":"README.md","source":"Camunda
-        Workflow Gem","deploymentTime":"2019-12-18T18:46:57.900-0500","tenantId":"test-environment","deployedProcessDefinitions":null,"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
+      string: '{"links":[{"method":"GET","href":"http://localhost:8080/rest/deployment/c3c5874f-22a2-11ea-a44e-acde48001122","rel":"self"}],"id":"c3c5874f-22a2-11ea-a44e-acde48001122","name":"Gemfile","source":"Camunda
+        Workflow Gem","deploymentTime":"2019-12-19T16:01:45.277-0500","tenantId":"test-environment","deployedProcessDefinitions":null,"deployedCaseDefinitions":null,"deployedDecisionDefinitions":null,"deployedDecisionRequirementsDefinitions":null}'
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:57 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:45 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/process-instance?tenantIdIn=test-environment
@@ -252,14 +118,14 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:57 GMT
+      - Thu, 19 Dec 2019 21:01:45 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:57 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:45 GMT
 - request:
     method: get
     uri: http://localhost:8080/rest/incident?tenantIdIn=test-environment
@@ -281,12 +147,12 @@ http_interactions:
       content-length:
       - '2'
       date:
-      - Wed, 18 Dec 2019 23:46:57 GMT
+      - Thu, 19 Dec 2019 21:01:45 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "[]"
     http_version: 
-  recorded_at: Wed, 18 Dec 2019 23:46:57 GMT
+  recorded_at: Thu, 19 Dec 2019 21:01:45 GMT
 recorded_with: VCR 5.0.0

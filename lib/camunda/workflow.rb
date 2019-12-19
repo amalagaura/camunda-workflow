@@ -61,6 +61,9 @@ module Camunda
       # Camunda password is supplied with the Camunda user to authenticate using HTTP Basic Auth.
       # @return [String] Camunda password for HTTP Basic Auth
       attr_accessor :camunda_password
+      # Can configure the backtrace silencer
+      # @return [Array<String>] List of backtrace silencer strings which are used to clean incident backtraces
+      attr_accessor :backtrace_silencer_lines
 
       def initialize
         @engine_url = 'http://localhost:8080'
@@ -71,6 +74,7 @@ module Camunda
         @lock_duration = 14.days
         @max_polling_tasks = 2
         @long_polling_duration = 30.seconds
+        @backtrace_silencer_lines = ["gems/activesupport", "gems/sidekiq", "gems/activejob", "gems/i18n", "gems/actionpack"]
         @tenant_id = if defined?(Rails)
                        Rails.env.test? ? 'test-environment' : nil
                      end
