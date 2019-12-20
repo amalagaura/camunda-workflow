@@ -13,10 +13,7 @@ module Camunda::ExternalTaskJob
   # @raise [Camunda::ExternalTask::SubmissionError] if Camunda does not accept the submission of the task
   def perform(id, input_variables)
     output_variables = bpmn_perform(input_variables)
-    output_variables = {} if output_variables.nil?
-    unless output_variables.is_a?(Hash)
-      raise ArgumentError, "Hash of variables not returned from bpmn_perform. Received #{output_variables.inspect}"
-    end
+    output_variables = {} unless output_variables.is_a?(Hash)
 
     report_completion id, output_variables
   rescue Camunda::BpmnError => e

@@ -1,4 +1,4 @@
-RSpec.describe Camunda::ExternalTaskJob, :vcr do
+RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
   let!(:process_instance) { Camunda::ProcessDefinition.start_by_key definition_key, businessKey: 'Key' }
   let(:task) { Camunda::ExternalTask.fetch_and_lock("CamundaWorkflow").first }
 
@@ -84,13 +84,8 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr do
     end
 
     it '#bpmn_perform' do
-      incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
-
-      expect(incident).to be_nil
       expect(external_task_job).to be_success
-      incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
-      expect(incident).to be_an_instance_of(Camunda::Incident)
-      expect(incident.incident_message).to eq("Hash of variables not returned from bpmn_perform. Received []")
+      expect(Camunda::ExternalTask.find(task.id)).to be_nil
     end
   end
 
