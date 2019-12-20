@@ -18,7 +18,7 @@ An external task is created with a Ruby class name for the id. And the process d
 
 ![image](https://user-images.githubusercontent.com/498234/71268753-af475c00-231b-11ea-8b39-89d2f306539b.png)
 
-Tasks are fetched, locked and then queued. We expect classes (ActiveJob) to implement each external task. So according to the above screenshots, the poller and queuer will expect a class called `SomeProcess::SomeTask` to be implemented in your app.
+Tasks are fetched, locked and then queued. We expect classes (ActiveJob) to implement each external task. So, according to the above screenshots, the poller and queuer will expect a class called `SomeProcess::SomeTask` to be implemented in your app.
 
 ### Integration with your worker classes
 
@@ -35,7 +35,7 @@ class SomeProcess::SomeTask < CamundaJob
   def bpmn_perform(variables)
     do_something(variables[:foo])
 
-    # A hash returned will becomes variables in the Camunda BPMN process instance
+    # A hash returned will become variables in the Camunda BPMN process instance
     { foo: 'bar', foo2: { json: "str" }, array_var: ["str"] }
   end
 end
@@ -69,14 +69,14 @@ end
 ```bash
 rails generate camunda:spring_boot
 ```
-Creates a skeleton Java Spring Boot app, which also contains the minimal files to run unit tests on a BPMN file. This can be used to
-start a Camunda instance with a REST api. This can also be deployed to PCF by generating a Spring Boot jar and pushing it.
+Creates a skeleton Java Spring Boot app, which also contains the minimal files to run unit tests on a BPMN file. The Spring boot app can be used to
+start a Camunda instance with a REST api and also be deployed to PCF by generating a Spring Boot jar and pushing it.
 
  ### BPMN ActiveJob install
 ```bash
 rails generate camunda:install
 ```
-Creates `app/jobs/camunda_job.rb`. A class which inherits from ApplicationJob and includes `ExternalTaskJob`. It can be changed to include  `Sidekiq::Worker` instead.
+Creates `app/jobs/camunda_job.rb`. A class that inherits from ApplicationJob and includes `ExternalTaskJob`. It can be changed to include  `Sidekiq::Worker` instead.
 
 All of the BPMN worker classes will inherit from this class
 
@@ -88,7 +88,7 @@ Parses the BPMN file and creates task classes according to the ID of the process
 
 #### Starting the Camunda server for development
 
-[Java 7](https://www.java.com/en/) and [Apache Maven](https://maven.apache.org/install.html) are requirements to run the Camunda server. We are using the [Spring](https://docs.spring.io/spring-boot/docs/1.5.21.RELEASE/reference/html/getting-started-system-requirements.html) distribution.  The Camunda application has a `pom.xml` which Maven uses to install the required dependencies.
+[Java 7](https://www.java.com/en/) and [Apache Maven](https://maven.apache.org/install.html) are requirements to run the Camunda server. We are using the [Spring](https://docs.spring.io/spring-boot/docs/1.5.21.RELEASE/reference/html/getting-started-system-requirements.html) distribution.  The Camunda application has a `pom.xml`, which Maven uses to install the required dependencies.
 
 Start the application:
 ```bash
@@ -120,7 +120,7 @@ You will need to create a Postgres database on localhost called `camunda`.
 #### Engine Route Prefix of the Java Spring Boot app
 The default engine route prefix for the provided Java Spring Boot app is `rest`. If you choose to download and use the Camunda distribution, the engine prefix is `rest-engine`. Camunda-workflow is configured to use `rest` by default.
 
-To override the default engine route prefix you need to add an initializer file in your rails app.
+To override the default engine route prefix, you need to add an initializer file in your rails app.
 
 ```ruby
 # filename initializers/camunda.rb
@@ -188,11 +188,11 @@ will be converted to:
 
 #### Fetch tasks and queue with ActiveJob
 
-The poller runs an infinite loop with long polling to fetch tasks, queue, and run them. The topic is the process definition key, as show in the screenshot example from the Camunda Modeler.
+The poller runs an infinite loop with long polling to fetch tasks, queue, and run them. The topic is the process definition key, as shown in the screenshot example from the Camunda Modeler.
 
 Below will run the poller to fetch, lock, and run a task for the example process definition located in the `starting a process` detailed above.
 
-This will need to run in a separate process or thread and needs to be running constantly in order to poll Camunda and queue jobs.
+Poller will need to run in a separate process or thread and needs to be running constantly in order to poll Camunda and queue jobs.
 
 ```ruby
  Camunda::Poller.fetch_and_queue %w[CamundaWorkflow]
