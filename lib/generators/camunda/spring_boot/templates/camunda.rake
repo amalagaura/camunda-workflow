@@ -15,11 +15,6 @@ namespace :camunda do
   # Runs spring boot test suite e.g. mvn test.
   desc 'Runs test suite for Camunda spring-boot application'
   task :test do
-    system('mvn test', chdir: mvn_path)
-  end
-  # Installs the spring-boot app dependencies mvn clean install.
-  desc 'Installs spring-boot dependencies for Camunda spring-boot app.'
-  task :install do
-    system('mvn clean install -DskipTests=true', chdir: mvn_path)
+    system('mvn clean test', chdir: mvn_path)
   end
 end

@@ -92,3 +92,5 @@ data
 #ignore floo files
 .floo
 .flooignore
+
+spec/camunda/dummy/

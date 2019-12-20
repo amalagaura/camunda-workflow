@@ -10,7 +10,7 @@ class Camunda::Deployment < Camunda::Model
   # Deploys a new process definition to Camunda and returns an instance of Camunda::ProcessDefinition.
   # @note Only supporting .create which uses a POST on deployment/create.
   # @example
-  #   pd = Camunda::Deployment.create(file_names: ['bpmn/diagrams/sample.bpmn']).first
+  #   pd = Camunda::Deployment.create(file_names: ['bpmn/resources/sample.bpmn']).first
   # @param files_names [Array<String>] file paths of the bpmn file for deployment
   # @param tenant_id [String] supplied when a single Camunda installation should serve more than one tenant
   # @param deployment_source [String] the source of where the deployment occurred.

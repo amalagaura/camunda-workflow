@@ -16,7 +16,7 @@ describe Camunda::Generators::SpringBootGenerator do
       described_class.start([], destination_root: dummy_app_dir)
 
       expect(spring_app.join("pom.xml")).to be_file
-      expect(bpmn_folder.join("diagrams/sample.bpmn")).to be_file
+      expect(bpmn_folder.join("resources/sample.bpmn")).to be_file
       expect(spring_app.join("src/main/java/camunda/Camunda.java")).to be_file
       expect(spring_app.join("src/main/resources/application.properties")).to be_file
       expect(spring_app.join("src/main/resources/sample.bpmn")).to be_file

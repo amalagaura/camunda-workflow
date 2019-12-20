@@ -1,4 +1,4 @@
-RSpec.describe Camunda::Task, :vcr, :deployment do
+RSpec.describe Camunda::Task, :vcr do
   let(:business_key) { 'WorkflowBusinessKey' }
   let(:task_key) { "UserTask" }
   let(:result) { task.complete! }
