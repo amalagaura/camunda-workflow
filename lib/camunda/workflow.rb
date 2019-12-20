@@ -67,14 +67,14 @@ module Camunda
 
       def initialize
         @engine_url = 'http://localhost:8080'
-        @engine_route_prefix = 'rest-engine'
+        @engine_route_prefix = 'rest'
         @camunda_user = ''
         @camunda_password = ''
         @worker_id = '0'
         @lock_duration = 14.days
         @max_polling_tasks = 2
         @long_polling_duration = 30.seconds
-        @backtrace_silencer_lines = ["gems/activesupport", "gems/sidekiq", "gems/activejob", "gems/i18n", "gems/actionpack"]
+        @backtrace_silencer_lines = %w[gems/activesupport gems/sidekiq gems/activejob gems/i18n gems/actionpack]
         @tenant_id = if defined?(Rails)
                        Rails.env.test? ? 'test-environment' : nil
                      end

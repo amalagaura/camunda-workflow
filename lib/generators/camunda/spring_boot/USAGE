@@ -9,4 +9,4 @@ Example:
 
     with a sample BPMN file and Unit Test.
 
-    The suggested location for your BPMN file is in `bpmn/diagrams`. `bpmn/java_app/src/main/resources` is a symlink to that.
+    The suggested location for your BPMN file is in `bpmn/resources` which symlinks to `bpmn/java_app/src/main/resources`.

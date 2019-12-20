@@ -1,4 +1,4 @@
-RSpec.describe Camunda::ProcessDefinition, :vcr, :deployment do
+RSpec.describe Camunda::ProcessDefinition, :vcr do
   describe '#start_by_key' do
     let(:instance) do
       described_class.start_by_key definition_key,
