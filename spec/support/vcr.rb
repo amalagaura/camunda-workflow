@@ -34,12 +34,15 @@ RSpec.configure do |config|
     name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(%r{[^\w/]+}, "_")
     options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
     VCR.use_cassette(name, options) do
-      clear_camunda
-      result = example.run
+      # Allow us to override :vcr individually with vcr: false
+      if example.metadata[:vcr]
+        clear_camunda
+        result = example.run
 
-      # Leave Process Instances and Deployments available for failed examples. This will not work though unless you run only the
-      # failing example because a subsequent successful spec will clear the Process Instances and Deployments
-      clear_camunda if result.nil?
+        # Leave Process Instances and Deployments available for failed examples. This will not work though unless you run only the
+        # failing example because a subsequent successful spec will clear the Process Instances and Deployments
+        clear_camunda if result.nil?
+      end
     end
   end
 end

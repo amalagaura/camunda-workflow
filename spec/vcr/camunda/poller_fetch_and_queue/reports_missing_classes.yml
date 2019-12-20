@@ -190,10 +190,10 @@ http_interactions:
         `tap''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/external_task.rb:146:in
         `task_class''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/external_task.rb:101:in
         `queue_task''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/poller.rb:14:in
-        `block (2 levels) in fetch_and_execute''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/poller.rb:13:in
+        `block (2 levels) in fetch_and_queue''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/poller.rb:13:in
         `each''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/poller.rb:13:in
-        `block in fetch_and_execute''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/poller.rb:11:in
-        `fetch_and_execute''\n/Users/asethi/Projects/camunda-workflow/spec/camunda/poller_spec.rb:33:in
+        `block in fetch_and_queue''\n/Users/asethi/Projects/camunda-workflow/lib/camunda/poller.rb:11:in
+        `fetch_and_queue''\n/Users/asethi/Projects/camunda-workflow/spec/camunda/poller_spec.rb:33:in
         `block (3 levels) in <top (required)>''\n/Users/asethi/Projects/camunda-workflow/spec/support/vcr.rb:38:in
         `block (3 levels) in <top (required)>''\n/Users/asethi/Projects/camunda-workflow/spec/support/vcr.rb:36:in
         `block (2 levels) in <top (required)>''\n/Users/asethi/.rvm/gems/ruby-2.6.5/bin/rspec:23:in
