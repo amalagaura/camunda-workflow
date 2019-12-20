@@ -1,5 +1,5 @@
 # The poller will run as an infinite loop with long polling to fetch tasks, queue, and run them.
-# Topic is the process definition key. Below will run the poller to fetch, lock, and run a task for the
+# Topic is the process definition key. Below will run the poller to fetch, lock, and queue a task for the
 # example process definition with an id of CamundaWorkflow.
 # @example
 #   Camunda::Poller.fetch_and_queue %w[CamundaWorkflow]
