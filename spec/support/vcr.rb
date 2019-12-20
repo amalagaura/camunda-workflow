@@ -17,23 +17,15 @@ RSpec.configure do |config|
     Camunda::Incident.where(tenantIdIn: tenant_id).each(&:destroy)
   end
 
-  config.before(:suite) do
-    VCR.use_cassette("camunda/specs/before") do
-      Camunda::Deployment.create(file_names: ['spec/bpmn_test_files/sample.bpmn'], tenant_id: tenant_id)
-    end
-  end
-
-  config.after(:suite) do
-    VCR.use_cassette("camunda/specs/after") do
-      Camunda::Deployment.where(tenantIdIn: tenant_id).each { |deployment| deployment.destroy(cascade: true) }
-    end
-  end
-
   # Add VCR to tests with :vcr metadata
   config.around(:each, :vcr) do |example|
     name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(%r{[^\w/]+}, "_")
     options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
     VCR.use_cassette(name, options) do
+      if example.metadata[:deployment]
+        Camunda::Deployment.create(file_names: ['spec/bpmn_test_files/sample.bpmn'], tenant_id: tenant_id)
+      end
+
       # Allow us to override :vcr individually with vcr: false
       if example.metadata[:vcr]
         clear_camunda
@@ -41,7 +33,12 @@ RSpec.configure do |config|
 
         # Leave Process Instances and Deployments available for failed examples. This will not work though unless you run only the
         # failing example because a subsequent successful spec will clear the Process Instances and Deployments
-        clear_camunda if result.nil?
+        if result.nil?
+          clear_camunda
+          if example.metadata[:deployment]
+            Camunda::Deployment.where(tenantIdIn: tenant_id).each { |deployment| deployment.destroy(cascade: true) }
+          end
+        end
       end
     end
   end

@@ -1,4 +1,4 @@
-RSpec.describe Camunda::Poller, :vcr do
+RSpec.describe Camunda::Poller, :vcr, :deployment do
   describe '#fetch_and_queue' do
     before do
       Camunda::ProcessDefinition.start_by_key definition_key, variables: { x: 'abcd' }, businessKey: 'Key'
