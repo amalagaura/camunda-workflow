@@ -53,6 +53,10 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
       incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
       expect(incident).to be_an_instance_of(Camunda::Incident)
       expect(incident.incident_message).to eq("This broke")
+      expect(incident.incident_message).not_to include("activesupport")
+      Camunda::Workflow.configuration.backtrace_silencer_lines.each do |silenced_line|
+        expect(incident.incident_message).not_to include(silenced_line)
+      end
     end
   end
 
