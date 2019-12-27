@@ -43,7 +43,7 @@ class Camunda::ExternalTask < Camunda::Model
     self.class.post_raw("#{collection_path}/#{id}/failure",
                         workerId: worker_id, errorMessage: exception.message,
                         errorDetails:
-                          variables_information.to_s +
+                          variables_information.to_s + exception.message +
                           backtrace_cleaner.clean(exception.backtrace).join("\n"))[:response]
   end
 

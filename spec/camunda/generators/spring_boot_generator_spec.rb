@@ -23,9 +23,4 @@ describe Camunda::Generators::SpringBootGenerator do
       expect(spring_app.join("src/main/resources/logback.xml")).to be_file
     end
   end
-
-  it("expects to show output error") do
-    expect { described_class.new.output_error_instructions }
-      .to output(/If you get an error when starting your Rails app/).to_stdout
-  end
 end
