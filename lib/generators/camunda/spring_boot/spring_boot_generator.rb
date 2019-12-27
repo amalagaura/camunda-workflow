@@ -21,7 +21,6 @@ module Camunda
         copy_file 'logback.xml', File.join(java_app_path, 'src/main/resources/logback.xml')
         copy_file 'application.properties', File.join(java_app_path, 'src/main/resources/application.properties')
         copy_file 'Camunda.java', File.join(java_app_path, 'src/main/java/camunda/Camunda.java')
-        copy_file 'camunda.rake', 'lib/tasks/camunda.rake'
       end
 
       # Copies a sample bpmn file to help demonstrate the usage for camunda-workflow
