@@ -3,6 +3,7 @@ require 'active_support/core_ext/object/blank.rb'
 require 'her'
 require 'faraday'
 require 'faraday_middleware'
+require 'camunda/railtie' if defined?(Rails)
 # Top level module for camunda-workflow.
 module Camunda
   # Camunda class
