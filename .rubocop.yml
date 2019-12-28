@@ -22,7 +22,7 @@ Metrics/BlockLength:
     - class_methods
   Exclude:
     - 'spec/**/*'
-Metrics/LineLength:
+Layout/LineLength:
   Max: 130 # default is 80
 Metrics/MethodLength:
   Max: 15 # 10 is the default
