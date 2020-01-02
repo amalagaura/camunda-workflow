@@ -162,7 +162,7 @@ It will fail to start. Create a postgres database as a service in PCF and bind i
 Uses a default name, etc. Below outlines how to deploy a process using the included sample.bpmn file created by the generator. Alternatively you can deploy using Camunda Modeler
 
 ```ruby
- Camunda::Deployment.create file_name: 'bpmn/diagrams/sample.bpmn'
+ Camunda::Deployment.create file_names: ['bpmn/diagrams/sample.bpmn']
 ```
 ### Processes
 
