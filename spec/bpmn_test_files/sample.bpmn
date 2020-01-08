@@ -67,7 +67,19 @@
       <bpmn:incoming>SequenceFlow_0guzqbh</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_085yss6</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="IntermediateThrowEvent_0kh60ce" attachedToRef="UserTask">
+      <bpmn:outgoing>SequenceFlow_0nukqji</bpmn:outgoing>
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1D</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0nukqji" sourceRef="IntermediateThrowEvent_0kh60ce" targetRef="MessageEndTask" />
+    <bpmn:endEvent id="MessageEndTask" name="MessageEndTask">
+      <bpmn:incoming>SequenceFlow_0nukqji</bpmn:incoming>
+      <bpmn:messageEventDefinition messageRef="Message_0674twm" camunda:type="external" camunda:topic="CamundaWorkflow" />
+    </bpmn:endEvent>
   </bpmn:process>
+  <bpmn:message id="Message_0674twm" name="SomeMessage" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="CamundaWorkflow">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEventProcessStarted">
@@ -178,6 +190,20 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_0bsbbou_di" bpmnElement="ServiceTaskForError">
         <dc:Bounds x="410" y="490" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BoundaryEvent_1alyu37_di" bpmnElement="IntermediateThrowEvent_0kh60ce">
+        <dc:Bounds x="442" y="282" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nukqji_di" bpmnElement="SequenceFlow_0nukqji">
+        <di:waypoint x="460" y="318" />
+        <di:waypoint x="460" y="330" />
+        <di:waypoint x="552" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_00tyhq7_di" bpmnElement="MessageEndTask">
+        <dc:Bounds x="552" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="527" y="355" width="87" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

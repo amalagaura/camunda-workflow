@@ -20,9 +20,14 @@ class Camunda::BpmnXML
 
   # creates a new instance of Camunda::BpmnXML::Task
   def external_tasks
-    @doc.xpath('//*[@camunda:type="external"]').map do |task|
+    @doc.xpath('(//bpmn:serviceTask[@camunda:type="external"]|//bpmn:sendTask[@camunda:type="external"])').map do |task|
       Task.new(task)
-    end
+    end +
+      @doc.xpath('//bpmn:endEvent/bpmn:messageEventDefinition[@camunda:type="external"]').map do |child_node|
+        task = child_node.parent.dup
+        task["topic"] = child_node["topic"]
+        Task.new(task)
+      end
   end
 
   # We may have tasks with different topics. Returns classes with topics which are the same as the BPMN process id
