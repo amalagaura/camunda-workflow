@@ -1,12 +1,32 @@
 # Changelog
 
-## [Unreleased](https://github.com/amalagaura/camunda-workflow/tree/HEAD)
+## [v0.2.2](https://github.com/amalagaura/camunda-workflow/tree/v0.2.2) (2020-01-08)
 
-[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.0...HEAD)
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.1...v0.2.2)
 
 **Closed issues:**
 
+- The task for Message End Events is on the parent node of camunda:type="external" [\#34](https://github.com/amalagaura/camunda-workflow/issues/34)
+- Error in documentation regarding deployment of BPMN files.  [\#32](https://github.com/amalagaura/camunda-workflow/issues/32)
+
+**Merged pull requests:**
+
+- Camunda calls the external task from bpmn:endEvent [\#35](https://github.com/amalagaura/camunda-workflow/pull/35) ([amalagaura](https://github.com/amalagaura))
+- fixed documentation on README [\#33](https://github.com/amalagaura/camunda-workflow/pull/33) ([curatingbits](https://github.com/curatingbits))
+
+## [v0.2.1](https://github.com/amalagaura/camunda-workflow/tree/v0.2.1) (2019-12-28)
+
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.0...v0.2.1)
+
+**Closed issues:**
+
+- Include gems via Railtie instead of by copying the .rake file [\#29](https://github.com/amalagaura/camunda-workflow/issues/29)
 - Remove check for what bpmn\_perform returns. Ignore if not a hash. [\#27](https://github.com/amalagaura/camunda-workflow/issues/27)
+
+**Merged pull requests:**
+
+- Remove startup error instructions [\#31](https://github.com/amalagaura/camunda-workflow/pull/31) ([amalagaura](https://github.com/amalagaura))
+- create railtie to include rake tasks [\#30](https://github.com/amalagaura/camunda-workflow/pull/30) ([curatingbits](https://github.com/curatingbits))
 
 ## [v0.2.0](https://github.com/amalagaura/camunda-workflow/tree/v0.2.0) (2019-12-20)
 
