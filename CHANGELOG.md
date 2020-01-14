@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased](https://github.com/amalagaura/camunda-workflow/tree/HEAD)
+
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.3...HEAD)
+
+**Merged pull requests:**
+
+- Add ability to escalate user tasks and submit bpmn errors for user tasks [\#37](https://github.com/amalagaura/camunda-workflow/pull/37) ([amalagaura](https://github.com/amalagaura))
+
+## [v0.2.3](https://github.com/amalagaura/camunda-workflow/tree/v0.2.3) (2020-01-14)
+
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.2...v0.2.3)
+
+**Closed issues:**
+
+- Handle BPMN errors of user tasks [\#36](https://github.com/amalagaura/camunda-workflow/issues/36)
+
 ## [v0.2.2](https://github.com/amalagaura/camunda-workflow/tree/v0.2.2) (2020-01-08)
 
 [Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.1...v0.2.2)
