@@ -28,6 +28,16 @@ RSpec.describe Camunda::Task, :vcr, :deployment do
     end
   end
 
+  it 'user task bpmn error' do
+    task.bpmn_error!("bpmn_error_code", "BPMN error message")
+    expect { task }.to raise_error(Camunda::Model::RecordNotFound)
+  end
+
+  it 'user task bpmn escalation' do
+    task.bpmn_escalation!("escalation")
+    expect { task }.to raise_error(Camunda::Model::RecordNotFound)
+  end
+
   describe 'unknown task key' do
     let(:find_task) { described_class.find_by_business_key_and_task_definition_key! business_key, "Unknown" }
 
