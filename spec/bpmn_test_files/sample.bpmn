@@ -78,8 +78,12 @@
       <bpmn:incoming>SequenceFlow_0nukqji</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0674twm" camunda:type="external" camunda:topic="CamundaWorkflow" />
     </bpmn:endEvent>
+    <bpmn:boundaryEvent id="IntermediateThrowEvent_051wqbs" attachedToRef="UserTask">
+      <bpmn:escalationEventDefinition escalationRef="Escalation_1dn8zuf" />
+    </bpmn:boundaryEvent>
   </bpmn:process>
   <bpmn:message id="Message_0674twm" name="SomeMessage" />
+  <bpmn:escalation id="Escalation_1dn8zuf" name="Escalation" escalationCode="escalation" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="CamundaWorkflow">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEventProcessStarted">
@@ -204,6 +208,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="527" y="355" width="87" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BoundaryEvent_0k4y7nm_di" bpmnElement="IntermediateThrowEvent_051wqbs">
+        <dc:Bounds x="392" y="282" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

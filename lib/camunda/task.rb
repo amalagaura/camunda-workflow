@@ -35,6 +35,24 @@ class Camunda::Task < Camunda::Model
     end
   end
 
+  def bpmn_error!(error_code, error_message, vars={})
+    self.class
+        .post_raw("#{self.class.collection_path}/#{id}/bpmnError", errorCode: error_code, errorMessage: error_message,
+                                                                   variables: serialize_variables(vars))[:response]
+        .tap do |response|
+      raise SubmissionError, response.body[:data][:message] unless response.success?
+    end
+  end
+
+  def bpmn_escalation!(escalation_code, vars={})
+    self.class
+        .post_raw("#{self.class.collection_path}/#{id}/bpmnEscalation", escalationCode: escalation_code,
+                                                                        variables: serialize_variables(vars))[:response]
+        .tap do |response|
+      raise SubmissionError, response.body[:data][:message] unless response.success?
+    end
+  end
+
   # Error class when the task cannot be submitted. For instance if the bpmn process expects a variable and the variable
   # isn't supplied, Camunda will not accept the task
   class SubmissionError < StandardError
