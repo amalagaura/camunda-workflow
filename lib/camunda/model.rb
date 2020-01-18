@@ -14,7 +14,7 @@ class Camunda::Model
       c.use Faraday::Request::BasicAuthentication, Camunda::Workflow.configuration.camunda_user,
             Camunda::Workflow.configuration.camunda_password
       # Response
-      c.use Faraday::Response::Logger, ActiveSupport::Logger.new(STDOUT), bodies: true if Rails.env.development?
+      c.use Faraday::Response::Logger, ActiveSupport::Logger.new(STDOUT), bodies: true if defined?(Rails) and Rails.env.development?
       c.use Her::Middleware::FirstLevelParseJSON
 
       c.use Her::Middleware::SnakeCase
