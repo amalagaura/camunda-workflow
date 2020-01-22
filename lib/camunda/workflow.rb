@@ -64,6 +64,9 @@ module Camunda
       # Can configure the backtrace silencer
       # @return [Array<String>] List of backtrace silencer strings which are used to clean incident backtraces
       attr_accessor :backtrace_silencer_lines
+      # Configure an HTTP proxy for all requests to use
+      # @return [String] The defined HTTP proxy
+      attr_accessor :http_proxy
 
       def initialize
         @engine_url = 'http://localhost:8080'
