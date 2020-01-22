@@ -127,8 +127,11 @@ class Camunda::ExternalTask < Camunda::Model
     long_polling_duration ||= long_polling_duration()
     lock_duration ||= lock_duration()
     topic_details = Array(topics).map do |topic|
-      { topicName: topic, lockDuration: lock_duration }
+      next topic.to_h if topic.is_a?(Camunda::TopicDetail) # if a model is passed in, convert it to a hash
+
+      next { topicName: topic, lockDuration: lock_duration }
     end
+
     fetchAndLock workerId: worker_id, maxTasks: max_polling_tasks, asyncResponseTimeout: long_polling_duration,
                  topics: topic_details
   end
