@@ -22,6 +22,9 @@ class Camunda::Model
       c.use Her::Middleware::SnakeCase
       # Adapter
       c.adapter :net_http
+
+      # HTTP proxy
+      c.proxy Camunda::Workflow.configuration.http_proxy if Camunda::Workflow.configuration.http_proxy
     end
   end
 
