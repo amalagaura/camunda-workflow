@@ -23,7 +23,7 @@ module Camunda
     # Filter tasks based on process definition keys.
     attr_accessor :process_definition_key_in
     # Filter tasks based on process definition version tag.
-    attr_accessor :process_definitionVersion_tag
+    attr_accessor :process_definition_version_tag
     # Filter tasks without tenant id.
     attr_accessor :without_tenant_id
     # Filter tasks based on tenant ids.
@@ -60,7 +60,7 @@ module Camunda
         processDefinitionIdIn: process_definition_id_in,
         processDefinitionKey: process_definition_key,
         processDefinitionKeyIn: process_definition_key_in,
-        processDefinitionVersionTag: process_definitionVersion_tag,
+        processDefinitionVersionTag: process_definition_version_tag,
         withoutTenantId: without_tenant_id,
         tenantIdIn: tenant_id_in,
         processVariables: process_variables,
