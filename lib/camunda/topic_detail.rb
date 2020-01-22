@@ -1,6 +1,6 @@
-# PORO to represent request for topics as used in the fetchAndLock API call
-# @see https://docs.camunda.org/manual/7.12/reference/rest/external-task/fetch/#request-body
 module Camunda
+  # PORO to represent request for topics as used in the fetchAndLock API call
+  # @see https://docs.camunda.org/manual/7.12/reference/rest/external-task/fetch/#request-body
   class TopicDetail
     # Mandatory. The topic's name.
     attr_accessor :topic_name
@@ -48,6 +48,7 @@ module Camunda
       Camunda::Workflow.configuration.lock_duration
     end
 
+    # rubocop:disable Metrics/MethodLength
     def to_h
       hash = {
         topicName: topic_name,
@@ -63,11 +64,12 @@ module Camunda
         withoutTenantId: without_tenant_id,
         tenantIdIn: tenant_id_in,
         processVariables: process_variables,
-        deserializeValues: deserialize_values,
+        deserializeValues: deserialize_values
       }
 
       # remove all empty values
       hash.reject { |_, val| val.nil? }
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end
