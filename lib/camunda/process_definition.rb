@@ -23,9 +23,7 @@ class Camunda::ProcessDefinition < Camunda::Model
     tenant_id ||= Camunda::Workflow.configuration.tenant_id
 
     response = post_raw start_path_for_key(key, tenant_id), hash
-    raise Camunda::ProcessEngineException, response[:parsed_data][:data][:message] unless response[:response].status == 200
-
-    Camunda::ProcessInstance.new response[:parsed_data][:data]
+    process_instance_result(response)
   end
 
   # Starts an individual process instance for a process definition. The below example shows how to start a process
@@ -40,9 +38,7 @@ class Camunda::ProcessDefinition < Camunda::Model
   def start(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
     response = self.class.post_raw "process-definition/#{id}/start", hash
-    raise Camunda::ProcessEngineException, response[:parsed_data][:data][:message] unless response[:response].status == 200
-
-    Camunda::ProcessInstance.new response[:parsed_data][:data]
+    self.class.process_instance_result(response)
   end
 
   # Sets path to include tenant_id if a tenant_id is provided with a process definition on deployment.
@@ -50,5 +46,14 @@ class Camunda::ProcessDefinition < Camunda::Model
     path = "process-definition/key/#{key}"
     path << "/tenant-id/#{tenant_id}" if tenant_id
     "#{path}/start"
+  end
+
+  def self.process_instance_result(response)
+    unless response[:response].status == 200
+      raise Camunda::ProcessEngineException,
+            "#{response[:parsed_data][:data][:message]} HTTP Status: #{response[:response].status}"
+    end
+
+    Camunda::ProcessInstance.new response[:parsed_data][:data]
   end
 end
