@@ -153,7 +153,7 @@ It will fail to start. Create a postgres database as a service in PCF and bind i
 
 ## Usage
 
- ### Add to your Gemfile
+### Add to your Gemfile
 ```ruby
   gem 'camunda-workflow'
 ```
@@ -197,6 +197,16 @@ Poller will need to run in a separate process or thread and needs to be running 
 ```ruby
  Camunda::Poller.fetch_and_queue %w[CamundaWorkflow]
  ```
+
+#### Running the poller in a separate thread
+We have had success with running a long running thread in a Rails app using [Rufus Scheduler](https://github.com/jmettraux/rufus-scheduler). Something like:
+
+```
+rufus_scheduler.in('10.seconds') do
+  Camunda::Poller.fetch_and_queue %w[Topics]
+end
+```
+
 
 #### Fetch tasks For testing from the console
 
