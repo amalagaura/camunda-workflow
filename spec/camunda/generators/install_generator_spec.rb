@@ -1,5 +1,5 @@
 require 'rails/generators/testing/behaviour'
-require 'generators/camunda/install/install_generator.rb'
+require 'generators/camunda/install/install_generator'
 
 describe Camunda::Generators::InstallGenerator do
   include FileUtils

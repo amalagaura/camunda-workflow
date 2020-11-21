@@ -3,6 +3,10 @@ require 'her/model'
 class Camunda::Model
   include Her::Model
 
+  def self.log_details?
+    defined?(Rails) && Rails.env.development?
+  end
+
   # We use a lambda so that this is evaluated after Camunda::Workflow.configuration is set
   api = lambda do
     # Configuration for Her and Faraday requests and responses
@@ -14,9 +18,7 @@ class Camunda::Model
       c.use Faraday::Request::BasicAuthentication, Camunda::Workflow.configuration.camunda_user,
             Camunda::Workflow.configuration.camunda_password
       # Response
-      if defined?(Rails)
-        c.use Faraday::Response::Logger, ActiveSupport::Logger.new(STDOUT), bodies: true if Rails.env.development?
-      end
+      c.use Faraday::Response::Logger, ActiveSupport::Logger.new($stdout), bodies: true if log_details?
       c.use Her::Middleware::FirstLevelParseJSON
 
       c.use Her::Middleware::SnakeCase

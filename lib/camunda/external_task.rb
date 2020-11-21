@@ -1,4 +1,4 @@
-require 'active_support/core_ext/string/inflections.rb'
+require 'active_support/core_ext/string/inflections'
 require 'active_support/backtrace_cleaner'
 # External Tasks are the task entity for camunda. We can query the topic and lock the task. After the task
 # is locked, the external task of the process instance can be worked and completed. Below is an excerpt from the Camunda

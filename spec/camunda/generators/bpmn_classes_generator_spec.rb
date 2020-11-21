@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'rails/generators/testing/behaviour'
-require 'generators/camunda/bpmn_classes/bpmn_classes_generator.rb'
+require 'generators/camunda/bpmn_classes/bpmn_classes_generator'
 
 describe Camunda::Generators::BpmnClassesGenerator do
   include FileUtils
