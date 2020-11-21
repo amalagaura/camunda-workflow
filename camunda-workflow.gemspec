@@ -1,4 +1,4 @@
-require_relative './lib/camunda/workflow/version.rb'
+require_relative './lib/camunda/workflow/version'
 Gem::Specification.new do |spec|
   spec.name          = 'camunda-workflow'
   spec.version       = Camunda::Workflow::VERSION

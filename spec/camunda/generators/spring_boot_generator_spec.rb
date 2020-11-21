@@ -1,5 +1,5 @@
 require 'rails/generators/testing/behaviour'
-require 'generators/camunda/spring_boot/spring_boot_generator.rb'
+require 'generators/camunda/spring_boot/spring_boot_generator'
 
 describe Camunda::Generators::SpringBootGenerator do
   include FileUtils

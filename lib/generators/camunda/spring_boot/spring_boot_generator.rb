@@ -35,9 +35,7 @@ module Camunda
         ignores << '.cfignore' if File.exist?('.cfignore')
         ignores.each do |file|
           append_to_file file do
-            "\n# BPMN Java app\n" +
-              File.join(java_app_path, 'target') +
-              "\n"
+            "\n# BPMN Java app\n#{File.join(java_app_path, 'target')}\n"
           end
         end
       end

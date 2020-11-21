@@ -1,5 +1,5 @@
-require 'active_support/core_ext/string/inflections.rb'
-require 'active_support/core_ext/object/blank.rb'
+require 'active_support/core_ext/string/inflections'
+require 'active_support/core_ext/object/blank'
 require 'her'
 require 'faraday'
 require 'faraday_middleware'
@@ -10,6 +10,7 @@ module Camunda
   class << self
     # Allows setting the logger to a custom logger
     attr_writer :logger
+
     # Default is output to the standard output stream.
     # @return [Object] instance which is used for logging
     def logger
@@ -27,9 +28,10 @@ module Camunda
       return if env[:body].blank?
 
       json = JSON.parse(env[:body])
-      if json.is_a?(Array)
+      case json
+      when Array
         json.map { |hash| transform_hash!(hash) }
-      elsif json.is_a?(Hash)
+      when Hash
         transform_hash!(json)
       end
       env[:body] = JSON.generate(json)

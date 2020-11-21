@@ -41,9 +41,10 @@ module Camunda
       # @param json [Array,Hash]
       # @return [Hash] returns hash with camelCase keys
       def transform_json(json)
-        if json.is_a?(Array)
+        case json
+        when Array
           json.map { |element| transform_json(element) }
-        elsif json.is_a?(Hash)
+        when Hash
           camelcase_keys(json)
         else
           json
