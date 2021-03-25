@@ -13,9 +13,6 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
   spec.required_ruby_version = ">= 2.5"
 
-  spec.add_dependency 'faraday', '~> 0.17'
-  spec.add_dependency 'faraday_middleware', '~> 0.13.1'
-  spec.add_dependency 'her', '~> 1.1'
   # We use .camelcase, .underscore and ActiveSupport::Concern
   spec.add_dependency 'activesupport', '>= 3.2.0'
   spec.add_development_dependency 'pry-rescue', '~> 1.5.0'
