@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    camunda-workflow (0.2.2)
+    camunda-workflow (0.3.0)
       activesupport (>= 3.2.0)
       faraday (~> 0.17)
       faraday_middleware (~> 0.13.1)
