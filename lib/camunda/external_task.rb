@@ -133,6 +133,25 @@ class Camunda::ExternalTask < Camunda::Model
                  topics: topic_details
   end
 
+  # Locking means that the task is reserved for this worker for a certain duration beginning with the time of fetching and
+  # prevents that another worker can fetch the same task while the lock is valid. Locking duration is set in the the
+  # Camunda::Workflow configuration. Before an external task can be completed, it must be locked.
+  #
+  # This method calls fetch_and_lock and then queues the jobs that were retrieved
+  # @example
+  #   task = Camunda::ExternalTask.fetch_and_queue("CamundaWorkflow")
+  # @param topics [Array<String>] definition keys
+  # @param lock_duration [Integer]
+  # @param long_polling_duration [Integer]
+  # @return [Camunda::ExternalTask]
+  def self.fetch_and_queue(topics, lock_duration: nil, long_polling_duration: nil)
+    fetch_and_lock(topics, lock_duration: lock_duration, long_polling_duration: long_polling_duration).each do |task|
+      task.queue_task
+    rescue Camunda::MissingImplementationClass => e
+      task.failure(e)
+    end
+  end
+
   # Returns the class name which is supposed to implement this task
   # @return [String] modularized class name of bpmn task implementation
   def task_class_name

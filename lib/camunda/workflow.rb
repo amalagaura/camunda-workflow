@@ -11,7 +11,7 @@ module Camunda
     # Implements Configuration class and sets default instance variables. The default variables can be overridden by creating an
     # initializer file within your rails application and setting the variables like in the example below.
     # @note if HTTP Basic Auth is used with the Camunda engine, this is where you would set a camunda_user and camunda_password
-    # using the creditials from a user setup in Camunda Admin.
+    # using the credentials from a user setup in Camunda Admin.
     # @example
     #   'Camunda::Workflow.configure do |config|
     #     config.engine_url = 'http://localhost:8080'
