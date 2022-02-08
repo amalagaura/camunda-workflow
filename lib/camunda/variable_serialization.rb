@@ -30,7 +30,7 @@ module Camunda
           when Float
             { value: value, type: 'Double' }
           else
-            raise ArgumentError, "Not supporting complex types yet"
+            raise ArgumentError, "#{value} - Not supporting complex types yet. Variables are #{variables}."
           end
         end
         camelcase_keys(hash)
