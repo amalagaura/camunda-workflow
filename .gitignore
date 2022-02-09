@@ -94,3 +94,4 @@ data
 .flooignore
 
 spec/camunda/dummy/
+*.gem
