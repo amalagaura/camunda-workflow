@@ -2,7 +2,7 @@ RSpec.describe Camunda::VariableSerialization do
   let(:helper) { Class.new { include Camunda::VariableSerialization } }
   let(:hash) do
     { business_workflow: "test", boolean_type: true, integer_type: 13, hash_string: { foo: "bar" },
-      array_string: %w[a b], array_hash: [{ foo: "bar", bar: %w[foo] }], test_double: 0.03451 }
+      array_string: %w[a b], array_hash: [{ foo: "bar", bar: %w[foo] }], test_double: 0.03451, object: Object.new }
   end
   let(:serialized) { helper.serialize_variables(hash) }
 
@@ -21,11 +21,6 @@ RSpec.describe Camunda::VariableSerialization do
     it('value Array Hash') { expect(serialized["arrayHash"]["value"]).to eq('[{"foo":"bar","bar":["foo"]}]') }
     it('type Double') { expect(serialized["testDouble"]["type"]).to eq("Double") }
     it('value Double') { expect(serialized["testDouble"]["value"]).to eq(0.03451) }
-  end
-
-  context 'when unknown type' do
-    let(:hash) { { hello: Class.new } }
-
-    it { expect { serialized }.to raise_error(ArgumentError) }
+    it('object string') { expect(serialized["object"]["value"]).to start_with("#<Object:") }
   end
 end
