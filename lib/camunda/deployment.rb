@@ -30,7 +30,7 @@ class Camunda::Deployment < Camunda::Model
   # @param file_names [Array<String>] local files paths to be uploaded
   def self.file_data(file_names)
     file_names.map do |file_name|
-      [file_name, UploadIO.new(file_name, 'text/plain')]
+      [file_name, Faraday::FilePart.new(file_name, 'text/plain')]
     end.to_h
   end
 
