@@ -232,7 +232,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
     thor (1.2.1)
-    timeout (0.3.1)
+    timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
@@ -253,7 +253,7 @@ DEPENDENCIES
   camunda-workflow!
   pry-rescue (~> 1.5.0)
   pry-stack_explorer (~> 0.4.9.3)
-  rails (>= 7.0.4.2)
+  rails (>= 7.0.2)
   rspec (~> 3.9.0)
   rubocop (~> 0.77)
   rubocop-rspec (~> 1.37.0)

@@ -1,3 +1,4 @@
+require "active_support/core_ext/integer/time"
 module Camunda
   ##
   # Default configuration file for camunda-workflow. These defaults can be overridden using an
