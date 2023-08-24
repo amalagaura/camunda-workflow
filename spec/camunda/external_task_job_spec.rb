@@ -18,17 +18,19 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
 
     it '#completion' do
       expect(Camunda::ExternalTask.find(task.id)).to be_an_instance_of(Camunda::ExternalTask)
-      expect(external_task_job).to be_success
-      expect(Camunda::ExternalTask.find(task.id)).to be_nil
+      expect(external_task_job.errors).to be_blank
+      expect { Camunda::ExternalTask.find(task.id) }.to raise_error(Spyke::ResourceNotFound)
       # Expect the process instance to have it's variables updated
-      expect(process_instance.variables).to eq(x: 'abcd')
+      expect(process_instance.variables.symbolize_keys).to eq(x: 'abcd')
     end
 
     context 'when submission error' do
       let(:task) { Camunda::ExternalTask.fetch_and_lock("CamundaWorkflowErrors").first }
 
       it('bpmn error in submitting gives an error description') do
-        expect { external_task_job }
+        expect do
+           external_task_job
+        end
           .to raise_error(
             Camunda::ExternalTask::SubmissionError,
             /Unknown property used in expression: \${missingVariable}. Cause: Cannot resolve identifier 'missingVariable'/
@@ -49,8 +51,8 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
     end
 
     it '#failure' do
-      expect(external_task_job).to be_success
-      incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
+      expect(external_task_job.errors).to be_blank
+      incident = Camunda::Incident.find_by!(processInstanceId: process_instance.id, activityId: task.activity_id)
       expect(incident).to be_an_instance_of(Camunda::Incident)
       expect(incident.incident_message).to eq("This broke")
       expect(incident.incident_message).not_to include("activesupport")
@@ -64,8 +66,8 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
     let(:klass) { Class.new { include Camunda::ExternalTaskJob } }
 
     it '#bpmn_perform' do
-      expect(external_task_job).to be_success
-      incident = Camunda::Incident.find_by(processInstanceId: process_instance.id, activityId: task.activity_id)
+      expect(external_task_job.errors).to be_blank
+      incident = Camunda::Incident.find_by!(processInstanceId: process_instance.id, activityId: task.activity_id)
       expect(incident).to be_an_instance_of(Camunda::Incident)
       expect(incident.incident_message)
         .to eq("Please define this method which takes a hash of variables and returns a hash of variables")
@@ -84,8 +86,8 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
     end
 
     it '#bpmn_perform' do
-      expect(external_task_job).to be_success
-      expect(Camunda::ExternalTask.find(task.id)).to be_nil
+      expect(external_task_job.errors).to be_blank
+      expect { Camunda::ExternalTask.find(task.id) }.to raise_error(Spyke::ResourceNotFound)
     end
   end
 
@@ -101,9 +103,9 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
     end
 
     it '#bpmn_error' do
-      expect(external_task_job).to be_success
-      expect(Camunda::ExternalTask.find(task.id)).to be_nil
-      expect(process_instance.variables).to eq(bpmn: 'error')
+      expect(external_task_job.errors).to be_blank
+      expect { Camunda::ExternalTask.find(task.id) }.to raise_error(Spyke::ResourceNotFound)
+      expect(process_instance.variables).to eq("bpmn" => "error")
     end
   end
 end

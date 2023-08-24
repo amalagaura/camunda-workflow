@@ -6,7 +6,7 @@
 # @see Camunda::ProcessInstance
 class Camunda::ProcessDefinition < Camunda::Model
   include Camunda::VariableSerialization
-  collection_path 'process-definition'
+  uri 'process-definition/(:id)'
   # Starts an individual process instance by key and supplies process variables to be included in the process instance. In
   # the example below a business key is provided. A business key is a domain-specific identifier of a process instance,
   # it makes querying for task more efficient. The business key is displayed prominently in applications like Camunda Cockpit.
@@ -22,7 +22,7 @@ class Camunda::ProcessDefinition < Camunda::Model
     tenant_id = hash.delete(:tenant_id)
     tenant_id ||= Camunda::Workflow.configuration.tenant_id
 
-    response = post_raw start_path_for_key(key, tenant_id), hash
+    response = request(:post, start_path_for_key(key, tenant_id), hash)
     process_instance_result(response)
   end
 
@@ -37,7 +37,7 @@ class Camunda::ProcessDefinition < Camunda::Model
   # @raise [Camunda::ProcessEngineException] if submission was unsuccessful
   def start(hash={})
     hash[:variables] = serialize_variables(hash[:variables]) if hash[:variables]
-    response = self.class.post_raw "process-definition/#{id}/start", hash
+    response = self.class.request(:post, "process-definition/#{id}/start", hash)
     self.class.process_instance_result(response)
   end
 
@@ -49,11 +49,11 @@ class Camunda::ProcessDefinition < Camunda::Model
   end
 
   def self.process_instance_result(response)
-    unless response[:response].status == 200
-      raise Camunda::ProcessEngineException,
-            "#{response[:parsed_data][:data][:message]} HTTP Status: #{response[:response].status}"
+    errors = response.body["errors"] || {}
+    if errors.fetch("data",{})["type"] == "RestException"
+      raise Camunda::ProcessEngineException, response.body["errors"]["data"]["message"]
     end
 
-    Camunda::ProcessInstance.new response[:parsed_data][:data]
+    Camunda::ProcessInstance.new response.body["data"]
   end
 end

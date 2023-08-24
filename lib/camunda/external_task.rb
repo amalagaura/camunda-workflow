@@ -14,9 +14,13 @@ require 'active_support/backtrace_cleaner'
 class Camunda::ExternalTask < Camunda::Model
   # Camunda engine doesn't searching on snake_case variables.
   include Camunda::VariableSerialization
-  # collection_path sets the path for Her in Camunda::Model
-  collection_path 'external-task'
-  custom_post :fetchAndLock, :unlock
+  uri 'external-task/(:id)'
+
+  %i[fetchAndLock unlock].each do |name|
+    define_singleton_method(name) do |hash|
+      with("external-task/#{name}").where(hash).post
+    end
+  end
 
   # @note long_polling_duration is defaulted to 30 seconds in Camunda::Workflow.configuration.
   # @return [Integer] default polling duration from Camunda::Workflow configuration
@@ -40,29 +44,25 @@ class Camunda::ExternalTask < Camunda::Model
   # @param input_variables [Hash] process variables
   def failure(exception, input_variables={})
     variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
-    self.class.post_raw("#{collection_path}/#{id}/failure",
-                        workerId: worker_id, errorMessage: exception.message,
-                        errorDetails:
-                          variables_information.to_s + exception.message +
-                          backtrace_cleaner.clean(exception.backtrace).join("\n"))[:response]
+    self.class.request(:post, "external-task/#{id}/failure", workerId: worker_id, errorMessage: exception.message,
+                   errorDetails:
+                    variables_information.to_s + exception.message +
+                    backtrace_cleaner.clean(exception.backtrace).join("\n"))
   end
 
   # Reports the error to Camunda and creates an incident for the process instance.
   # @param bpmn_exception [Camunda::BpmnError]
   def bpmn_error(bpmn_exception)
-    self.class.post_raw("#{collection_path}/#{id}/bpmnError",
-                        workerId: worker_id, variables: serialize_variables(bpmn_exception.variables),
-                        errorCode: bpmn_exception.error_code, errorMessage: bpmn_exception.message)[:response]
+    self.class.request(:post, "external-task/#{id}/bpmnError", workerId: worker_id, variables: serialize_variables(bpmn_exception.variables),
+                     errorCode: bpmn_exception.error_code, errorMessage: bpmn_exception.message)
   end
 
   # Completes the process instance of a fetched task
   # @param variables [Hash] submitted when starting the process definition
   # @raise [Camunda::ExternalTask::SubmissionError] if Camunda does not accept the task submission
   def complete(variables={})
-    self.class.post_raw("#{collection_path}/#{id}/complete",
-                        workerId: worker_id, variables: serialize_variables(variables))[:response]
-        .tap do |response|
-      raise SubmissionError, response.body[:data][:message] unless response.success?
+    self.class.request(:post, "external-task/#{id}/complete", workerId: worker_id, variables: serialize_variables(variables)).tap do |response|
+      raise SubmissionError, response.body["errors"]["data"]["message"] unless response.errors.blank?
     end
   end
 
@@ -71,12 +71,6 @@ class Camunda::ExternalTask < Camunda::Model
   # @return [String]
   def worker_id
     self.class.worker_id
-  end
-
-  # Helper method for instances since collection_path is a class method
-  # @return [String]
-  def collection_path
-    self.class.collection_path
   end
 
   # deserializes JSON attributes from variables returned by Camunda API
@@ -145,7 +139,8 @@ class Camunda::ExternalTask < Camunda::Model
   # @param long_polling_duration [Integer]
   # @return [Camunda::ExternalTask]
   def self.fetch_and_queue(topics, lock_duration: nil, long_polling_duration: nil)
-    fetch_and_lock(topics, lock_duration: lock_duration, long_polling_duration: long_polling_duration).each do |task|
+    response = fetch_and_lock(topics, lock_duration: lock_duration, long_polling_duration: long_polling_duration)
+    response.each do |task|
       task.queue_task
     rescue Camunda::MissingImplementationClass => e
       task.failure(e)

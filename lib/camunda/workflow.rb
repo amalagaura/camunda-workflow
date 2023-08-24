@@ -20,6 +20,7 @@ module Camunda
     #   end'
     def self.configure
       yield(configuration)
+      initialize_connection
     end
 
     # Access the Configuration class
@@ -27,6 +28,7 @@ module Camunda
     def self.configuration
       @configuration ||= Configuration.new
     end
+
     # Default instance variables configurations for Her and camunda-workflow
     class Configuration
       # Sets the deult engine url for Camunda REST Api
@@ -82,6 +84,26 @@ module Camunda
         @tenant_id = if defined?(Rails)
                        Rails.env.test? ? 'test-environment' : nil
                      end
+      end
+    end
+
+    def self.log_details?
+      defined?(Rails) && Rails.env.development?
+    end
+
+    def self.initialize_connection
+      Spyke::Base.connection = Faraday.new(url: File.join(configuration.engine_url, configuration.engine_route_prefix)) do |c|
+        c.request :multipart
+        c.request :json
+        c.request :authorization, :basic, Camunda::Workflow.configuration.camunda_user, Camunda::Workflow.configuration.camunda_password
+
+        c.use Faraday::Response::Logger, ActiveSupport::Logger.new($stdout), bodies: true if log_details?
+        c.use Camunda::FirstLevelParseJSON
+        c.use Camunda::Middleware::SnakeCase
+
+        c.adapter Faraday.default_adapter
+        # HTTP proxy
+        c.proxy = Camunda::Workflow.configuration.http_proxy if Camunda::Workflow.configuration.http_proxy
       end
     end
   end

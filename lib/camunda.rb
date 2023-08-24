@@ -1,8 +1,7 @@
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/object/blank'
-require 'her'
+require 'spyke'
 require 'faraday'
-require 'faraday_middleware'
 require 'camunda/railtie' if defined?(Rails)
 # Top level module for camunda-workflow.
 module Camunda
@@ -19,31 +18,74 @@ module Camunda
       end
     end
   end
-  ##
-  # Responsible for handling deserialization of variables.
-  class Her::Middleware::SnakeCase < Faraday::Response::Middleware
-    # Check if variables are an Array or JSON and ensure variable names are transformed back from camelCase to snake_case.
-    # @param env [Array,Hash]
-    def on_complete(env)
-      return if env[:body].blank?
 
-      json = JSON.parse(env[:body])
-      case json
-      when Array
-        json.map { |hash| transform_hash!(hash) }
-      when Hash
-        transform_hash!(json)
+  module Middleware
+    class Camunda::FirstLevelParseJSON <  Faraday::Middleware
+      # Taken from Her::Middleware::FirstLevelParseJSON
+      # Parse the response body
+      #
+      # @param [String] body The response body
+      # @return [Mixed] the parsed response
+      # @private
+      def parse(body)
+        json = JSON.parse body
+        if json.respond_to?(:keys)
+          errors = json.delete(:errors)
+          metadata = json.delete(:metadata)
+        end
+        error ||= {}
+        metadata ||= {}
+        {
+          :data => json,
+          :errors => errors,
+          :metadata => metadata
+        }
       end
-      env[:body] = JSON.generate(json)
+
+      # This method is triggered when the response has been received. It modifies
+      # the value of `env[:body]`.
+      #
+      # @param [Hash] env The response environment
+      # @private
+      def on_complete(env)
+        env[:body] = case env[:status]
+        when 204
+          parse('{}')
+        when 200
+          parse(env[:body])
+        when 400..599
+          body = env[:body] == '' ? '{}' : env[:body]
+          { errors: parse(body) }
+        end
+      end
     end
 
-    private
+    # Responsible for handling deserialization of variables.
+    class Camunda::Middleware::SnakeCase < Faraday::Middleware
+      # Check if variables are an Array or JSON and ensure variable names are transformed back from camelCase to snake_case.
+      # @param env [Array,Hash]
+      def on_complete(env)
+        return if env[:body].blank?
 
-    # Return a new hash with all keys converted by the block operation.
-    def transform_hash!(hash)
-      hash.deep_transform_keys!(&:underscore)
+        json = JSON.parse(env[:body])
+        case json
+        when Array
+          json.map { |hash| transform_hash!(hash) }
+        when Hash
+          transform_hash!(json)
+        end
+        env[:body] = JSON.generate(json)
+      end
+
+      private
+
+      # Return a new hash with all keys converted by the block operation.
+      def transform_hash!(hash)
+        hash.deep_transform_keys!(&:underscore)
+      end
     end
   end
+
   # Error when class corresponding to Camunda bpmn task does not exist.
   class MissingImplementationClass < StandardError
     # Initializes message for MissingImplementationClass

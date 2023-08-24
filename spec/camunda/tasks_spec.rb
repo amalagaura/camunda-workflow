@@ -11,7 +11,7 @@ RSpec.describe Camunda::Task, :vcr, :deployment do
   end
   describe 'mark user tasks completed' do
     it('can mark task complete') do
-      expect(result).to be_success
+      expect(result.errors).to be_blank
       expect { task }.to raise_error(Camunda::Model::RecordNotFound)
     end
   end

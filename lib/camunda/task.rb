@@ -4,7 +4,7 @@
 # @see Camunda::ProcessDefinition
 # @see https://github.com/remi/her
 # @example
-#   Camunda::Task.find_by(taskDefinitionKey: 'UserTask')
+#   Camunda::Task.find_by(taskDefinitionKey: "UserTask")
 # @example
 #   # You can get all tasks with the `.all.each` helper
 #   tasks = Camunda::Task.all.each
@@ -12,10 +12,10 @@
 #   tasks.each(&:complete!)
 class Camunda::Task < Camunda::Model
   include Camunda::VariableSerialization
-  collection_path 'task'
+  uri "task/(:id)"
 
   # @example
-  #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!('WorkflowBusinessKey','UserTask')
+  #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!("WorkflowBusinessKey","UserTask")
   # @param instance_business_key [String] the process instance business key
   # @param task_key [String] id/key of the user task
   # @return [Camunda::Task]
@@ -25,36 +25,33 @@ class Camunda::Task < Camunda::Model
 
   # Complete a task and updates process variables.
   # @example
-  #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!('WorkflowBusinessKey','UserTask')
+  #   user_task = Camunda::Task.find_by_business_key_and_task_definition_key!("WorkflowBusinessKey","UserTask")
   #   user_task.complete!
   # @param vars [Hash] variables to be submitted as part of task completion
   def complete!(vars={})
-    self.class.post_raw("#{self.class.collection_path}/#{id}/complete", variables: serialize_variables(vars))[:response]
-        .tap do |response|
-      raise SubmissionError, response.body[:data][:message] unless response.success?
+    self.class.request(:post, "task/#{id}/complete", variables: serialize_variables(vars))
+      .tap do |response|
+      raise SubmissionError, response.errors["data"]["message"] unless response.errors.blank?
     end
   end
 
   def bpmn_error!(error_code, error_message, vars={})
-    self.class
-        .post_raw("#{self.class.collection_path}/#{id}/bpmnError", errorCode: error_code, errorMessage: error_message,
-                                                                   variables: serialize_variables(vars))[:response]
-        .tap do |response|
-      raise SubmissionError, response.body[:data][:message] unless response.success?
+    self.class.request(:post, "task/#{id}/bpmnError", errorCode: error_code, errorMessage: error_message,
+                     variables: serialize_variables(vars))
+      .tap do |response|
+      raise SubmissionError, response.errors["data"]["message"] unless response.errors.blank?
     end
   end
 
   def bpmn_escalation!(escalation_code, vars={})
-    self.class
-        .post_raw("#{self.class.collection_path}/#{id}/bpmnEscalation", escalationCode: escalation_code,
-                                                                        variables: serialize_variables(vars))[:response]
-        .tap do |response|
-      raise SubmissionError, response.body[:data][:message] unless response.success?
+    self.class.request(:post, "task/#{id}/bpmnEscalation", escalationCode: escalation_code, variables: serialize_variables(vars))
+      .tap do |response|
+      raise SubmissionError, response.errors["data"]["message"] unless response.errors.blank?
     end
   end
 
   # Error class when the task cannot be submitted. For instance if the bpmn process expects a variable and the variable
-  # isn't supplied, Camunda will not accept the task
+  # isn"t supplied, Camunda will not accept the task
   class SubmissionError < StandardError
   end
 end
