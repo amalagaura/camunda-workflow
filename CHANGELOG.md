@@ -1,5 +1,52 @@
 # Changelog
 
+## [v0.6.0](https://github.com/amalagaura/camunda-workflow/tree/v0.6.0) (2023-07-19)
+
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.3.0...v0.6.0)
+
+**Closed issues:**
+
+- Upgrade rails development dependency [\#63](https://github.com/amalagaura/camunda-workflow/issues/63)
+- Not able to use it with Sidekiq [\#52](https://github.com/amalagaura/camunda-workflow/issues/52)
+- Migrate project to the Camunda Community Hub? [\#50](https://github.com/amalagaura/camunda-workflow/issues/50)
+
+**Merged pull requests:**
+
+- Bump camunda-workflow to 0.6.0 [\#73](https://github.com/amalagaura/camunda-workflow/pull/73) ([amalagaura](https://github.com/amalagaura))
+- Yashupadhyay16 upgrade rails version [\#71](https://github.com/amalagaura/camunda-workflow/pull/71) ([amalagaura](https://github.com/amalagaura))
+- Remove Gemfile.lock [\#70](https://github.com/amalagaura/camunda-workflow/pull/70) ([amalagaura](https://github.com/amalagaura))
+- Update Nokogiri [\#69](https://github.com/amalagaura/camunda-workflow/pull/69) ([amalagaura](https://github.com/amalagaura))
+- Github actions for CI [\#67](https://github.com/amalagaura/camunda-workflow/pull/67) ([amalagaura](https://github.com/amalagaura))
+- Bump rack from 2.2.4 to 2.2.6.3 [\#65](https://github.com/amalagaura/camunda-workflow/pull/65) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump postgresql from 42.2.25 to 42.3.8 in /lib/generators/camunda/spring\_boot/templates [\#60](https://github.com/amalagaura/camunda-workflow/pull/60) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump postgresql from 42.2.7 to 42.2.25 in /lib/generators/camunda/spring\_boot/templates [\#53](https://github.com/amalagaura/camunda-workflow/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump nokogiri from 1.11.2 to 1.12.5 [\#51](https://github.com/amalagaura/camunda-workflow/pull/51) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rexml from 3.2.4 to 3.2.5 [\#48](https://github.com/amalagaura/camunda-workflow/pull/48) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v0.3.0](https://github.com/amalagaura/camunda-workflow/tree/v0.3.0) (2021-04-07)
+
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.3...v0.3.0)
+
+**Merged pull requests:**
+
+- Bump nokogiri from 1.10.10 to 1.11.2 [\#47](https://github.com/amalagaura/camunda-workflow/pull/47) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update gems [\#45](https://github.com/amalagaura/camunda-workflow/pull/45) ([amalagaura](https://github.com/amalagaura))
+- Bump rack from 2.1.1 to 2.2.3 [\#44](https://github.com/amalagaura/camunda-workflow/pull/44) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump nokogiri from 1.10.7 to 1.10.9 [\#43](https://github.com/amalagaura/camunda-workflow/pull/43) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump websocket-extensions from 0.1.4 to 0.1.5 [\#42](https://github.com/amalagaura/camunda-workflow/pull/42) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add HTTP status code for process definition start errors [\#41](https://github.com/amalagaura/camunda-workflow/pull/41) ([amalagaura](https://github.com/amalagaura))
+- Adding the ability to set an HTTP proxy for API calls [\#40](https://github.com/amalagaura/camunda-workflow/pull/40) ([dannykopping](https://github.com/dannykopping))
+- Checking if Rails is defined before calling it [\#38](https://github.com/amalagaura/camunda-workflow/pull/38) ([dannykopping](https://github.com/dannykopping))
+- Add ability to escalate user tasks and submit bpmn errors for user tasks [\#37](https://github.com/amalagaura/camunda-workflow/pull/37) ([amalagaura](https://github.com/amalagaura))
+
+## [v0.2.3](https://github.com/amalagaura/camunda-workflow/tree/v0.2.3) (2020-01-14)
+
+[Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.2...v0.2.3)
+
+**Closed issues:**
+
+- Handle BPMN errors of user tasks [\#36](https://github.com/amalagaura/camunda-workflow/issues/36)
+
 ## [v0.2.2](https://github.com/amalagaura/camunda-workflow/tree/v0.2.2) (2020-01-08)
 
 [Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/v0.2.1...v0.2.2)
@@ -73,6 +120,13 @@
 
 - Add find\_by! to all Camunda Her models [\#14](https://github.com/amalagaura/camunda-workflow/pull/14) ([amalagaura](https://github.com/amalagaura))
 - Yarddoc documentation [\#12](https://github.com/amalagaura/camunda-workflow/pull/12) ([curatingbits](https://github.com/curatingbits))
+- Raise Submission errors if Camunda does not accept completion [\#11](https://github.com/amalagaura/camunda-workflow/pull/11) ([amalagaura](https://github.com/amalagaura))
+- Allow Poller to not exit its loop when there is a missing class and report error [\#8](https://github.com/amalagaura/camunda-workflow/pull/8) ([amalagaura](https://github.com/amalagaura))
+- Add rubocop rspec [\#6](https://github.com/amalagaura/camunda-workflow/pull/6) ([amalagaura](https://github.com/amalagaura))
+- Correct find\_by\_business\_key\_and\_task\_definition\_key! [\#5](https://github.com/amalagaura/camunda-workflow/pull/5) ([amalagaura](https://github.com/amalagaura))
+- added authentication via templates for spring\\_boot generator and Her [\#4](https://github.com/amalagaura/camunda-workflow/pull/4) ([curatingbits](https://github.com/curatingbits))
+- Refactor to return proper Her models after responses [\#3](https://github.com/amalagaura/camunda-workflow/pull/3) ([amalagaura](https://github.com/amalagaura))
+- Added tests for Camunda workflow [\#2](https://github.com/amalagaura/camunda-workflow/pull/2) ([curatingbits](https://github.com/curatingbits))
 
 ## [v0.1.3](https://github.com/amalagaura/camunda-workflow/tree/v0.1.3) (2019-12-06)
 
@@ -83,23 +137,11 @@
 - When there is a logic error in submitting a user task we are getting a MissingTask error instead [\#9](https://github.com/amalagaura/camunda-workflow/issues/9)
 - If a class does not exist, the Poller loop crashes [\#7](https://github.com/amalagaura/camunda-workflow/issues/7)
 
-**Merged pull requests:**
-
-- Raise Submission errors if Camunda does not accept completion [\#11](https://github.com/amalagaura/camunda-workflow/pull/11) ([amalagaura](https://github.com/amalagaura))
-- Allow Poller to not exit its loop when there is a missing class and report error [\#8](https://github.com/amalagaura/camunda-workflow/pull/8) ([amalagaura](https://github.com/amalagaura))
-- Add rubocop rspec [\#6](https://github.com/amalagaura/camunda-workflow/pull/6) ([amalagaura](https://github.com/amalagaura))
-
 ## [v0.1.2](https://github.com/amalagaura/camunda-workflow/tree/v0.1.2) (2019-11-27)
 
 [Full Changelog](https://github.com/amalagaura/camunda-workflow/compare/fc9ab266909628118a892082abdff953f3bc7eca...v0.1.2)
 
-**Merged pull requests:**
-
-- Correct find\_by\_business\_key\_and\_task\_definition\_key! [\#5](https://github.com/amalagaura/camunda-workflow/pull/5) ([amalagaura](https://github.com/amalagaura))
-- added authentication via templates for spring\\_boot generator and Her [\#4](https://github.com/amalagaura/camunda-workflow/pull/4) ([curatingbits](https://github.com/curatingbits))
-- Refactor to return proper Her models after responses [\#3](https://github.com/amalagaura/camunda-workflow/pull/3) ([amalagaura](https://github.com/amalagaura))
-- Added tests for Camunda workflow [\#2](https://github.com/amalagaura/camunda-workflow/pull/2) ([curatingbits](https://github.com/curatingbits))
-
 
 
 \* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
+
