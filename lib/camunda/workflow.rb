@@ -29,7 +29,7 @@ module Camunda
       @configuration ||= Configuration.new
     end
 
-    # Default instance variables configurations for Her and camunda-workflow
+    # Default instance variables configurations for Spyke and camunda-workflow
     class Configuration
       # Sets the deult engine url for Camunda REST Api
       # @return [String] the url for Camunda deployment

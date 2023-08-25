@@ -1,6 +1,6 @@
 # Finds tasks by business key and task definition and allows you to report a task complete and update process variables.
 # If a business key isn't supplied when creating a process definition, you can still retrieve UserTasks by using
-# the `.find_by` helper provided by Her.
+# the `.find_by` helper.
 # @see Camunda::ProcessDefinition
 # @see https://github.com/remi/her
 # @example

@@ -5,7 +5,7 @@
 
 ## An opinionated interface to Camunda for Ruby/Rails apps
 
-Camunda Workflow uses [Her](https://github.com/remiprev/her) to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). It executes [External Service Tasks](https://docs.camunda.org/manual/latest/user-guide/process-engine/external-tasks/) using a Ruby class corresponding to each Camunda external task.
+Camunda Workflow uses [Spyke](https://github.com/balvig/spyke) to communicate with the [Camunda REST API](https://docs.camunda.org/manual/latest/reference/rest/). It executes [External Service Tasks](https://docs.camunda.org/manual/latest/user-guide/process-engine/external-tasks/) using a Ruby class corresponding to each Camunda external task.
 
 
 ## Camunda Integration with Ruby

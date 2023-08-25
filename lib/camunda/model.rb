@@ -1,5 +1,5 @@
 require 'spyke/base'
-# This class in the main element of Her. It defines which API models will be bound to.
+# This class in the main element of Spyke. It defines which API models will be bound to.
 class Camunda::Model < Spyke::Base
   # Returns result of find_by but raises an exception instead of returning nil
   # @param params [Hash] query parameters
