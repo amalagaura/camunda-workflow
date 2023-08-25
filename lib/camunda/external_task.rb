@@ -45,7 +45,7 @@ class Camunda::ExternalTask < Camunda::Model
   def failure(exception, input_variables={})
     variables_information = "Input variables are #{input_variables.inspect}\n\n" if input_variables.present?
     self.class.request(:post, "external-task/#{id}/failure", workerId: worker_id, errorMessage: exception.message,
-                   errorDetails:
+                                                             errorDetails:
                     variables_information.to_s + exception.message +
                     backtrace_cleaner.clean(exception.backtrace).join("\n"))
   end
@@ -53,15 +53,17 @@ class Camunda::ExternalTask < Camunda::Model
   # Reports the error to Camunda and creates an incident for the process instance.
   # @param bpmn_exception [Camunda::BpmnError]
   def bpmn_error(bpmn_exception)
-    self.class.request(:post, "external-task/#{id}/bpmnError", workerId: worker_id, variables: serialize_variables(bpmn_exception.variables),
-                     errorCode: bpmn_exception.error_code, errorMessage: bpmn_exception.message)
+    self.class.request(:post, "external-task/#{id}/bpmnError",
+                       workerId: worker_id, variables: serialize_variables(bpmn_exception.variables),
+                       errorCode: bpmn_exception.error_code, errorMessage: bpmn_exception.message)
   end
 
   # Completes the process instance of a fetched task
   # @param variables [Hash] submitted when starting the process definition
   # @raise [Camunda::ExternalTask::SubmissionError] if Camunda does not accept the task submission
   def complete(variables={})
-    self.class.request(:post, "external-task/#{id}/complete", workerId: worker_id, variables: serialize_variables(variables)).tap do |response|
+    self.class.request(:post, "external-task/#{id}/complete", workerId: worker_id,
+                                                              variables: serialize_variables(variables)).tap do |response|
       raise SubmissionError, response.errors["message"] unless response.errors.blank?
     end
   end

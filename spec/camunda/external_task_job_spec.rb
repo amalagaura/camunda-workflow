@@ -1,4 +1,4 @@
-RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
+RSpec.describe Camunda::ExternalTaskJob, :deployment, :vcr do
   let!(:process_instance) { Camunda::ProcessDefinition.start_by_key definition_key, businessKey: 'Key' }
   let(:task) { Camunda::ExternalTask.fetch_and_lock("CamundaWorkflow").first }
 

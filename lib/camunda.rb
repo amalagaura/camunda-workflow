@@ -20,7 +20,7 @@ module Camunda
   end
 
   module Middleware
-    class Camunda::FirstLevelParseJSON <  Faraday::Middleware
+    class Camunda::FirstLevelParseJSON < Faraday::Middleware
       # Taken from Her::Middleware::FirstLevelParseJSON
       # Parse the response body
       #
@@ -33,12 +33,12 @@ module Camunda
           errors = json.delete(:errors)
           metadata = json.delete(:metadata)
         end
-        error ||= {}
+        errors ||= {}
         metadata ||= {}
         {
-          :data => json,
-          :errors => errors,
-          :metadata => metadata
+          data: json,
+          errors: errors,
+          metadata: metadata
         }
       end
 
@@ -49,20 +49,20 @@ module Camunda
       # @private
       def on_complete(env)
         str = case env[:status]
-        when 204
-          '{}'
-        when 200
-          env[:body]
-        when 400..599
-          env[:body] == '' ? '{}' : env[:body]
-        end
+              when 204
+                '{}'
+              when 200
+                env[:body]
+              when 400..599
+                env[:body] == '' ? '{}' : env[:body]
+              end
 
         env[:body] = case env[:status]
-        when 400..599
-          { data: nil, metadata: {}, errors: JSON.parse(str) }
-        else
-          parse str
-        end
+                     when 400..599
+                       { data: nil, metadata: {}, errors: JSON.parse(str) }
+                     else
+                       parse str
+                     end
       end
     end
 
@@ -99,9 +99,11 @@ module Camunda
       super "Class to run a Camunda activity does not exist. Ensure there is a class with name: #{class_name} available."
     end
   end
+
   # Error when deployment of process definition fails.
   class ProcessEngineException < StandardError
   end
+
   # Error when BPMN process cannot be deployed.
   class BpmnError < StandardError
     # Camunda BPMN error code

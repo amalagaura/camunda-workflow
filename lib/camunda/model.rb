@@ -19,7 +19,7 @@ class Camunda::Model < Spyke::Base
   end
 
   def self.base_path
-    uri.sub(/\(:id\)/, '')
+    uri.sub("(:id)", '')
   end
 
   class RecordNotFound < StandardError

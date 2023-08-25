@@ -21,7 +21,7 @@ class Camunda::Deployment < Camunda::Model
     deployment_name ||= file_names.map { |file_name| File.basename(file_name) }.join(", ")
     tenant_id ||= Camunda::Workflow.configuration.tenant_id
     args = file_data(file_names).merge('deployment-name' => deployment_name, 'deployment-source' => deployment_source)
-    args.merge!("tenant-id": tenant_id) if tenant_id
+    args.merge!('tenant-id': tenant_id) if tenant_id
     response = request(:post, "deployment/create", args)
     deployed_process_definitions(response.body[:data][:deployed_process_definitions])
   end
@@ -48,7 +48,7 @@ class Camunda::Deployment < Camunda::Model
     definitions_hash.values.map { |process_definition| Camunda::ProcessDefinition.new process_definition }
   end
 
-  def destroy(params = {})
+  def destroy(params={})
     self.attributes = delete(params)
   end
 end

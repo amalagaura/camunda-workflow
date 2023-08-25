@@ -49,9 +49,8 @@ class Camunda::ProcessDefinition < Camunda::Model
   end
 
   def self.process_instance_result(response)
-    unless response.errors.blank?
-      raise Camunda::ProcessEngineException, response.errors["message"]
-    end
+    raise Camunda::ProcessEngineException, response.errors["message"] unless response.errors.blank?
+
     Camunda::ProcessInstance.new response.body["data"]
   end
 end

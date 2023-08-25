@@ -95,7 +95,8 @@ module Camunda
       Spyke::Base.connection = Faraday.new(url: File.join(configuration.engine_url, configuration.engine_route_prefix)) do |c|
         c.request :multipart
         c.request :json
-        c.request :authorization, :basic, Camunda::Workflow.configuration.camunda_user, Camunda::Workflow.configuration.camunda_password
+        c.request :authorization, :basic, Camunda::Workflow.configuration.camunda_user,
+                  Camunda::Workflow.configuration.camunda_password
 
         c.use Faraday::Response::Logger, ActiveSupport::Logger.new($stdout), bodies: true if log_details?
         c.use Camunda::FirstLevelParseJSON

@@ -1,8 +1,7 @@
-require_relative './lib/camunda/workflow/version'
+require_relative 'lib/camunda/workflow/version'
 Gem::Specification.new do |spec|
   spec.name          = 'camunda-workflow'
   spec.version       = Camunda::Workflow::VERSION
-  spec.date          = '2019-11-22'
   spec.summary       = "Opinionated Ruby integration with Camunda"
   spec.description   = "Integrate Camunda with Ruby via its REST api by expecting a Ruby class for each external task."
   spec.authors       = ["Ankur Sethi", "Duggan Roberts"]
@@ -27,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'vcr', '~> 5.0.0'
   # Needs to be included for rake file
   spec.add_development_dependency 'yard', '~> 0.9.20'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
