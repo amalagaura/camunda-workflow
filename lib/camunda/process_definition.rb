@@ -49,11 +49,9 @@ class Camunda::ProcessDefinition < Camunda::Model
   end
 
   def self.process_instance_result(response)
-    errors = response.body["errors"] || {}
-    if errors.fetch("data",{})["type"] == "RestException"
-      raise Camunda::ProcessEngineException, response.body["errors"]["data"]["message"]
+    unless response.errors.blank?
+      raise Camunda::ProcessEngineException, response.errors["message"]
     end
-
     Camunda::ProcessInstance.new response.body["data"]
   end
 end

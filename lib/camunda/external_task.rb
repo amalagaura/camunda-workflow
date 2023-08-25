@@ -62,7 +62,7 @@ class Camunda::ExternalTask < Camunda::Model
   # @raise [Camunda::ExternalTask::SubmissionError] if Camunda does not accept the task submission
   def complete(variables={})
     self.class.request(:post, "external-task/#{id}/complete", workerId: worker_id, variables: serialize_variables(variables)).tap do |response|
-      raise SubmissionError, response.body["errors"]["data"]["message"] unless response.errors.blank?
+      raise SubmissionError, response.errors["message"] unless response.errors.blank?
     end
   end
 

@@ -29,7 +29,7 @@ RSpec.describe Camunda::ExternalTaskJob, :vcr, :deployment do
 
       it('bpmn error in submitting gives an error description') do
         expect do
-           external_task_job
+          external_task_job
         end
           .to raise_error(
             Camunda::ExternalTask::SubmissionError,

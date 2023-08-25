@@ -48,14 +48,20 @@ module Camunda
       # @param [Hash] env The response environment
       # @private
       def on_complete(env)
-        env[:body] = case env[:status]
+        str = case env[:status]
         when 204
-          parse('{}')
+          '{}'
         when 200
-          parse(env[:body])
+          env[:body]
         when 400..599
-          body = env[:body] == '' ? '{}' : env[:body]
-          { errors: parse(body) }
+          env[:body] == '' ? '{}' : env[:body]
+        end
+
+        env[:body] = case env[:status]
+        when 400..599
+          { data: nil, metadata: {}, errors: JSON.parse(str) }
+        else
+          parse str
         end
       end
     end

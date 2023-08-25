@@ -31,22 +31,22 @@ class Camunda::Task < Camunda::Model
   def complete!(vars={})
     self.class.request(:post, "task/#{id}/complete", variables: serialize_variables(vars))
       .tap do |response|
-      raise SubmissionError, response.errors["data"]["message"] unless response.errors.blank?
+      raise SubmissionError, response.errors["message"] unless response.errors.blank?
     end
   end
 
   def bpmn_error!(error_code, error_message, vars={})
     self.class.request(:post, "task/#{id}/bpmnError", errorCode: error_code, errorMessage: error_message,
-                     variables: serialize_variables(vars))
+      variables: serialize_variables(vars))
       .tap do |response|
-      raise SubmissionError, response.errors["data"]["message"] unless response.errors.blank?
+        raise SubmissionError, response.errors["message"] unless response.errors.blank?
+      end
     end
-  end
 
-  def bpmn_escalation!(escalation_code, vars={})
-    self.class.request(:post, "task/#{id}/bpmnEscalation", escalationCode: escalation_code, variables: serialize_variables(vars))
+    def bpmn_escalation!(escalation_code, vars={})
+      self.class.request(:post, "task/#{id}/bpmnEscalation", escalationCode: escalation_code, variables: serialize_variables(vars))
       .tap do |response|
-      raise SubmissionError, response.errors["data"]["message"] unless response.errors.blank?
+      raise SubmissionError, response.errors["message"] unless response.errors.blank?
     end
   end
 
