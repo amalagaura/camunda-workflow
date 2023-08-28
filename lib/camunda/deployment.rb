@@ -6,7 +6,8 @@
 # @note You must supply the paths of the BPMN files as a param titled file_names to deploy the BPMN file
 # and deploy BPMN, DMN, CMMN definitions in the Camunda engine.
 class Camunda::Deployment < Camunda::Model
-  collection_path 'deployment'
+  uri 'deployment/(:id)'
+
   # Deploys a new process definition to Camunda and returns an instance of Camunda::ProcessDefinition.
   # @note Only supporting .create which uses a POST on deployment/create.
   # @example
@@ -20,10 +21,9 @@ class Camunda::Deployment < Camunda::Model
     deployment_name ||= file_names.map { |file_name| File.basename(file_name) }.join(", ")
     tenant_id ||= Camunda::Workflow.configuration.tenant_id
     args = file_data(file_names).merge('deployment-name' => deployment_name, 'deployment-source' => deployment_source)
-    args.merge!("tenant-id": tenant_id) if tenant_id
-    response = post_raw('deployment/create', args)
-
-    deployed_process_definitions(response[:parsed_data][:data][:deployed_process_definitions])
+    args.merge!('tenant-id': tenant_id) if tenant_id
+    response = request(:post, "deployment/create", args)
+    deployed_process_definitions(response.body[:data][:deployed_process_definitions])
   end
 
   # Convenience method for dealing with files and IO that are to be uploaded
@@ -46,5 +46,9 @@ class Camunda::Deployment < Camunda::Model
     raise Camunda::ProcessEngineException, "No Process Definition created" if definitions_hash.nil?
 
     definitions_hash.values.map { |process_definition| Camunda::ProcessDefinition.new process_definition }
+  end
+
+  def destroy(params={})
+    self.attributes = delete(params)
   end
 end

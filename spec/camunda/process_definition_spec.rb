@@ -1,4 +1,4 @@
-RSpec.describe Camunda::ProcessDefinition, :vcr, :deployment do
+RSpec.describe Camunda::ProcessDefinition, :deployment, :vcr do
   describe '#start_by_key' do
     let(:instance) do
       described_class.start_by_key definition_key,
@@ -9,7 +9,7 @@ RSpec.describe Camunda::ProcessDefinition, :vcr, :deployment do
     it "succeeded" do
       expect(instance).to be_an_instance_of(Camunda::ProcessInstance)
       expect(instance.business_key).to eq("WorkflowBusinessKey")
-      expect(instance.variables).to eq(a: "ARRAY", b: true, f: 2.3, f1: 2.0, h: "OBJECT", n: 1, s: "abcd")
+      expect(instance.variables).to eq({ a: "ARRAY", b: true, f: 2.3, f1: 2.0, h: "OBJECT", n: 1, s: "abcd" }.stringify_keys)
     end
   end
 

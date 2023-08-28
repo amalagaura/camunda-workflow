@@ -4,11 +4,11 @@
 # @see https://docs.camunda.org/manual/7.4/user-guide/process-engine/process-engine-concepts/
 # @see Camunda::ProcessDefinition
 class Camunda::ProcessInstance < Camunda::Model
-  collection_path 'process-instance'
+  uri 'process-instance/(:id)'
   # GETs the process instance and deserializes the variables
   def variables
-    response = self.class.get_raw "process-instance/#{id}/variables"
-    deserialize_variables response[:parsed_data][:data]
+    response = self.class.request(:get, "process-instance/#{id}/variables")
+    deserialize_variables response.body[:data]
   end
 
   private

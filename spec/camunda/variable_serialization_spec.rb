@@ -9,8 +9,8 @@ RSpec.describe Camunda::VariableSerialization do
   describe '#serialize_variables' do
     it('type string') { expect(serialized["businessWorkflow"]["type"]).to eq("String") }
     it('value string') { expect(serialized["businessWorkflow"]["value"]).to eq("test") }
-    it('type Boolean ') { expect(serialized["booleanType"]["type"]).to eq("Boolean") }
-    it('value Boolean ') { expect(serialized["booleanType"]["value"]).to eq(true) }
+    it('type Boolean') { expect(serialized["booleanType"]["type"]).to eq("Boolean") }
+    it('value Boolean') { expect(serialized["booleanType"]["value"]).to be(true) }
     it('type Integer') { expect(serialized["integerType"]["type"]).to eq("Integer") }
     it('value Integer') { expect(serialized["integerType"]["value"]).to eq(13) }
     it('type Json') { expect(serialized["hashString"]["type"]).to eq("Json") }

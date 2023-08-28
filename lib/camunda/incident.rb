@@ -2,5 +2,5 @@
 # that happen in the process engine. Such incidents usually indicate some kind of problem
 # related to process execution. Incidents are reported on failures that occur.
 class Camunda::Incident < Camunda::Model
-  collection_path 'incident'
+  uri 'incident/(:id)'
 end
